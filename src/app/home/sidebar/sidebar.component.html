@@ -1,0 +1,92 @@
+<div id="sidebar"  class="nav-collapse ">
+  <!-- sidebar menu start-->
+  <ul class="sidebar-menu" id="nav-accordion">
+    <li>
+      <a (click)="navigateTo('home/features/dashboard')">
+        <i class="fa fa-dashboard"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a (click)="navigateTo('home/features/manager')">
+        <i class="fa fa-users"></i>
+        <span>Manage Managers</span>
+      </a>
+    </li>
+
+    <li class="sub-menu">
+      <a (click)="navigateTo('home/features/action')">
+        <i class="fa fa-bolt"></i>
+        <span>Manage Actions</span>
+      </a>
+    </li>
+    <li class="sub-menu">
+      <a (click)="navigateTo('home/features/prospect')">
+        <i class="fa fa-laptop"></i>
+        <span>Prospect</span>
+      </a>
+      <!--      <ul class="sub">-->
+      <!--        <li><a >Boxed Page</a></li>-->
+      <!--        <li><a>Horizontal Menu</a></li>-->
+      <!--      </ul>-->
+    </li>
+
+    <li class="sub-menu">
+      <a (click)="navigateTo('home/features/task')">
+        <i class="fa fa-tasks"></i>
+        <span>Manage Tasks </span>
+      </a>
+      <ul class="sub">
+        <li><a>Menu Item 1</a></li>
+        <li class="sub-menu">
+          <a >Menu Item 2</a>
+          <ul class="sub">
+            <li><a>Menu Item 2.1</a></li>
+            <li class="sub-menu">
+              <a >Menu Item 3</a>
+              <ul class="sub">
+                <li><a>Menu Item 3.1</a></li>
+                <li><a>Menu Item 3.2</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li class="sub-menu">
+      <a (click)="navigateTo('home/features/client')">
+        <i class="fa  fa-building-o"></i>
+        <span>Manage Clients</span>
+      </a>
+      <ul class="sub">
+        <li><a>General</a></li>
+      </ul>
+    </li>
+
+
+    <li class="sub-menu">
+      <a (click)="navigateTo('home/features/project')">
+        <i class="fa fa-suitcase"></i>
+        <span>Manage Projects</span>
+      </a>
+    </li>
+
+
+    <li class="sub-menu">
+      <a (click)="navigateTo('home/features/reclamation')">
+        <i class="fa  fa-bullhorn"></i>
+        <span>Reclamation</span>
+      </a>
+    </li>
+
+
+    <!--   <li class="sub-menu">
+         <a>
+           <i class=" fa fa-bar-chart-o"></i>
+           <span>Charts</span>
+         </a>
+       </li>-->
+  </ul>
+</div>
+
