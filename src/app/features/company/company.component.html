@@ -33,13 +33,13 @@
               <th class="text-center">Action</th>
             </tr>
             </thead>
-            <tbody>
-            <tr class="odd gradeX">
+            <tbody >
+            <tr class="odd gradeX" *ngFor="let e of listCompany">
               <td class="text-center">
                 <a routerLink="/home/manager/{}" class="btn btn-success btn-xs"><i class="fa  fa-plus-square"></i></a>
               </td>
               <td class="text-center"></td>
-              <td class="text-center"></td>
+              <td class="text-center">{{e.email}}</td>
               <td class="text-center"></td>
               <td class="text-center"></td>
               <td class="text-center"></td>

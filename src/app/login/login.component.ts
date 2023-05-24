@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.submit = true;
     this.authService.login(this.loginForm.value).subscribe(rep => {
-      const jwt = rep.headers.get('Authorization');
+      const jwt = rep.body.token;
+      console.log(rep);
       if (jwt) {
         this.authService.saveToken(jwt);
       }

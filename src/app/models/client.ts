@@ -1,6 +1,4 @@
-import {SafeUrl} from '@angular/platform-browser';
-
-export interface Society {
+export interface Client {
   id: number;
   societyName: string;
 
@@ -32,11 +30,9 @@ export interface Society {
   email: string;
 
   phone: number;
+
+  fax: number;
   social: string;
-
   typeSociety: string;
-
   status: string;
-  imageUrl: File;
-  url: SafeUrl;
 }

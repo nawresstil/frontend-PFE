@@ -10,9 +10,10 @@ import { ContainerComponent } from './home/container/container.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {JwtModule} from "@auth0/angular-jwt";
+import {AuthInterceptor} from "./authgarde/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import {JwtModule} from "@auth0/angular-jwt";
     SidebarComponent,
     ContainerComponent,
     FooterComponent,
-    LoginComponent,
+    LoginComponent
 
   ],
   imports: [

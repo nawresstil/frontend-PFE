@@ -9,6 +9,8 @@ import { ProjectComponent } from './project/project.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { TaskComponent } from './task/task.component';
 import {FeaturesRoutingModule} from './features-routing.module';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthInterceptor} from "../authgarde/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -19,10 +21,18 @@ import {FeaturesRoutingModule} from './features-routing.module';
     ManagerComponent,
     ProjectComponent,
     ReclamationComponent,
-    TaskComponent],
+    TaskComponent
+  ],
   imports: [
     CommonModule,
     FeaturesRoutingModule
-  ]
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
 })
 export class FeaturesModule { }

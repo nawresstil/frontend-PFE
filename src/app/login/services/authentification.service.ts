@@ -14,6 +14,9 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
+  getToken(){
+    return localStorage.getItem('token');
+  }
   login(data) {
 
     return this.http.post(environment.baseUrl + '/auth/authenticate', data, {observe: 'response'});
