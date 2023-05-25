@@ -12,31 +12,28 @@ import Swal from "sweetalert2";
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit {
-
+  submitted = false;
   listCompany;
   addForm: FormGroup;
   today: string;
-  openModal = false;
-  submitted = false;
+
   constructor(private companyService: CompanyService, private actvroute: ActivatedRoute,
               private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
-    this.getallClient();
+    this.getallCompany();
     this.addForm = this.getFormControlConfig(this.formBuilder);
     this.today = new Date().toISOString().split('T')[0];
     this.addForm.get('creationDate').setValue(this.today);
   }
-
-  getallClient() {
-    this.companyService.getSocieties().subscribe(result => {
-
+  navigateTo(link: string) {
+    this.router.navigateByUrl(link);
+  }
+  getallCompany() {
+    this.companyService.getCompany().subscribe(result => {
       this.listCompany = result ;
-
-      console.log('listClient', this.listCompany);
-
     }, (err) => {
-      console.log('error while getting clinets ', err);
+      console.log('error while getting clients ', err);
     });
   }
   getFormControlConfig = (formBuilder: FormBuilder): FormGroup => {
@@ -85,13 +82,13 @@ export class CompanyComponent implements OnInit {
     //   imageUrl: addForm.value.imageUrl // Assuming your form control name for the image is 'image'
     // };
     if (this.addForm.valid) {
-      this.openModal = false;
+
       this.submitted = false;
       console.log('***********************************');
       this.companyService.addSociety(addForm.value).subscribe(
         (response: Society[]) => {
           console.log(response);
-          this.getallClient();
+          this.getallCompany();
           // addForm.reset();
           Swal.fire({
             position: 'center',
@@ -102,7 +99,7 @@ export class CompanyComponent implements OnInit {
             timer: 1500,
             width: 500,
           });
-          this.getallClient();
+          this.getallCompany();
 
         },
         (error: HttpErrorResponse) => {
@@ -114,19 +111,5 @@ export class CompanyComponent implements OnInit {
       this.submitted = false;
     }
     this.router.navigate(['/Entreprise']);
-  }
-  public onOpenModal(society: Society, mode: string): void {
-    this.openModal = true;
-    this.submitted = false;
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-    if (mode === 'addProspect') {
-      button.setAttribute('data-target', '#addProspectModal');
-    }
-    container.appendChild(button);
-    button.click();
   }
 }

@@ -11,6 +11,9 @@ import { TaskComponent } from './task/task.component';
 import {FeaturesRoutingModule} from './features-routing.module';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "../authgarde/auth.interceptor";
+import { AddCompanyComponent } from './company/add-company/add-company.component';
+import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,11 +24,16 @@ import {AuthInterceptor} from "../authgarde/auth.interceptor";
     ManagerComponent,
     ProjectComponent,
     ReclamationComponent,
-    TaskComponent
+    TaskComponent,
+    AddCompanyComponent,
+    EditCompanyComponent
   ],
   imports: [
     CommonModule,
-    FeaturesRoutingModule
+    FeaturesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     {

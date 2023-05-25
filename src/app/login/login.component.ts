@@ -10,8 +10,8 @@ import {AuthenticationService} from './services/authentification.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  loginForm: FormGroup = new FormGroup({});
+  message: string;
+  loginForm: FormGroup;
   submit = false;
 
   constructor(private authService: AuthenticationService, private route: ActivatedRoute, private router: Router,
@@ -33,10 +33,7 @@ export class LoginComponent implements OnInit {
     this.submit = true;
     this.authService.login(this.loginForm.value).subscribe(rep => {
       const jwt = rep.body.token;
-      console.log(rep);
-      if (jwt) {
         this.authService.saveToken(jwt);
-      }
       this.router.navigateByUrl('/home');
     }, error1 => {
       Swal.fire('Error ! ' , 'Check your data ! ');

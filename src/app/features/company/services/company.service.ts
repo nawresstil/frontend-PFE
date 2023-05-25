@@ -12,12 +12,17 @@ export class CompanyService {
 
   constructor(private http: HttpClient, private authService: AuthenticationService) {
   }
-  getSocieties() {
-    const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.get<Society[]>(environment.baseUrl +`/entreprise/all`, {headers});
+
+  getCompany() {
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/entreprise/all`, {headers});
   }
-  addSociety(society: Society) {
-    const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.post<Society[]>(environment.baseUrl +`/entreprise/add`, society);
+  addSociety(society) {
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.post(environment.baseUrl +`/entreprise/create`, society, {headers});
+  }
+  public updateSociety(societyId: number, society: Society): Observable<Society> {
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.put<Society>(environment.baseUrl +`/entreprise/update/${societyId}`, society);
   }
 }

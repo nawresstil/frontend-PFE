@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {Observable} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  jwt = localStorage.getItem('token');
+/*  jwt = localStorage.getItem('token');
   username: string ;
-  roles: string [] ;
+  roles: string [] ;*/
+  jwt: string;
+  username: string;
+  roles: Array <string>;
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
@@ -18,14 +22,13 @@ export class AuthenticationService {
     return localStorage.getItem('token');
   }
   login(data) {
-
     return this.http.post(environment.baseUrl + '/auth/authenticate', data, {observe: 'response'});
 
   }
 
   getprofile() {
     const headers = new HttpHeaders({authorization: 'Bearer ' + this.jwt});
-    return this.http.get<any>(environment.baseUrl + '/user/users/', {headers});
+    return this.http.get<any>(environment.baseUrl + '/user/profile/', {headers});
   }
 
   parseJWT() {

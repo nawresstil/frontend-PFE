@@ -1,0 +1,274 @@
+<section class="wrapper site-min-height">
+  <!-- page start-->
+  <section class="panel" style="border: 1px solid grey;">
+<form [formGroup]="addProspect" (ngSubmit)="add()">
+  <div class="row" >
+    <div class="col-lg-6">
+      <section class="panel">
+        <header class="panel-heading">
+          <label>GENERAL INFORMATIONS</label>
+        </header>
+        <div class="panel-body">
+          <div class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="societyName" class="col-lg-3 col-sm-3 control-label">Society name* </label>
+              <div class="col-lg-9">
+                <div class="iconic-input">
+                  <input type="text"  name="societyName" formControlName="societyName" class="form-control" id="societyName" placeholder="Society name" >
+<!--                  <mat-error *ngIf="(addForm.controls.societyName.hasError('required') && addForm.controls.societyName.touched) || submitted">-->
+<!--                    <div>society name is required </div></mat-error>-->
+                  <!--                            <mat-error *ngIf="(addForm.controls.societyName.hasError('pattern') && addForm.controls.societyName.touched)">-->
+                  <!--                              <div>*invalid E-Mail</div></mat-error>-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="siteWeb" class="col-lg-3 col-sm-3 control-label">Site web*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input right">
+                  <input type="text"  name="siteWeb" formControlName="siteWeb" class="form-control" id="siteWeb" placeholder="Site web" pattern="www+.[a-zA-Z.-]+\.[a-zA-Z]{2,4}">
+<!--                  <mat-error *ngIf="(addForm.controls.siteWeb.hasError('required') && addForm.controls.siteWeb.touched) || submitted">-->
+<!--                    <div>Email address is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.siteWeb.hasError('pattern') && addForm.controls.siteWeb.touched) ">-->
+<!--                    <div>*invalid Web Site</div></mat-error>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <header class="panel-heading">
+          <label>SOCIETY COORDINATES</label>
+        </header>
+        <div class="panel-body">
+          <div class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="phoneSociety" class="col-lg-3 col-sm-3 control-label">Phone*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input">
+                  <i class="fa fa-phone"></i>
+                  <input type="number" name="phoneSociety" formControlName="phoneSociety" class="form-control" id="phoneSociety" placeholder="Phone" >
+<!--                  <mat-error *ngIf="(addForm.controls.phoneSociety.hasError('required') && addForm.controls.phoneSociety.touched) || submitted">-->
+<!--                    <div>phone is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.phoneSociety.hasError('invalidPhoneNumber') && addForm.controls.phoneSociety.touched)">-->
+<!--                    <div>*at least 8 number</div></mat-error>-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="faxSociety" class="col-lg-3 col-sm-3 control-label">Fax*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input">
+                  <i class="fa fa-phone"></i>
+                  <input type="number"  name="faxSociety" formControlName="faxSociety" class="form-control" id="faxSociety" placeholder="Fax" minlength="8">
+<!--                  <mat-error *ngIf="(addForm.controls.faxSociety.hasError('required') && addForm.controls.faxSociety.touched) || submitted">-->
+<!--                    <div>fax address is required</div>-->
+<!--                  </mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.faxSociety.hasError('invalidPhoneNumber') && addForm.controls.faxSociety.touched) ">-->
+<!--                    <div>*at least 8 number</div></mat-error>-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="emailSociety" class="col-lg-3 col-sm-3 control-label">Email*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input right">
+                  <input  name="emailSociety" class="form-control" formControlName="emailSociety" id="emailSociety"  type="email" placeholder="ex: email@gmail.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" >
+<!--                  <mat-error *ngIf="(addForm.controls.emailSociety.hasError('required') && addForm.controls.emailSociety.touched) || submitted" >-->
+<!--                    <div>Email address is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.emailSociety.hasError('pattern') && addForm.controls.emailSociety.touched) ">-->
+<!--                    <div>*invalid E-Mail</div></mat-error>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <header class="panel-heading">
+          <label> PRINCIPAL CONTACT</label>
+        </header>
+        <div class="panel-body">
+          <div class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="lastName" class="col-lg-3 col-sm-3 control-label">Last name*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input right">
+                  <input type="text"  name="lastName"  class="form-control" formControlName="lastName" id="lastName" placeholder="last name" minlength="4" >
+<!--                  <mat-error *ngIf="(addForm.controls.lastName.hasError('required') && addForm.controls.lastName.touched) || submitted">-->
+<!--                    <div>lastname is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.lastName.hasError('minlength') && addForm.controls.lastName.touched)">-->
+<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="firstName" class="col-lg-3 col-sm-3 control-label">First name*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input right">
+                  <input type="text"  name="firstName" formControlName="firstName"  class="form-control" id="firstName" placeholder="first name" minlength="4" >
+<!--                  <mat-error *ngIf="(addForm.controls.firstName.hasError('required') && addForm.controls.firstName.touched) || submitted">-->
+<!--                    <div>first name is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.firstName.hasError('minlength') && addForm.controls.firstName.touched) ">-->
+<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-lg-3 col-sm-3 control-label">Email*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input right">
+                  <input type="email" type="text" formControlName="email" name="email"  matInput  class="form-control" id="email" placeholder="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+<!--                  <mat-error *ngIf="(addForm.controls.email.hasError('required') && addForm.controls.email.touched) || submitted">-->
+<!--                    <div>email is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.email.hasError('pattern') && addForm.controls.email.touched)">-->
+<!--                    <div>*invalid E-Mail</div></mat-error>-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="col-lg-3 col-sm-3 control-label">Phone*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input right">
+                  <i class="fa fa-phone"></i>
+                  <input type="number"  name="phone" formControlName="phone" class="form-control" id="phone" placeholder="phone">
+<!--                  <mat-error *ngIf="(addForm.controls.phone.hasError('required') && addForm.controls.phone.touched) || submitted">-->
+<!--                    <div>phone is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.phone.hasError('invalidPhoneNumber') && addForm.controls.phone.touched)">-->
+<!--                    <div>*must be at least 8 number</div></mat-error>-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="function" class="col-lg-3 col-sm-3 control-label">Function*</label>
+              <div class="col-lg-9">
+                <div class="iconic-input">
+                  <input type="text"  name="function" formControlName="function"  class="form-control" id="function" placeholder="function" minlength="4">
+<!--                  <mat-error *ngIf="(addForm.controls.function.hasError('required') && addForm.controls.function.touched) || submitted">-->
+<!--                    <div>function is required </div></mat-error>-->
+<!--                  <mat-error *ngIf="(addForm.controls.function.hasError('minlength') && addForm.controls.function.touched) ">-->
+<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6" >
+      <div class="vertical-line">
+        <section class="panel">
+          <header class="panel-heading" >
+            <label>OTHER INFORMATIONS</label>
+          </header>
+          <div class="panel-body">
+            <div class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="sector" class="col-lg-3 col-sm-3 control-label">Activity sector</label>
+                <div class="col-lg-9">
+                  <input type="text"  name="sector" formControlName="sector"  class="form-control" id="sector" placeholder="aucun">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="nbrEmployee" class="col-lg-3 col-sm-3 control-label">Employee</label>
+                <div class="col-lg-9">
+                  <input type="text"  name="nbrEmployee" formControlName="nbrEmployee"  class="form-control" id="nbrEmployee" placeholder="aucun">
+                </div>
+              </div>
+            </div>
+          </div>
+          <header class="panel-heading">
+            <label>SOCIAL</label>
+          </header>
+          <div class="panel-body">
+            <div class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="social" class="col-lg-3 col-sm-3 control-label">Twitter</label>
+                <div class="col-lg-9">
+                  <input type="text"  name="social" formControlName="social" class="form-control" id="social" placeholder="twitter">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="social" class="col-lg-3 col-sm-3 control-label">LinkedIN</label>
+                <div class="col-lg-9">
+                  <input type="text"  name="social"  class="form-control" id="linkediN" placeholder="linkediN">
+
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="social" class="col-lg-3 col-sm-3 control-label">Facebook</label>
+                <div class="col-lg-9">
+                  <input type="text"  name="social"  class="form-control" id="facebook" placeholder="facebook">
+                </div>
+              </div>
+            </div>
+          </div>
+          <header class="panel-heading">
+            <label>CLIENT</label>
+          </header>
+          <div class="panel-body">
+            <div class="form-horizontal" role="form">
+              <div class="form-group" >
+                <label for="typeSociety" class="col-lg-3 col-sm-3 control-label">Type</label>
+                <div class="form-input col-lg-9">
+                  <select  name="typeSociety" formControlName="typeSociety" class="form-control" id="typeSociety">
+                    <option value="">Aucun</option>
+                    <option>Nouveau client</option>
+                    <option>Client fidèle</option>
+                    <option>Client inactif</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group" >
+                <label for="status" class="col-lg-3 col-sm-3 control-label">Status*</label>
+                <div class="form-input col-lg-9">
+                  <select  name="status" formControlName="status" class="form-control" id="status" >
+                    <option value="">Aucun</option>
+                    <option >prospect</option>
+                    <option>client</option>
+                  </select>
+<!--                  <mat-error *ngIf="(addForm.controls.status.hasError('required') && addForm.controls.status.touched) || submitted">-->
+<!--                    <div>status is required </div></mat-error>-->
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="priority" class="col-lg-3 col-sm-3 control-label">Priority</label>
+                <div class="col-lg-9">
+                  <input type="number" formControlName="priority" name="priority" class="form-control" id="priority" placeholder="">
+                </div>
+              </div>
+<!--              <div class="form-group">-->
+<!--                <label for="imageUrl" class="col-lg-3 col-sm-3 control-label">Logo</label>-->
+<!--                <div class="col-lg-9">-->
+<!--                  <input type="file" formControlName="file" name="imageUrl" class="form-control" id="imageUrl" (change)="onFileSelected($event)" accept="image/*">-->
+<!--                  <img [src]="imgURL" height="50" *ngIf="imgURL">-->
+<!--                </div>-->
+<!--              </div>-->
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- main end -->
+  </div>
+
+<!--    <div class="col-lg-2">
+      <div for="creationDate" class="iconic-input right">
+        <input type="date" name="creationDate" formControlName="creationDate" [value]="today" readonly class="form-control" id="creationDate" placeholder="Date">
+      </div>
+    </div>-->
+  <div class="col-lg-12" style="padding-top:10px">
+    <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+
+    <button type="submit" class="btn btn-primary " style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+  </div>
+
+</form>
+<!--    <br>-->
+<!--    <button type="button" id="" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+
+<!--    <button  type="submit" class="btn btn-primary" >Save changes</button>-->
+<!--    <br>-->
+    </section>
+      <!-- page start-->
+</section>

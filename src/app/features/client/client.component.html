@@ -1,1 +1,108 @@
-<p>client works!</p>
+<section class="wrapper site-min-height">
+  <div class="row">
+    <div class="col-lg-12">
+      <section class="panel">
+        <div id="main-container">
+          <div class="row">
+            <div class="col-lg-6">
+              <!--                <div class="btn-group" class="col-lg-12" >-->
+              <!--                  <button id="editable-sample_new" class="btn green" style="margin-top:10px" (click)="onOpenModal(null, 'addProspect')">-->
+              <!--                    Add New <i class="fa fa-plus" ></i>-->
+              <!--                  </button>-->
+              <!--                </div>-->
+            </div>
+            <div class="col-lg-12">
+              <div class="col-sm-2 pull-left"> <h2><strong>Client list</strong></h2></div>
+              <div class="dataTables_filter" id="editable-sample_filter">
+                <input type="search" aria-controls="editable-sample" (ngModelChange)="searchClients(keys.value)" #keys="ngModel" ngModel
+                       name="key" id="searchName" class="form-control medium" placeholder="Search Societies..." required>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:20px">
+            <!--get clients-->
+            <div class="col-lg-4" *ngFor="let clients of listClient">
+              <!--user info table start-->
+              <section class="panel card" style="width:390px">
+                <div class="panel-body ">
+                  <a href="#" class="task-thumb">
+                    <img src="../../assets/img/photos/user1.png" alt="">
+                  </a>
+                  <div class="col-lg-1" style="margin-left: 57%;">
+                    <label class="label label-info label-mini client" style="border-radius: 10px; margin-left: 60%"></label>
+                  </div>
+                  <div class="task-thumb-details">
+                    <h1><a style="padding-left:20px">{{clients?.societyName}} </a></h1>
+                    <!--<p style="padding-left:20px">Senior Architect</p>-->
+                  </div>
+                </div>
+                <table class="table table-hover personal-task">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <i class=" fa fa-globe"></i>
+                    </td>
+                    <td><strong>Site web: </strong><a href="http://{{ clients?.siteWeb}}">{{ clients?.siteWeb}}</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-envelope"></i>
+                    </td>
+                    <td><strong>Email: </strong>{{clients?.emailSociety}}</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-phone"></i>
+                    </td>
+                    <td><strong>Phone: </strong>{{clients?.phoneSociety}}</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class=" fa fa-bell-o"></i>
+                    </td>
+                    <td><strong>Priority: </strong>{{clients?.priority}}</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                    </td>
+                    <td>
+                      <a class="btn btn-primary btn-xs" style="margin-left: 100%;"><i class="fa fa-pencil "  data-original-title="Edit"></i></a>
+                    </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </section>
+              <!--user info table end-->
+            </div>
+          </div>
+          <!-- Notification for no clients -->
+          <div *ngIf="client?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+            <div class="alert alert-info" role="alert">
+              <h4 class="alert-heading">NO CLIENTS!</h4>
+              <p>No Clients were found.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!--pagination-->
+    <div class="row">
+      <div class="pull-right">
+        <div class="col-lg-12" >
+          <div class="dataTables_paginate paging_bootstrap pagination">
+<!--            <ul>-->
+<!--              <pagination-controls (pageChange)="p = ($event)"></pagination-controls>-->
+<!--            </ul>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

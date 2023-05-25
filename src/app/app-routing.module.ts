@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {ContainerComponent} from './home/container/container.component';
+import {AuthGuard} from "./authgarde/auth.guards";
 
 const routes: Routes = [{path: '', component: LoginComponent},
   {path: 'home', component: HomeComponent, children: [
@@ -11,7 +12,7 @@ const routes: Routes = [{path: '', component: LoginComponent},
         path: 'features',
         loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule)
       }
-    ]/*, canActivate: [AuthGuard]*/}];
+    ], canActivate: [AuthGuard]}];
 
 
 
