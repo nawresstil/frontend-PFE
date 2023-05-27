@@ -14,15 +14,23 @@ export class CompanyService {
   }
 
   getCompany() {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.get(environment.baseUrl +`/entreprise/all`, {headers});
+    return this.http.get(environment.baseUrl +`/entreprise/all`);
   }
   addSociety(society) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.post(environment.baseUrl +`/entreprise/create`, society, {headers});
+    return this.http.post(environment.baseUrl +`/entreprise/create`, society, {headers} );
   }
-  public updateSociety(societyId: number, society: Society): Observable<Society> {
+  public updateSociety(societyId , society){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.put<Society>(environment.baseUrl +`/entreprise/update/${societyId}`, society);
+    return this.http.put(environment.baseUrl +`/entreprise/edit/`+ societyId, society, {headers} );
+  }
+  public deleteSociety(societyId){
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.delete(environment.baseUrl +`/entreprise/delete/` + societyId,{headers});
+  }
+
+  public getById(societyId){
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/entreprise/` + societyId,{headers});
   }
 }

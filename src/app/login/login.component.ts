@@ -31,9 +31,11 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.submit = true;
-    this.authService.login(this.loginForm.value).subscribe(rep => {
+    this.authService.login(this.loginForm.value).subscribe((rep : any) => {
       const jwt = rep.body.token;
+      if (jwt) {
         this.authService.saveToken(jwt);
+      }
       this.router.navigateByUrl('/home');
     }, error1 => {
       Swal.fire('Error ! ' , 'Check your data ! ');

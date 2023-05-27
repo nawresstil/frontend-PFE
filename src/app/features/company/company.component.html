@@ -43,14 +43,17 @@
                 <span [class]="e?.status === 'client' ? 'label label-info label-mini client' : 'label label-info label-mini prospect'">{{e?.status}}</span>
               </td>
               <td class="text-center">{{e.priority}}</td>
-              <td class="text-center">{{e.creationDate}}</td>
+              <td class="text-center" >{{e.creationDate| date: 'yyyy-MM-dd'}}</td>
               <td class="text-center">
-                <a class="btn btn-warning btn-lg"></a>
+                <a class="btn btn-warning btn-lg">{{e.tracability}}</a>
               </td>
               <td class="text-center">
                 <a routerLink="/home/manager/{}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>
-                <button class="btn btn-primary btn-xs spaced-button" type="submit"><i class="fa fa-pencil" ></i></button>
-                <button class="btn btn-danger btn-xs  spaced-button" type="submit" ><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-primary btn-xs spaced-button" type="submit">
+                  <i routerLink="/home/features/edit-company/{{e.id}}" class="fa fa-pencil"
+                     (click)="recuper(e.id,e.societyName, e.siteweb,e.phonesociety,e.faxsociety,
+                      e.emailsociety,e.nbremployee,e.Priority,e.typesociety,e.firstname,e.lastname,e.fonction,e.Email,e.Phone,e.Social,e.Status)"></i></button>
+                <button class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)"><i class="fa fa-trash-o"></i></button>
               </td>
             </tr>
             </tbody>

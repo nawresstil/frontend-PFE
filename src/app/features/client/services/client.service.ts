@@ -11,21 +11,19 @@ import {AuthenticationService} from "../../../login/services/authentification.se
   providedIn: 'root'
 })
 export class ClientService {
-  private url = 'http://localhost:8081';
-
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
 
 
-  public getClientById(clientId: number) {
-    return this.http.get(`${this.url}/clients/${clientId}`);
+  public getClientById(clientId) {
+    return this.http.get(environment.baseUrl +`/clients/${clientId}`);
   }
 
 
 
-  public getClients(): Observable<Client[]> {
-    const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.get<Client[]>(environment.baseUrl +`/clients/all`, {headers});
+  public getClients(){
+    // const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/clients/all`);
   }
 
 }

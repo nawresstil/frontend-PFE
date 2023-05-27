@@ -10,6 +10,7 @@ import {ActionsComponent} from './actions/actions.component';
 import {ReclamationComponent} from './reclamation/reclamation.component';
 import {AddCompanyComponent} from "./company/add-company/add-company.component";
 import {AuthGuard} from "../authgarde/auth.guards";
+import {EditCompanyComponent} from "./company/edit-company/edit-company.component";
 
 const routes: Routes = [
   {path: 'client', component: ClientComponent, canActivate: [AuthGuard]},
@@ -20,7 +21,9 @@ const routes: Routes = [
   {path: 'project', component: ProjectComponent, canActivate: [AuthGuard]},
   {path: 'action', component: ActionsComponent, canActivate: [AuthGuard]},
   {path: 'reclamation', component: ReclamationComponent, canActivate: [AuthGuard]},
-  {path: 'add-company', component: AddCompanyComponent, canActivate: [AuthGuard]}
+  {path: 'add-company', component: AddCompanyComponent, canActivate: [AuthGuard]},
+  {path: 'edit-company/:idCompany', component: EditCompanyComponent, canActivate: [AuthGuard]}
+
 
 
 ];

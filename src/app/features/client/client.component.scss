@@ -1,0 +1,6 @@
+.card:hover {
+  transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  box-shadow: 1px 1px 3px 3px lightgrey;
+  -webkit-transition:  box-shadow .1s ease-in;
+
+}

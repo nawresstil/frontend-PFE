@@ -28,7 +28,7 @@ export class AuthenticationService {
 
   getprofile() {
     const headers = new HttpHeaders({authorization: 'Bearer ' + this.jwt});
-    return this.http.get<any>(environment.baseUrl + '/user/profile/', {headers});
+    return this.http.get(environment.baseUrl + '/user/profile', {headers});
   }
 
   parseJWT() {

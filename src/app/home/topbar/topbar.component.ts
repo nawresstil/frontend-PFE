@@ -11,7 +11,7 @@ export class TopbarComponent implements OnInit {
   user;
   role;
   constructor(private authService: AuthenticationService ,  private router: Router) {
-/*    this.getprofile();*/
+// this.getprofile();
   }
 
   ngOnInit() {

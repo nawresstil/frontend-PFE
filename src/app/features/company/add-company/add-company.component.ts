@@ -15,7 +15,6 @@ import {AuthenticationService} from "../../../login/services/authentification.se
 export class AddCompanyComponent implements OnInit {
   public imagePath;
   public message: string;
-  openModal = false;
   submitted = false;
   addForm: FormGroup;
   listProspect;
@@ -25,19 +24,23 @@ export class AddCompanyComponent implements OnInit {
   imgURL: any;
   p = 1; // Current page number
   today: string;
-  currentDate = "2023-01-01";
+  currentDate :string;
   addProspect: FormGroup;
   constructor(private companyService: CompanyService,private formBuilder: FormBuilder, private actvroute: ActivatedRoute,
-              private router: Router, private authService: AuthenticationService) {
+              private router: Router, private authService: AuthenticationService)
+  {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    this.currentDate = `${year}-${month}-${day}`;
   }
   ngOnInit(): void {
-    // this.getprofileadmine();
-    //this.addForm = this.getFormControlConfig(this.formBuilder);
-    // this.today = new Date().toISOString().split('T')[0];
-    // this.addForm.get('creationDate').setValue(this.today);
-    // this.initForm() ;
+
+      this.getprofileadmine();
+      // this.initForm() ;
     this.addProspect = this.formBuilder.group({
-      // tracability: this.user,
+      tracability: this.user,
       societyName: ['', Validators.required],
       siteWeb: ['', Validators.required],
       phoneSociety: ['', Validators.required],
@@ -52,7 +55,7 @@ export class AddCompanyComponent implements OnInit {
 
       nbrEmployee: ['', Validators.required],
 
-      creationDate: this.currentDate,
+      creationDate: this.currentDate.substring(0, 10),
 
       priority: ['', Validators.required],
 
@@ -70,10 +73,10 @@ export class AddCompanyComponent implements OnInit {
 
       phone: ['', Validators.required],
 
-      fax: ['', Validators.required],
 
       social: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+
+
       status: ['', Validators.required],
     });
   }
@@ -85,9 +88,9 @@ export class AddCompanyComponent implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addProspect.value, null, 4));
   }
   add() {
-    // this.addProspect.patchValue({
-    //   // tracability: this.user.lastname + ' ' + this.user.firstName
-    //    });
+    this.addProspect.patchValue({
+      // tracability: this.user.lastname + ' ' + this.user.firstName
+       });
     this.companyService.addSociety(this.addProspect.value).subscribe(res => {
       this.getallProspect();
       Swal.fire({
@@ -101,20 +104,21 @@ export class AddCompanyComponent implements OnInit {
       });
     });
     this.router.navigate(['/home/features/prospect']);
+
   }
   getallProspect() {
     this.companyService.getCompany().subscribe(result => {
       this.listProspect = result;
     });
   }
-  // getprofileadmine() {
-  //   this.authService.getprofile().subscribe(res => {
-  //     console.log(res);
-  //     this.user = res;
-  //     this.role = res['roles'][0]['roleName'];
-  //
-  //   });
-  // }
+  getprofileadmine() {
+    this.authService.getprofile().subscribe(res => {
+      console.log(res);
+      this.user = res;
+      this.role = res['roles'][0]['roleName'];
+
+    });
+  }
   onFileSelected(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
