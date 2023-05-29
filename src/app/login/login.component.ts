@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
-
-
   onLogin() {
     this.submit = true;
     this.authService.login(this.loginForm.value).subscribe((rep : any) => {

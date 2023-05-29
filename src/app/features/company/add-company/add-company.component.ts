@@ -17,7 +17,7 @@ export class AddCompanyComponent implements OnInit {
   public message: string;
   submitted = false;
   addForm: FormGroup;
-  listProspect;
+  public society: Society[];
   role;
   user;
   userFile;
@@ -39,7 +39,7 @@ export class AddCompanyComponent implements OnInit {
 
       this.getprofileadmine();
       // this.initForm() ;
-    this.addProspect = this.formBuilder.group({
+      this.addProspect = this.formBuilder.group({
       tracability: this.user,
       societyName: ['', Validators.required],
       siteWeb: ['', Validators.required],
@@ -92,7 +92,7 @@ export class AddCompanyComponent implements OnInit {
       // tracability: this.user.lastname + ' ' + this.user.firstName
        });
     this.companyService.addSociety(this.addProspect.value).subscribe(res => {
-      this.getallProspect();
+      this.getallCompany();
       Swal.fire({
         position: 'center',
         title: 'Added Successfully',
@@ -106,9 +106,11 @@ export class AddCompanyComponent implements OnInit {
     this.router.navigate(['/home/features/prospect']);
 
   }
-  getallProspect() {
-    this.companyService.getCompany().subscribe(result => {
-      this.listProspect = result;
+  getallCompany() {
+    this.companyService.getCompany().subscribe((response: Society[]) => {
+      this.society = response;
+    },(err) => {
+      console.log('error while getting clients ', err);
     });
   }
   getprofileadmine() {

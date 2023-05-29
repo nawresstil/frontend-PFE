@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 })
 export class CompanyComponent implements OnInit {
   submitted = false;
+  public society: Society[];
   listCompany;
   currentDate;
   addForm: FormGroup;
@@ -94,10 +95,10 @@ export class CompanyComponent implements OnInit {
   navigateTo(link: string) {
     this.router.navigateByUrl(link);
   }
-  getallCompany() {
-    this.companyService.getCompany().subscribe(result => {
-      this.listCompany = result ;
-    }, (err) => {
+  getallCompany(){
+    this.companyService.getCompany().subscribe((response: Society[]) => {
+      this.society = response;
+    },(err) => {
       console.log('error while getting clients ', err);
     });
   }
@@ -116,6 +117,22 @@ export class CompanyComponent implements OnInit {
     }
 
     return null; // Valid phone number
+  }
+
+  public searchSociety(keys: string): void {
+    const result: Society[] = [];
+    for (const society of this.society) {
+      if (society.societyName.toLowerCase().indexOf(keys.toLowerCase()) !== -1
+        || society.emailSociety.toLowerCase().indexOf(keys.toLowerCase()) !== -1
+        || society.siteWeb.toLowerCase().indexOf(keys.toLowerCase()) !== -1
+        || society.status.toLowerCase().indexOf(keys.toLowerCase()) !== -1) {
+        result.push(society);
+      }
+    }
+    this.society = result;
+    if (result.length === 0 || !keys) {
+      this.getallCompany();
+    }
   }
   public onDeleteSociety(societyId){
     Swal.fire({

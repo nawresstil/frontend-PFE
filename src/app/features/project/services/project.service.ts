@@ -1,35 +1,33 @@
 import {Injectable} from "@angular/core";
-
 import {environment} from "../../../../environments/environment";
-import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {AuthenticationService} from "../../../login/services/authentification.service";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class ProjectService {
 
   constructor(private http: HttpClient, private authService: AuthenticationService) {
   }
 
-  getCompany() {
-    return this.http.get(environment.baseUrl +`/entreprise/all`);
+  getproject() {
+    return this.http.get(environment.baseUrl +`/project/all`);
   }
-  addSociety(society) {
+  addProject(project) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.post(environment.baseUrl +`/entreprise/create`, society, {headers} );
+    return this.http.post(environment.baseUrl +`/project/add`, project, {headers} );
   }
-  public updateSociety(societyId , society){
+  public updateSociety(projectId , project){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.put(environment.baseUrl +`/entreprise/edit/`+ societyId, society, {headers} );
+    return this.http.put(environment.baseUrl +`project/update/`+ projectId, project, {headers} );
   }
-  public deleteSociety(societyId){
+  public deleteProject(projectId){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.delete(environment.baseUrl +`/entreprise/delete/` + societyId,{headers});
+    return this.http.delete(environment.baseUrl +`/project/delete/` + projectId,{headers});
   }
-
-  public getById(societyId){
+  public getprojectById(projectId){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.get(environment.baseUrl +`/entreprise/` + societyId,{headers});
+    return this.http.get(environment.baseUrl +`/project/` + projectId,{headers});
   }
 }

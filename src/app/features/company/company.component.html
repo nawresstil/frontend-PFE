@@ -6,12 +6,22 @@
     </header>
     <div class="panel-body">
       <div class="adv-table editable-table ">
-        <div class="clearfix">
-          <div class="btn-group">
+        <div class="row">
+          <div class="col-lg-6">
+          <div class="btn-group" class="col-lg-12">
             <button (click)="navigateTo('home/features/add-company')" id="editable-sample_new" class="btn green">
               Add New <i class="fa fa-plus"></i>
             </button>
           </div>
+          </div>
+          <div class="pull-right">
+          <div class="col-lg-12">
+            <div class="dataTables_filter" id="editable-sample_filter">
+              <input type="search" aria-controls="editable-sample" (ngModelChange)="  searchSociety(keys.value)" #keys="ngModel" ngModel
+                     name="key" id="searchName" class="form-control medium" placeholder="Search Societies..." required>
+            </div>
+          </div>
+        </div>
         </div>
         <br>
         <div class="table-responsive">
@@ -31,7 +41,7 @@
             </tr>
             </thead>
             <tbody >
-            <tr class="odd gradeX" *ngFor="let e of listCompany">
+            <tr class="odd gradeX" *ngFor="let e of society">
               <td class="text-center">
                 <a routerLink="/home/manager/{}" class="btn btn-success btn-xs"><i class="fa  fa-plus-square"></i></a>
               </td>
@@ -51,7 +61,7 @@
                 <a routerLink="/home/manager/{}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>
                 <button class="btn btn-primary btn-xs spaced-button" type="submit">
                   <i routerLink="/home/features/edit-company/{{e.id}}" class="fa fa-pencil"
-                     (click)="recuper(e.id,e.societyName, e.siteweb,e.phonesociety,e.faxsociety,
+                     (click)="recuper(e.id,e.societyname, e.siteweb,e.phonesociety,e.faxsociety,
                       e.emailsociety,e.nbremployee,e.Priority,e.typesociety,e.firstname,e.lastname,e.fonction,e.Email,e.Phone,e.Social,e.Status)"></i></button>
                 <button class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)"><i class="fa fa-trash-o"></i></button>
               </td>
@@ -65,3 +75,9 @@
   </section>
   <!-- page end-->
 </section>
+<div *ngIf="society?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO SOCIETIES!</h4>
+    <p>No SOCIETIES were found.</p>
+  </div>
+</div>

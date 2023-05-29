@@ -28,13 +28,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddCompanyComponent,
     EditCompanyComponent
   ],
-  imports: [
-    CommonModule,
-    FeaturesRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    imports: [
+        CommonModule,
+        FeaturesRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
 
-  ],
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

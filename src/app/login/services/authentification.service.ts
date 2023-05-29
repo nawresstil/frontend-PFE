@@ -17,20 +17,16 @@ export class AuthenticationService {
   roles: Array <string>;
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
-
   getToken(){
     return localStorage.getItem('token');
   }
   login(data) {
     return this.http.post(environment.baseUrl + '/auth/authenticate', data, {observe: 'response'});
-
   }
-
   getprofile() {
     const headers = new HttpHeaders({authorization: 'Bearer ' + this.jwt});
     return this.http.get(environment.baseUrl + '/user/profile', {headers});
   }
-
   parseJWT() {
     const objJWT = this.jwt ? this.jwtHelper.decodeToken(this.jwt) : {};
     /*    const jwtHelper = new JwtHelperService();
@@ -38,20 +34,15 @@ export class AuthenticationService {
     this.username = objJWT.obj;
     this.roles = objJWT.roles;
   }
-
   loadToken() {
     this.jwt = localStorage.getItem('token');
     this.parseJWT();
   }
-
-
   saveToken(jwt: string) {
     localStorage.setItem('token', jwt);
     this.jwt = jwt;
     this.parseJWT();
-
   }
-
   logout() {
     localStorage.removeItem('token');
     this.initParams();
