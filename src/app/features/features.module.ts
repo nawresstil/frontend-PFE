@@ -14,6 +14,7 @@ import {AuthInterceptor} from "../authgarde/auth.interceptor";
 import { AddCompanyComponent } from './company/add-company/add-company.component';
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {SocietydetailsComponent} from "./company/society-detail/societydetails.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReclamationComponent,
     TaskComponent,
     AddCompanyComponent,
-    EditCompanyComponent
+    EditCompanyComponent,
+    SocietydetailsComponent
   ],
     imports: [
         CommonModule,

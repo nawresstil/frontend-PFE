@@ -13,7 +13,12 @@ export class CompanyService {
   }
 
   getCompany() {
-    return this.http.get(environment.baseUrl +`/entreprise/all`);
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/entreprise/all`, {headers} );
+  }
+  getProjectBySocietyName(entrepriseName) {
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/entreprise/entreprises/projects/`+ entrepriseName, {headers} );
   }
   addSociety(society) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
@@ -27,9 +32,8 @@ export class CompanyService {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
     return this.http.delete(environment.baseUrl +`/entreprise/delete/` + societyId,{headers});
   }
-
   public getById(societyId){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.get(environment.baseUrl +`/entreprise/` + societyId,{headers});
+    return this.http.get(environment.baseUrl +`/entreprise/`+societyId,{headers});
   }
 }

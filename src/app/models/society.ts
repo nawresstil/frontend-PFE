@@ -1,4 +1,5 @@
 import {SafeUrl} from '@angular/platform-browser';
+import {Project} from "./Project";
 
 export interface Society {
   id: number;
@@ -39,4 +40,5 @@ export interface Society {
   status: string;
   imageUrl: File;
   url: SafeUrl;
+  projets: Project[];
 }

@@ -12,15 +12,16 @@ export class ProjectService {
   }
 
   getproject() {
-    return this.http.get(environment.baseUrl +`/project/all`);
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/project/all`,{headers} );
   }
   addProject(project) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
     return this.http.post(environment.baseUrl +`/project/add`, project, {headers} );
   }
-  public updateSociety(projectId , project){
+  public updateProject(projectId , project){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.put(environment.baseUrl +`project/update/`+ projectId, project, {headers} );
+    return this.http.put(environment.baseUrl +`/project/update/`+ projectId, project, {headers} );
   }
   public deleteProject(projectId){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});

@@ -1,20 +1,26 @@
-
-
 <section class="wrapper site-min-height">
   <!-- page start-->
   <section class="panel">
+    <div id="main-container">
     <header class="panel-heading">
       All projects List
       <span class="pull-right">
-                          <a href="#" class=" btn btn-success btn-xs"> Create New Project</a>
-                      </span>
+<!--                          <a href="#" class=" btn btn-success btn-xs"> Create New Project</a>-->
+      <button id="editable-sample_new" class="btn green" (click)="onOpenModal(null, 'add')">
+                    Add New <i class="fa fa-plus"></i>
+                  </button>
+      </span>
     </header>
     <div class="panel-body">
       <div class="row">
 
         <div class="col-md-12">
-          <div class="input-group"><input type="text" placeholder="Search Here" class="input-sm form-control"> <span class="input-group-btn">
-                              <button type="button" class="btn btn-sm btn-success"> Go!</button> </span></div>
+          <div class="input-group">
+            <input type="search" aria-controls="editable-sample"
+                   name="projectName" id="searchInput" placeholder="Search Here" class="input-sm form-control" required>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success" (click)="searchProjectByName()"> Go!</button> </span>
+          </div>
         </div>
       </div>
     </div>
@@ -34,7 +40,9 @@
           <td class="p-name">
             <a href="project_details.html">{{projects.name}}</a>
             <br>
-            <small>Created 27.11.2014</small>
+            <small>Started date {{projects.date_debut| date:'yyyy-MM-dd'}}</small>
+            <br>
+            <small>Started date {{projects.date_fin| date:'yyyy-MM-dd'}}</small>
           </td>
           <td class="p-team" >
             <a href="#"><img alt="image" class="" src="../../../assets/img/chat-avatar.jpg"></a>
@@ -52,14 +60,208 @@
           </td>
           <td class="text-center">
             <a href="project_details.html" class="btn btn-primary btn-xs "><i class="fa fa-folder"></i> View </a>
-            <a class="btn btn-info btn-xs  spaced-button"><i class="fa fa-pencil"></i> Edit </a>
+            <a class="btn btn-info btn-xs  spaced-button"><i class="fa fa-pencil" (click)="onOpenModal(projects, 'update')" data-original-title="update"></i> Edit </a>
             <a  class="btn btn-danger btn-xs  spaced-button" (click)="onDeleteProject(projects.id)"><i class="fa fa-trash-o"></i> Delete </a>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
+    </div>
   </section>
   <!-- page end-->
 </section>
+<!-- Add Project Modal -->
+<div class="col-lg-12" *ngIf="openModal">
+  <div class="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="addTacheModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header " style="background-color: #572AD7">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="modal-title" style="margin-bottom:1px"><strong>New Task</strong></h3>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addForm" (ngSubmit)="add(addForm)">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <section class="panel">
+                  <header class="panel-heading">
+                    <label>Project details</label>
+                  </header>
+                  <div class="panel-body">
+                    <div class="form-horizontal" role="form">
+                      <div class="form-group">
+                        <label for="name" class="col-lg-3 col-sm-3 control-label">Project Name</label>
+                        <div class="col-lg-9">
+                          <div class="iconic-input">
+                            <input type="text" formControlName="name" name="name" class="form-control" id="name" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+
+                      <header class="panel-heading">
+                        <label> Additional links</label>
+                      </header>
+                      <div class="panel-body">
+                        <div class="form-horizontal" role="form">
+                          <div class="form-group">
+                            <label for="societName" class="col-lg-3 col-sm-3 control-label">Related Society</label>
+                            <div class="col-lg-9">
+                              <div class="iconic-input">
+                                <select name="societName" id="societName" formControlName="societName" class="form-control select" >
+                                  <option *ngFor="let society of society" >{{ society.societyName }}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="nbrEmployee" class="col-lg-3 control-label">Team member</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="number" formControlName="nbrEmployee" name="nbrEmployee" class="form-control" id="nbrEmployee" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="date_debut" class="col-lg-3 control-label">Date debut</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="date" formControlName="date_debut" name="date_debut" class="form-control" id="date_debut" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="date_fin" class="col-lg-3 control-label">Date fin</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="date" formControlName="date_fin" name="date_fin" class="form-control" id="date_fin" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="budget" class="col-lg-3 control-label">budget</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="number" formControlName="budget" name="budget" class="form-control" id="budget" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </section>
+              </div>
+              <!-- main end -->
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+              <button type="submit"  class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Add Project -->
+<div class="col-lg-12" *ngIf="openModal">
+  <div class="modal fade" id="updateProjectModal" tabindex="-1" role="dialog" aria-labelledby="addTacheModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header " style="background-color: #572AD7">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="modal-title" style="margin-bottom:1px"><strong>New Task</strong></h3>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editForm">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <section class="panel">
+                  <header class="panel-heading">
+                    <label>Project details</label>
+                  </header>
+                  <div class="panel-body">
+                    <div class="form-horizontal" role="form">
+                      <div class="form-group">
+                        <label for="name" class="col-lg-3 col-sm-3 control-label">Project Name</label>
+                        <div class="col-lg-9">
+                          <div class="iconic-input">
+                            <input type="text" formControlName="name" name="name" class="form-control" id="name" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+
+                      <header class="panel-heading">
+                        <label> Additional links</label>
+                      </header>
+                      <div class="panel-body">
+                        <div class="form-horizontal" role="form">
+                          <div class="form-group">
+                            <label for="societName" class="col-lg-3 col-sm-3 control-label">Related Society</label>
+                            <div class="col-lg-9">
+                              <div class="iconic-input">
+                                <select name="societName" id="societName" formControlName="societName" class="form-control select" >
+                                  <option *ngFor="let society of society" >{{ society.societyName }}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="nbrEmployee" class="col-lg-3 control-label">Team member</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="number" formControlName="nbrEmployee" name="nbrEmployee" class="form-control" id="nbrEmployee" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="date_debut" class="col-lg-3 control-label">Date debut</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="date" formControlName="date_debut" name="date_debut" class="form-control" id="date_debut" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="date_fin" class="col-lg-3 control-label">Date fin</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="date" formControlName="date_fin" name="date_fin" class="form-control" id="date_fin" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="budget" class="col-lg-3 control-label">budget</label>
+                        <div class="col-lg-5">
+                          <div>
+                            <input type="number" formControlName="budget" name="budget" class="form-control" id="budget" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </section>
+              </div>
+              <!-- main end -->
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+              <button (click)="onUpdateProject(updateProject?.id,editForm.value)" [disabled]="editForm.invalid" data-dismiss="modal" type="submit"  class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 

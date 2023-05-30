@@ -10,9 +10,9 @@
             <span class="pull-right col-lg-6">
                   <button type="button" class="btn btn-shadow btn-default" (click)="toggleFormVisibility1()">All Tasks</button>
                   <button type="button" class="btn btn-shadow btn-primary" (click)="toggleFormVisibility()">Tasks done</button>
-                  <button type="button" class="btn btn-shadow btn-info" (click)="toggleFormVisibility2()">Tasks for today</button>
+                  <button type="button" class="btn btn-shadow btn-info"    (click)="toggleFormVisibility2()">Tasks for today</button>
                   <button type="button" class="btn btn-shadow btn-warning" (click)="toggleFormVisibility4()">Upcoming tasks</button>
-                  <button type="button" class="btn btn-shadow btn-danger" (click)="toggleFormVisibility3()">Delayed Tasks</button>
+                  <button type="button" class="btn btn-shadow btn-danger"  (click)="toggleFormVisibility3()">Delayed Tasks</button>
             </span>
 
           <h3>Tasks Management</h3>
@@ -45,7 +45,7 @@
                     <thead>
                     <tr>
                       <th><i class="fa fa-bullhorn"></i> Label</th>
-                      <!--<th><i class="fa fa-bullhorn"></i> Collaborateurs</th>-->
+                      <th><i class="fa fa-bullhorn"></i> Collaborateurs</th>
                       <th><i class=" fa fa-edit"></i> Date</th>
                       <th><i class="fa fa-question-circle"></i> Contact</th>
                       <th><i class=" fa fa-edit"></i> Titre</th>
@@ -58,7 +58,7 @@
                     <tr *ngFor="let t of tacheS">
                       <td><a href="#">{{t?.label}}</a></td>
                       <td><span class="hidden-phone">{{t?.collaborateurs}} </span></td>
-                      <td class="hidden-phone">{{t?.date}},{{t?.date}}</td>
+                      <td class="hidden-phone">{{t?.date}}<!--,{{t?.times}}--></td>
                       <td><span class="hidden-phone">{{t?.contact}}</span></td>
                       <td><span class="hidden-phone">{{t?.titre}}</span></td>
                       <td><span class="hidden-phone">{{t?.description}}</span></td>
@@ -73,13 +73,13 @@
                     <tr *ngFor="let tasksDone of taskDone">
                       <td><a href="#">{{tasksDone?.label}}</a></td>
                       <td><span class="hidden-phone">{{tasksDone?.collaborateurs}}</span></td>
-                      <td class="hidden-phone">{{tasksDone?.date}},{{tasksDone?.times}}</td>
+                      <td class="hidden-phone">{{tasksDone?.date}}<!--,{{tasksTodo?.times}}--></td>
 <!--                      <td><span class="hidden-phone">{{tasksDone?.societyName}}</span></td>-->
                       <td><span class="hidden-phone">{{tasksDone?.titre}}</span></td>
                       <td><span class="hidden-phone">{{tasksDone?.description}}</span></td>
                       <td class="text-center">
                         <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " (click)="onDeleteTache(tasksDone.id)" data-original-title="delete"></i></a>
-                        <a class="btn btn-primary btn-xs"><i class="fa fa-pencil " (click)="onOpenModal(tasksDone, 'update')" data-original-title="delete"></i></a>
+                        <a class="btn btn-primary btn-xs"><i class="fa fa-pencil " (click)="onOpenModal(tasksDone, 'update')" data-original-title="update"></i></a>
                         <a class="btn btn-success btn-xs"><i class="fa fa-eye " (click)="onOpenModal(tasksDone, 'viewDetails')" data-original-title="viewDetails"></i></a>
                       </td>
                     </tr>
@@ -89,7 +89,7 @@
                     <tr *ngFor="let tasksToday of taskfortoday">
                       <td><a href="#">{{tasksToday?.label}}</a></td>
                       <td><span class="hidden-phone">{{tasksToday?.collaborateurs}}</span></td>
-                      <td class="hidden-phone">{{tasksToday?.date}},{{tasksToday?.times}}</td>
+                      <td class="hidden-phone">{{tasksToday?.date}}<!--,{{tasksTodo?.times}}--></td>
 <!--                      <td><span class="hidden-phone">{{tasksToday?.entreprise.societyName}}</span></td>-->
                       <td><span class="hidden-phone">{{tasksToday?.titre}}</span></td>
                       <td><span class="hidden-phone">{{tasksToday?.description}}</span></td>
@@ -104,7 +104,7 @@
                     <tr *ngFor="let taskDelayed of tasksDelayed">
                       <td><a href="#">{{taskDelayed?.label}}</a></td>
                       <td><span class="hidden-phone">{{taskDelayed?.collaborateurs}}</span></td>
-                      <td class="hidden-phone">{{taskDelayed?.date}},{{taskDelayed?.times}}</td>
+                      <td class="hidden-phone">{{taskDelayed?.date}}<!--,{{tasksTodo?.times}}--></td>
 <!--                      <td><span class="hidden-phone">{{taskDelayed?.entreprise.societyName}}</span></td>-->
                       <td><span class="hidden-phone">{{taskDelayed?.titre}}</span></td>
                       <td><span class="hidden-phone">{{taskDelayed?.description}}</span></td>
@@ -120,7 +120,7 @@
 
                       <td><a href="#">{{tasksTodo?.label}}</a></td>
                       <td><span class="hidden-phone">{{tasksTodo?.collaborateurs}}</span></td>
-                      <td class="hidden-phone">{{tasksTodo?.date}},{{tasksTodo?.times}}</td>
+                      <td class="hidden-phone">{{tasksTodo?.date}}<!--,{{tasksTodo?.times}}--></td>
 <!--                      <td><span class="hidden-phone">{{tasksTodo?.entreprise.societyName}}</span></td>-->
                       <td><span class="hidden-phone">{{tasksTodo?.titre}}</span></td>
                       <td><span class="hidden-phone">{{tasksTodo?.description}}</span></td>
@@ -146,7 +146,7 @@
                           <h3 class="modal-title" style="margin-bottom:1px"><strong>New Task</strong></h3>
                         </div>
                         <div class="modal-body">
-                          <form [formGroup]="addForm" (ngSubmit)="add(addForm)">
+                          <form [formGroup]="addForm" (ngSubmit)="add(addForm)" >
                             <div class="row">
                               <div class="col-lg-12">
 
@@ -194,9 +194,9 @@
                                             <input type="date" formControlName="date" name="date" class="form-control" id="date" placeholder="">
                                           </div>
                                         </div>
-                                        <!--                                    <div class="col-lg-4" for="times">-->
-                                        <!--                                      <input type="time" formControlName="times" name="times" class="form-control" id="times" placeholder="00:00">-->
-                                        <!--                                    </div>-->
+<!--                                          <div class="col-lg-4" for="times">-->
+<!--                                            <input type="time" formControlName="times" name="times" class="form-control" id="times" placeholder="00:00">-->
+<!--                                          </div>-->
                                       </div>
                                     </div>
                                   </div>
@@ -270,7 +270,7 @@
                 <!-- end Add Task -->
 
                 <!--view details start-->
-                <div class="col col-lg-12">
+                <div class="col col-lg-12" >
                   <div class="modal fade" id="viewDetailsModal" tabindex="-1" role="dialog" aria-labelledby="viewDetailsModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content " >
@@ -418,135 +418,137 @@
                 </div>
                 <!--view details end-->
                 <!--update start-->
-<!--                <div class="col col-lg-12">-->
-<!--                  <div class="modal fade" id="updateTacheSModal" tabindex="-1" role="dialog" aria-labelledby="updateTacheSModalLabel" aria-hidden="true">-->
-<!--                    <div class="modal-dialog" role="document">-->
-<!--                      <div class="modal-content " >-->
-<!--                        <div class="modal-header">-->
-<!--                          <h5 class="modal-title" id="updateTacheSModalLabel">New Prospect</h5>-->
-<!--                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                            <span aria-hidden="true">&times;</span>-->
-<!--                          </button>-->
-<!--                        </div>-->
-<!--                        <div class="modal-body">-->
-<!--                          <form [formGroup]="editForm" (ngSubmit)="onUpdateTache(updateTacheS?.id, editForm.value)">-->
+                <div class="col col-lg-12">
+                  <div class="modal fade" id="updateTacheSModal" tabindex="-1" role="dialog" aria-labelledby="updateTacheSModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content " >
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="updateTacheSModalLabel">New Prospect</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="editForm" (ngSubmit)="onUpdateTache(updateTacheS?.id, editForm.value)">
 
-<!--                            <div class="row">-->
-<!--                              <div class="col-lg-12">-->
+                            <div class="row">
+                              <div class="col-lg-12">
 
-<!--                                <section class="panel">-->
-<!--                                  <header class="panel-heading">-->
-<!--                                    <label>Task detail</label>-->
-<!--                                  </header>-->
-<!--                                  <div class="panel-body">-->
-<!--                                    <div class="form-horizontal" role="form">-->
-<!--                                      <div class="form-group">-->
-<!--                                        <label for="label" class="col-lg-3 col-sm-3 control-label">Label </label>-->
-<!--                                        <div class="col-lg-9">-->
-<!--                                          <div class="iconic-input">-->
-<!--                                            <select id="label" formControlName='label' name="label" class="form-control" onchange="">-->
-<!--                                              <option  selecteditem="0">Reminder</option>-->
-<!--                                              <option  selecteditem="0">Lunch</option>-->
-<!--                                              <option  selecteditem="0">Meeting</option>-->
-<!--                                              <option  selecteditem="0">Vacation</option>-->
-<!--                                              <option  selecteditem="0">Phone call</option>-->
-<!--                                              <option  selecteditem="0">Follow-up by phone/email</option>-->
-<!--                                              <option  selecteditem="0">To program</option>-->
-<!--                                              <option  syscode="none" selecteditem="0">None</option>-->
+                                <section class="panel">
+                                  <header class="panel-heading">
+                                    <label>Task detail</label>
+                                  </header>
+                                  <div class="panel-body">
+                                    <div class="form-horizontal" role="form">
+                                      <div class="form-group">
+                                        <label for="label" class="col-lg-3 col-sm-3 control-label">Label </label>
+                                        <div class="col-lg-9">
+                                          <div class="iconic-input">
+                                            <select id="label" formControlName='label' name="label" class="form-control" onchange="">
+                                              <option  selecteditem="0">Reminder</option>
+                                              <option  selecteditem="0">Lunch</option>
+                                              <option  selecteditem="0">Meeting</option>
+                                              <option  selecteditem="0">Vacation</option>
+                                              <option  selecteditem="0">Phone call</option>
+                                              <option  selecteditem="0">Follow-up by phone/email</option>
+                                              <option  selecteditem="0">To program</option>
+                                              <option  syscode="none" selecteditem="0">None</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="titre" class="col-lg-3 col-sm-3 control-label">Titre</label>
+                                        <div class="col-lg-9">
+                                          <div class="iconic-input">
+                                            <input type="text" formControlName='titre' name="titre" class="form-control" id="titre" placeholder="" >
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="description" class="col-lg-3 col-sm-3 control-label">Description</label>
+                                        <div class="col-lg-9">
+                                          <input type="text" formControlName='description' name="description" class="form-control" id="description" placeholder="">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="date" class="col-lg-3 control-label">Date</label>
+                                        <div class="col-lg-4">
+                                          <div>
+                                            <input type="date" formControlName='date' name="date" class="form-control" id="date" placeholder="">
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-3" for="times">
+                                          <input type="time" formControlName='time' name="time" class="form-control" id="times" value="00:00">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                    <header class="panel-heading">
+                                      <label>Advanced parametres</label>
+                                    </header>
+                                    <div class="panel-body">
+                                      <div class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                          <label for="collaborateurs" class="col-lg-3 col-sm-3 control-label">Collaborator</label>
+                                          <div class="col-lg-9">
+                                            <div class="iconic-input">
+                                              <select type="text" formControlName="collaborateurs" name="collaborateurs" class="form-control" id="collaborateurs" placeholder="">
+                                                <option *ngFor="let user of users" >{{ user.firstname}}</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <header class="panel-heading">
+                                    <label> Additional links</label>
+                                  </header>
+                                  <div class="panel-body">
+                                    <div class="form-horizontal" role="form">
+                                      <div class="form-group">
+                                        <label class="col-lg-3 col-sm-3 control-label">Related to</label>
+                                        <div class="col-lg-9">
+                                          <div class="iconic-input">
+                                            <select class="form-control" formControlName="selectedSocEdit">
+                                              <option value="Societies">Societies</option>
+                                              <option value="Client">Client</option>
+                                            </select>
+                                            <p>{{editForm.controls['selectedSocEdit'].value}}</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="" class="col-lg-3 col-sm-3 control-label">Related item</label>
+                                        <div class="col-lg-9">
+                                          <div class="iconic-input">
+<!--                                            <select name="contact" id="contact" formControlName='contact' class="form-control select" >-->
+<!--                                              <ng-container *ngIf="editForm.controls['selectedSocEdit'].value === 'Client'">-->
+<!--                                                <option *ngFor="let clients of client" >{{ clients.societyName}}</option>-->
+<!--                                              </ng-container>-->
+<!--                                              <ng-container *ngIf="editForm.controls['selectedSocEdit'].value === 'Societies'">-->
+<!--                                                <option *ngFor="let p of prospects" >{{ p.societyName }}</option>-->
+<!--                                              </ng-container>-->
 <!--                                            </select>-->
-<!--                                          </div>-->
-<!--                                        </div>-->
-<!--                                      </div>-->
-<!--                                      <div class="form-group">-->
-<!--                                        <label for="titre" class="col-lg-3 col-sm-3 control-label">Titre</label>-->
-<!--                                        <div class="col-lg-9">-->
-<!--                                          <div class="iconic-input">-->
-<!--                                            <input type="text" formControlName='titre' name="titre" class="form-control" id="titre" placeholder="" >-->
-<!--                                          </div>-->
-<!--                                        </div>-->
-<!--                                      </div>-->
-<!--                                      <div class="form-group">-->
-<!--                                        <label for="description" class="col-lg-3 col-sm-3 control-label">Description</label>-->
-<!--                                        <div class="col-lg-9">-->
-<!--                                          <input type="text" ngModel="{{updateTacheS?.description}}" name="description" class="form-control" id="description" placeholder="">-->
-<!--                                        </div>-->
-<!--                                      </div>-->
-<!--                                      <div class="form-group">-->
-<!--                                        <label for="date" class="col-lg-3 control-label">Date</label>-->
-<!--                                        <div class="col-lg-4">-->
-<!--                                          <div>-->
-<!--                                            <input type="date" formControlName='date' name="date" class="form-control" id="date" placeholder="">-->
-<!--                                          </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-lg-3" for="times">-->
-<!--                                          <input type="time" formControlName='time' name="time" class="form-control" id="times" value="00:00">-->
-<!--                                        </div>-->
-<!--                                      </div>-->
-<!--                                    </div>-->
-<!--                                  </div>-->
-<!--                                  &lt;!&ndash;                              <header class="panel-heading">&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                <label>Advanced parametres</label>&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                              </header>&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                              <div class="panel-body">&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                <div class="form-horizontal" role="form">&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                  <div class="form-group">&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                    <label for="collaborateurs" class="col-lg-3 col-sm-3 control-label">Collaborator</label>&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                    <div class="col-lg-9">&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                      <div class="iconic-input">&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                        <input type="text" ngModel="{{updateTacheS?.collaborateurs}}" name="collaborateurs" class="form-control" id="collaborateurs" placeholder="">&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                      </div>&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                  </div>&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--                                  &lt;!&ndash;                              </div>&ndash;&gt;-->
-<!--                                  <header class="panel-heading">-->
-<!--                                    <label> Additional links</label>-->
-<!--                                  </header>-->
-<!--                                  <div class="panel-body">-->
-<!--                                    <div class="form-horizontal" role="form">-->
-<!--                                      <div class="form-group">-->
-<!--                                        <label class="col-lg-3 col-sm-3 control-label">Related to</label>-->
-<!--                                        <div class="col-lg-9">-->
-<!--                                          <div class="iconic-input">-->
-<!--                                            <select class="form-control" formControlName="selectedSoc">-->
-<!--                                              <option value="Societies">Societies</option>-->
-<!--                                              <option value="Client">Client</option>-->
-<!--                                            </select>-->
-<!--                                            <p>{{editForm.controls['selectedSoc'].value}}</p>-->
-<!--                                          </div>-->
-<!--                                        </div>-->
-<!--                                      </div>-->
-<!--                                      <div class="form-group">-->
-<!--                                        <label for="" class="col-lg-3 col-sm-3 control-label">Related item</label>-->
-<!--                                        <div class="col-lg-9">-->
-<!--&lt;!&ndash;                                          <div class="iconic-input">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <select name="contact" id="contact" formControlName='contact' class="form-control select" >&ndash;&gt;-->
-<!--&lt;!&ndash;                                              <ng-container *ngIf="editForm.controls['selectedSoc'].value === 'Client'">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <option *ngFor="let clients of client" >{{ clients.societyName}}</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                              </ng-container>&ndash;&gt;-->
-<!--&lt;!&ndash;                                              <ng-container *ngIf="editForm.controls['selectedSoc'].value === 'Societies'">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <option *ngFor="let p of prospects" >{{ p.societyName }}</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                              </ng-container>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </select>&ndash;&gt;-->
-<!--&lt;!&ndash;                                          </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                      </div>-->
-<!--                                    </div>-->
-<!--                                  </div>-->
-<!--                                </section>-->
-<!--                              </div>-->
-<!--                              &lt;!&ndash; main end &ndash;&gt;-->
-<!--                            </div>-->
-<!--                            <div class="modal-footer">-->
-<!--                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                              <button  type="submit" class="btn btn-primary" >Save changes</button>-->
-<!--                            </div>-->
-<!--                          </form>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </section>
+                              </div>
+                              <!-- main end -->
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button (click)="onUpdateTache(updateTacheS?.id,editForm.value)" type="submit" class="btn btn-primary" >Save changes</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <!--update end-->
                 <!-- Notification for no societies -->
                 <div *ngIf="tacheS?.length == 0" class="col-lg-12 col-md-12 col-xl-12">

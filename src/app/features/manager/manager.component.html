@@ -42,7 +42,7 @@
               <td class="text-center">{{users.departments}}</td>
               <td class="text-center">{{users.JoiningDate}}</td>
               <td class="text-center">
-                <a class="btn btn-success btn-lg" *ngIf="users.username === userC.username"></a>
+                <a class="btn btn-warning btn-xs" *ngIf="users.username === userC.username">{{userC.username}}</a>
               </td>
               <td class="text-center">
                 <a routerLink="/home/manager/{}" class="btn btn-success btn-xs"><i class="fa fa-home"></i></a>

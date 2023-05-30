@@ -4,9 +4,6 @@ import {Observable} from 'rxjs';
 import {AuthenticationService} from "../../../login/services/authentification.service";
 import {environment} from "../../../../environments/environment";
 import {TacheS} from "../../../models/tasks/tache";
-import {TasksDone} from "../../../models/tasks/tasksDone";
-import {TasksToday} from "../../../models/tasks/tasksToday";
-import {TasksDelayed} from "../../../models/tasks/tasksDelayed";
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +13,13 @@ export class TacheService {
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   public getAllTaches(){
-    return this.http.get(environment.baseUrl +`/tacheSoc/all`);
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/tacheSoc/all`,{headers});
   }
 
   public getTacheSById(id) {
-    return this.http.get(environment.baseUrl +`/tacheSoc/${id}`);
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/tacheSoc/${id}`,{headers} );
   }
   public createTacheS(tacheS: TacheS){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});

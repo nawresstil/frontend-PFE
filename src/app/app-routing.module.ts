@@ -12,7 +12,7 @@ const routes: Routes = [{path: '', component: LoginComponent},
         path: 'features',
         loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule)
       }
-    ], canActivate: [AuthGuard]}];
+    ]/*, canActivate: [AuthGuard]*/}];
 
 
 

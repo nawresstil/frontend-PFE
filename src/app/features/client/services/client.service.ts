@@ -16,14 +16,15 @@ export class ClientService {
 
 
   public getClientById(clientId) {
-    return this.http.get(environment.baseUrl +`/clients/${clientId}`);
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/clients/${clientId}`,{headers});
   }
 
 
 
   public getClients(){
-    // const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.get(environment.baseUrl +`/clients/all`);
+    const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.get(environment.baseUrl +`/clients/all`,{headers});
   }
 
 }

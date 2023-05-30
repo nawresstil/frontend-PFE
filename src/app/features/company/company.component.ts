@@ -5,6 +5,7 @@ import {CompanyService} from "./services/company.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
+import {Project} from "../../models/Project";
 
 @Component({
   selector: 'app-company',
@@ -20,6 +21,7 @@ export class CompanyComponent implements OnInit {
   today: string;
   idCompany;
   addProspect;
+  public project: Project[];
   constructor(private companyService: CompanyService, private actvroute: ActivatedRoute,
               private formBuilder: FormBuilder, private router: Router) {
 
@@ -74,6 +76,9 @@ export class CompanyComponent implements OnInit {
   ngOnInit() {
     this.getallCompany();
   }
+  public onViewDetails(id: number) {
+    this.router.navigate([`society-details`, id]);
+  }
   recuper(id,societyname, siteweb,phonesociety,faxsociety,
           emailsociety,nbremployee,creationdate,Priority,typesociety,firstname,lastname,fonction,Email,Phone,Social,Status) {
     this.idCompany = id;
@@ -102,6 +107,7 @@ export class CompanyComponent implements OnInit {
       console.log('error while getting clients ', err);
     });
   }
+
   phoneCustomValidator(num): any {
     if (num.pristine || !num.value) {
       return null; // No validation necessary for pristine or empty input
@@ -118,7 +124,6 @@ export class CompanyComponent implements OnInit {
 
     return null; // Valid phone number
   }
-
   public searchSociety(keys: string): void {
     const result: Society[] = [];
     for (const society of this.society) {

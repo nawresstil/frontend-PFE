@@ -11,18 +11,20 @@ import {ReclamationComponent} from './reclamation/reclamation.component';
 import {AddCompanyComponent} from "./company/add-company/add-company.component";
 import {AuthGuard} from "../authgarde/auth.guards";
 import {EditCompanyComponent} from "./company/edit-company/edit-company.component";
+import {SocietydetailsComponent} from "./company/society-detail/societydetails.component";
 
 const routes: Routes = [
-  {path: 'client', component: ClientComponent, canActivate: [AuthGuard]},
-  {path: 'manager', component: ManagerComponent, canActivate: [AuthGuard]},
-  {path: 'prospect', component: CompanyComponent, canActivate: [AuthGuard]},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'task', component: TaskComponent, canActivate: [AuthGuard]},
-  {path: 'project', component: ProjectComponent, canActivate: [AuthGuard]},
-  {path: 'action', component: ActionsComponent, canActivate: [AuthGuard]},
-  {path: 'reclamation', component: ReclamationComponent, canActivate: [AuthGuard]},
-  {path: 'add-company', component: AddCompanyComponent, canActivate: [AuthGuard]},
-  {path: 'edit-company/:idCompany', component: EditCompanyComponent, canActivate: [AuthGuard]}
+  {path: 'client', component: ClientComponent},
+  {path: 'manager', component: ManagerComponent},
+  {path: 'prospect', component: CompanyComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'task', component: TaskComponent},
+  {path: 'project', component: ProjectComponent},
+  {path: 'action', component: ActionsComponent},
+  {path: 'reclamation', component: ReclamationComponent},
+  {path: 'add-company', component: AddCompanyComponent},
+  {path: 'edit-company/:idCompany', component: EditCompanyComponent},
+  {path: 'society-details/:id', component: SocietydetailsComponent}
 
 
 

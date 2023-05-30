@@ -39,7 +39,6 @@ export class TaskComponent implements OnInit {
   isFormVisible2 = false;
   isFormVisible3 = false;
   isFormVisible4 = false;
-  selectedSo: string;
   addForm: FormGroup;
   p = 1; // Current page number
   editForm: FormGroup;
@@ -70,6 +69,18 @@ export class TaskComponent implements OnInit {
     this.getTasksDelayed();
     this.getTasksToDoAfterToday();
   }
+  // initForm() {
+  //   this.editForm = new FormGroup({
+  //     selectedSocEdit: new FormControl (''),
+  //     contact: new FormControl (this.updateTacheS.contact || ''),
+  //     date: new FormControl (this.updateTacheS.date || ''),
+  //     description: new FormControl (this.updateTacheS.description || ''),
+  //     titre: new FormControl (this.updateTacheS.titre || ''),
+  //     label: new FormControl (this.updateTacheS.label || ''),
+  //     // times: new FormControl (this.updateTacheS.times),
+  //     collaborateurs: new FormControl (this.updateTacheS.collaborateurs || ''),
+  //   });
+  // }
   getProspects() {
     this.prospectService.getProspect().subscribe(
       (response: Prospect[]) => {
@@ -227,18 +238,7 @@ export class TaskComponent implements OnInit {
     });
   }
 
-  initForm() {
-    this.editForm = new FormGroup({
-      selectedSoc: new FormControl (''),
-      contact: new FormControl (this.updateTacheS.contact),
-      date: new FormControl (this.updateTacheS.date),
-      description: new FormControl (this.updateTacheS.description),
-      titre: new FormControl (this.updateTacheS.titre),
-      label: new FormControl (this.updateTacheS.label),
-      // times: new FormControl (this.updateTacheS.times),
-      collaborateurs: new FormControl (this.updateTacheS.collaborateurs),
-    });
-  }
+
   public searchTask(key: string): void {
     const result: TacheS[] = [];
     for (const tacheS of this.tacheS) {
@@ -268,7 +268,7 @@ export class TaskComponent implements OnInit {
 
     if (mode === 'update') {
       this.updateTacheS = tacheS;
-      this.initForm();
+      // this.initForm();
       button.setAttribute('data-target', '#updateTacheSModal');
     }
     if (mode === 'viewDetails') {
