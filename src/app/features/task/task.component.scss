@@ -105,5 +105,20 @@
   font-size: 14px;
   line-height: 15px;
 }
-
+.task-done-row {
+  background-color: #CEF9CE;
+  color: green;
+}
+.task-today-row {
+  background-color: #E7E18C;
+  color: #c77405;
+}
+.task-delayed-row {
+  background-color: #F8D2CA;
+  color: red;
+}
+.task-todo-row {
+  background-color: #FDFFBC;
+  color: green;
+}
 

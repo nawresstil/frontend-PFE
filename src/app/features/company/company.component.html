@@ -4,6 +4,14 @@
     <header class="panel-heading">
       Prospect List
     </header>
+    <div class="pull-right">
+      <div class="col-lg-12">
+        <div class="dataTables_filter" id="editable-sample_filter">
+          <input type="search" aria-controls="editable-sample" (ngModelChange)="  searchSociety(keys.value)" #keys="ngModel" ngModel
+                 name="key" id="searchName" class="form-control medium" placeholder="Search Societies..." required>
+        </div>
+      </div>
+    </div>
     <div class="panel-body">
       <div class="adv-table editable-table ">
         <div class="row">
@@ -14,14 +22,6 @@
             </button>
           </div>
           </div>
-          <div class="pull-right">
-          <div class="col-lg-12">
-            <div class="dataTables_filter" id="editable-sample_filter">
-              <input type="search" aria-controls="editable-sample" (ngModelChange)="  searchSociety(keys.value)" #keys="ngModel" ngModel
-                     name="key" id="searchName" class="form-control medium" placeholder="Search Societies..." required>
-            </div>
-          </div>
-        </div>
         </div>
         <br>
         <div class="table-responsive">

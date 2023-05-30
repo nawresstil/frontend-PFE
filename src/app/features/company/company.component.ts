@@ -31,9 +31,13 @@ export class CompanyComponent implements OnInit {
     const day = String(today.getDate()).padStart(2, '0');
     this.currentDate = `${year}-${month}-${day}`;
     this.addProspect = this.formBuilder.group({
+
       // tracability: this.user,
+
       societyName: ['', Validators.required],
+
       siteWeb: ['', Validators.required],
+
       phoneSociety: ['', Validators.required],
 
       faxSociety: ['', Validators.required],

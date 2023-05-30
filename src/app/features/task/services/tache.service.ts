@@ -25,9 +25,9 @@ export class TacheService {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
     return this.http.post(environment.baseUrl +`/tacheSoc/add`, tacheS,{headers} );
   }
-  public updateTacheS(id: number, tacheS: TacheS): Observable<TacheS> {
+  public updateTacheS(id, tacheS) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.put<TacheS>(environment.baseUrl +`/tacheSoc/update/${id}`, tacheS,{headers} );
+    return this.http.put(environment.baseUrl +`/tacheSoc/update/`+ id, tacheS,{headers} );
   }
 
   public deleteTacheS(id){

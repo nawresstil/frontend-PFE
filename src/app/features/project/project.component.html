@@ -6,21 +6,20 @@
       All projects List
       <span class="pull-right">
 <!--                          <a href="#" class=" btn btn-success btn-xs"> Create New Project</a>-->
-      <button id="editable-sample_new" class="btn green" (click)="onOpenModal(null, 'add')">
-                    Add New <i class="fa fa-plus"></i>
+      <button id="editable-sample_new" class=" btn btn-success btn-xs" (click)="onOpenModal(null, 'add')">
+                    Create New Project <i class="fa fa-plus"></i>
                   </button>
       </span>
     </header>
     <div class="panel-body">
       <div class="row">
 
-        <div class="col-md-12">
-          <div class="input-group">
-            <input type="search" aria-controls="editable-sample"
-                   name="projectName" id="searchInput" placeholder="Search Here" class="input-sm form-control" required>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-sm btn-success" (click)="searchProjectByName()"> Go!</button> </span>
-          </div>
+        <div class="col-2 col-lg-12" >
+          <form class="navbar-form navbar-left" method="GET" role="search">
+            <div class="input-group">
+              <input type="text" class="form-control" name="service" [(ngModel)]="societName" (ngModelChange)="Search()" placeholder="Search by society Name...">
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -44,10 +43,13 @@
             <br>
             <small>Started date {{projects.date_fin| date:'yyyy-MM-dd'}}</small>
           </td>
-          <td class="p-team" >
-            <a href="#"><img alt="image" class="" src="../../../assets/img/chat-avatar.jpg"></a>
-            <a href="#"><img alt="image" class="" src="../../../assets/img/chat-avatar2.jpg"></a>
-            <a href="#"><img alt="image" class="" src="../../../assets/img/pro-ac-1.png"></a>
+          <td class="p-team">
+            <ng-container>
+              <!-- Repeat the image based on the employee number -->
+              <ng-container *ngFor="let _ of [].constructor(projects.nbrEmployee)">
+                <img alt="image" class="" src="../../../assets/img/pro-ac-1.png">
+              </ng-container>
+            </ng-container>
           </td>
           <td class="p-progress">
             <div class="progress progress-xs">
@@ -60,7 +62,7 @@
           </td>
           <td class="text-center">
             <a href="project_details.html" class="btn btn-primary btn-xs "><i class="fa fa-folder"></i> View </a>
-            <a class="btn btn-info btn-xs  spaced-button"><i class="fa fa-pencil" (click)="onOpenModal(projects, 'update')" data-original-title="update"></i> Edit </a>
+            <a class="btn btn-info btn-xs  spaced-button" (click)="onOpenModal(projects, 'update')" ><i class="fa fa-pencil" data-original-title="update"></i> Edit </a>
             <a  class="btn btn-danger btn-xs  spaced-button" (click)="onDeleteProject(projects.id)"><i class="fa fa-trash-o"></i> Delete </a>
           </td>
         </tr>
@@ -168,6 +170,7 @@
   </div>
 </div>
 <!-- end Add Project -->
+
 <div class="col-lg-12" *ngIf="openModal">
   <div class="modal fade" id="updateProjectModal" tabindex="-1" role="dialog" aria-labelledby="addTacheModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -176,7 +179,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h3 class="modal-title" style="margin-bottom:1px"><strong>New Task</strong></h3>
+          <h3 class="modal-title" style="margin-bottom:1px"><strong>New Project</strong></h3>
         </div>
         <div class="modal-body">
           <form [formGroup]="editForm">
@@ -255,13 +258,16 @@
               <!-- main end -->
             </div>
             <div class="modal-footer">
-              <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-              <button (click)="onUpdateProject(updateProject?.id,editForm.value)" [disabled]="editForm.invalid" data-dismiss="modal" type="submit"  class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button></div>
+              <button type="button" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;" data-dismiss="modal">Close</button>
+              <button (click)="onUpdateProject(updateProject?.id,editForm.value)" [disabled]="editForm.invalid" data-dismiss="modal" type="submit"  class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 
 

@@ -8,6 +8,7 @@ export interface TacheS {
   contact: string;
   titre: string;
   description: string;
+  etat: string;
   comment: string;
   files: jsPDF;
 

@@ -24,7 +24,7 @@ export class ProjectComponent implements OnInit {
   openModal = false;
   submitted = false;
   projectId;
-
+  societName;
   constructor(private projectService: ProjectService, private actvroute: ActivatedRoute,
               private formBuilder: FormBuilder,private companyService: CompanyService, private router: Router) { }
 
@@ -64,12 +64,15 @@ export class ProjectComponent implements OnInit {
       console.log('error while getting clients ', err);
     });
   }
-  searchProjectByName(entrepriseName){
-    this.companyService.getProjectBySocietyName(entrepriseName).subscribe((response: Project[]) => {
-      this.project = response;
-    },(err) => {
-      console.log('error while getting projects ', err);
+
+  Search() {
+    if ( this.societName == '') {
+      this.ngOnInit();
+    } this.project = this.project.filter(res => {
+      const name = res.societName ? res.societName.toLocaleLowerCase() : '';
+      return name.match(this.societName.toLocaleLowerCase());
     });
+
   }
   add() {
     console.log(this.addForm);
@@ -96,7 +99,7 @@ export class ProjectComponent implements OnInit {
   }
 
   public onUpdateProject(projectId: number, project: Project): void {
-    if (this.addForm.valid) {
+    if (this.editForm.valid) {
       this.openModal = false;
       this.submitted = false;
       this.projectService.updateProject(projectId, project).subscribe(
@@ -165,28 +168,6 @@ export class ProjectComponent implements OnInit {
       }
     });
   }
-  public searchProject(keys: string): void {
-    const result: string[] = [];
-    for (const society of this.society1) {
-      const projects = society.projets;
-      for (const project of projects) {
-        if (project.name.toLowerCase().indexOf(keys.toLowerCase()) !== -1) {
-          result.push(society.societyName);
-          break;
-        }
-      }
-      if (result.length === 0) {
-        console.log('No entreprises found.');
-      } else {
-        console.log('Entreprises related to the project name:');
-        for (const entrepriseName of result) {
-          console.log(entrepriseName);
-        }
-      }
-      console.log(result);
-    }
-  }
-
   public onOpenModal(project: Project, mode: string): void {
     this.openModal = true;
     this.submitted = false;
