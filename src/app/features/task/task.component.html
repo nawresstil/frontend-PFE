@@ -8,11 +8,11 @@
       <aside class="mid-side" >
         <div class="chat-room-head" style="height:0px;">
             <span class="pull-right col-lg-6">
-                  <button type="button" class="btn btn-shadow btn-default" (click)="toggleFormVisibility1()">All Tasks</button>
-                  <button type="button" class="btn btn-shadow btn-primary" (click)="toggleFormVisibility()">Tasks done</button>
-                  <button type="button" class="btn btn-shadow btn-info"    (click)="toggleFormVisibility2()">Tasks for today</button>
-                  <button type="button" class="btn btn-shadow btn-warning" (click)="toggleFormVisibility4()">Upcoming tasks</button>
-                  <button type="button" class="btn btn-shadow btn-danger"  (click)="toggleFormVisibility3()">Delayed Tasks</button>
+                  <button type="button" class="btn btn-shadow btn-default " (click)="toggleFormVisibility1()">All Tasks</button>
+                  <button type="button" class="btn btn-shadow btn-primary spaced-button" (click)="toggleFormVisibility()">Tasks done</button>
+                  <button type="button" class="btn btn-shadow btn-info spaced-button"    (click)="toggleFormVisibility2()">Tasks for today</button>
+                  <button type="button" class="btn btn-shadow btn-warning spaced-button" (click)="toggleFormVisibility4()">Upcoming tasks</button>
+                  <button type="button" class="btn btn-shadow btn-danger spaced-button"  (click)="toggleFormVisibility3()">Delayed Tasks</button>
             </span>
 
           <h3>Tasks Management</h3>
@@ -200,10 +200,10 @@
                                       </div>
                                     </div>
                                   </div>
-                                    <header class="panel-heading">
+                                    <header class="panel-heading" *ngIf="userC?.role === 'ADMIN'">
                                       <label>Advanced parametres</label>
                                     </header>
-                                    <div class="panel-body">
+                                    <div class="panel-body" *ngIf="userC?.role === 'ADMIN'" >
                                       <div class="form-horizontal" role="form">
                                         <div class="form-group">
                                           <label for="collaborateurs" class="col-lg-3 col-sm-3 control-label">Collaborator</label>
@@ -217,6 +217,22 @@
                                         </div>
                                       </div>
                                     </div>
+                                  <div class="panel-body" *ngIf="userC?.role !== 'ADMIN'">
+                                    <div class="form-horizontal" role="form">
+                                      <div class="form-group">
+                                        <label for="collaborateurs" class="col-lg-3 col-sm-3 control-label">Collaborator</label>
+                                        <div class="col-lg-9">
+                                          <div class="iconic-input">
+                                            <select name="collaborateurs" formControlName="collaborateurs" id="collaborateurs" class="form-control select">
+                                              <ng-container *ngFor="let u of users">
+                                                <option *ngIf="u.firstname == userC?.firstname" [value]="u.firstname">{{u.firstname}}</option>
+                                              </ng-container>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                   <header class="panel-heading">
                                     <label> Additional links</label>
                                   </header>

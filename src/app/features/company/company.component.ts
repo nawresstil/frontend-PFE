@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {Project} from "../../models/Project";
+import {Users} from "../../models/users";
+import {UserService} from "../manager/services/user.service";
 
 @Component({
   selector: 'app-company',
@@ -15,6 +17,8 @@ import {Project} from "../../models/Project";
 export class CompanyComponent implements OnInit {
   submitted = false;
   public society: Society[];
+  public userC: Users;
+
   listCompany;
   currentDate;
   addForm: FormGroup;
@@ -23,7 +27,7 @@ export class CompanyComponent implements OnInit {
   addProspect;
   public project: Project[];
   constructor(private companyService: CompanyService, private actvroute: ActivatedRoute,
-              private formBuilder: FormBuilder, private router: Router) {
+              private formBuilder: FormBuilder, private router: Router,private userService: UserService) {
 
     const today = new Date();
     const year = today.getFullYear();
@@ -32,7 +36,7 @@ export class CompanyComponent implements OnInit {
     this.currentDate = `${year}-${month}-${day}`;
     this.addProspect = this.formBuilder.group({
 
-      // tracability: this.user,
+      tracability: this.userC,
 
       societyName: ['', Validators.required],
 
@@ -79,6 +83,13 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit() {
     this.getallCompany();
+    this.getConnected();
+  }
+  getConnected(){
+    this.userService.getConnectedUser().subscribe(
+      (response: Users) => {
+        this.userC= response;
+      });
   }
   public onViewDetails(id: number) {
     this.router.navigate([`society-details`, id]);

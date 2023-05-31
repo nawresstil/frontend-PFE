@@ -7,7 +7,7 @@
         <span>Dashboard</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="userC?.role === 'ADMIN'">
       <a (click)="navigateTo('home/features/manager')">
         <i class="fa fa-users"></i>
         <span>Manage Managers</span>

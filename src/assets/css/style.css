@@ -5221,7 +5221,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 /*  padding: 15px;*/
 /*}*/
 .chat-room-head {
-    background:white;
+    background: #4ab034;
     color: #FFFFFF;
     border: solid darkgrey 1px;
     min-height: 70px;

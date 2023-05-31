@@ -14,12 +14,13 @@
     <div class="panel-body">
       <div class="row">
 
-        <div class="col-2 col-lg-12" >
-          <form class="navbar-form navbar-left" method="GET" role="search">
-            <div class="input-group">
-              <input type="text" class="form-control" name="service" [(ngModel)]="societName" (ngModelChange)="Search()" placeholder="Search by society Name...">
-            </div>
-          </form>
+        <div class="col-md-12">
+          <div class="input-group">
+            <input type="text" placeholder="Search Here" class="input-sm form-control" name="service" [(ngModel)]="societName" (ngModelChange)="Search()" placeholder="Search by society Name...">
+            <span class="input-group-btn">
+              <button type="button" class="cdk-overlay-transparent-backdrop"></button>
+            </span>
+          </div>
         </div>
       </div>
     </div>

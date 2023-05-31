@@ -23,9 +23,10 @@ export class AuthenticationService {
   login(data) {
     return this.http.post(environment.baseUrl + '/auth/authenticate', data, {observe: 'response'});
   }
-  getprofile() {
-    const headers = new HttpHeaders({authorization: 'Bearer ' + this.jwt});
-    return this.http.get(environment.baseUrl + '/user/profile', {headers});
+
+  getConnectedUser() {
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.jwt});
+    return this.http.get(environment.baseUrl+`/user/profile`, {headers});
   }
   parseJWT() {
     const objJWT = this.jwt ? this.jwtHelper.decodeToken(this.jwt) : {};

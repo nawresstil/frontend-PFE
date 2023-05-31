@@ -5,7 +5,8 @@ import {LoginComponent} from './login/login.component';
 import {ContainerComponent} from './home/container/container.component';
 import {AuthGuard} from "./authgarde/auth.guards";
 
-const routes: Routes = [{path: '', component: LoginComponent},
+const routes: Routes = [
+  {path: '', component: LoginComponent},
   {path: 'home', component: HomeComponent, children: [
       {path: '', component: ContainerComponent},
       {

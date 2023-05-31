@@ -6,6 +6,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {CompanyService} from "../services/company.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../login/services/authentification.service";
+import {Users} from "../../../models/users";
+import {UserService} from "../../manager/services/user.service";
 
 @Component({
   selector: 'app-add-company',
@@ -26,8 +28,10 @@ export class AddCompanyComponent implements OnInit {
   today: string;
   currentDate :string;
   addProspect: FormGroup;
+  public userC: Users;
+
   constructor(private companyService: CompanyService,private formBuilder: FormBuilder, private actvroute: ActivatedRoute,
-              private router: Router, private authService: AuthenticationService)
+              private router: Router, private authService: AuthenticationService, private userService:UserService)
   {
     const today = new Date();
     const year = today.getFullYear();
@@ -36,11 +40,9 @@ export class AddCompanyComponent implements OnInit {
     this.currentDate = `${year}-${month}-${day}`;
   }
   ngOnInit(): void {
-      //
-      // this.getprofileadmine();
-      // this.initForm() ;
+    this.getConnected();
       this.addProspect = this.formBuilder.group({
-      tracability: this.user,
+      tracability: this.userC,
       societyName: ['', [Validators.required, Validators.minLength(4)]],
       siteWeb: ['', Validators.required],
       phoneSociety: ['',[this.phoneCustomValidator, Validators.required]],
@@ -78,7 +80,9 @@ export class AddCompanyComponent implements OnInit {
 
       status: ['', Validators.required],
     });
+
   }
+
   get f() {
     return this.addProspect.controls;
   }
@@ -88,7 +92,7 @@ export class AddCompanyComponent implements OnInit {
   }
   add() {
     this.addProspect.patchValue({
-      // tracability: this.user.lastname + ' ' + this.user.firstName
+      tracability: this.userC.lastname + ' ' + this.userC.firstname
        });
     this.companyService.addSociety(this.addProspect.value).subscribe(res => {
       this.getallCompany();
@@ -104,6 +108,12 @@ export class AddCompanyComponent implements OnInit {
     });
     this.router.navigate(['/home/features/prospect']);
 
+  }
+  getConnected(){
+    this.userService.getConnectedUser().subscribe(
+      (response: Users) => {
+        this.userC= response;
+      });
   }
   getallCompany() {
     this.companyService.getCompany().subscribe((response: Society[]) => {

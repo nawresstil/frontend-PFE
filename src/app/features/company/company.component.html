@@ -63,7 +63,9 @@
                   <i routerLink="/home/features/edit-company/{{e.id}}" class="fa fa-pencil"
                      (click)="recuper(e.id,e.societyname, e.siteweb,e.phonesociety,e.faxsociety,
                       e.emailsociety,e.nbremployee,e.Priority,e.typesociety,e.firstname,e.lastname,e.fonction,e.Email,e.Phone,e.Social,e.Status)"></i></button>
-                <button class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)"><i class="fa fa-trash-o"></i></button>
+                <button *ngIf="e.status === 'prospect' && userC?.role !== 'ADMIN'" class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)"><i class="fa fa-trash-o"></i></button>
+                <button *ngIf="userC?.role == 'ADMIN'" class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)"><i class="fa fa-trash-o"></i></button>
+
               </td>
             </tr>
             </tbody>

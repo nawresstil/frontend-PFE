@@ -22,6 +22,7 @@ export class TaskComponent implements OnInit {
   public client: Client[];
   public prospects: Prospect[];
   public users: Users[];
+  public userC: Users;
 
   public tache: TacheS;
   openModal = false;
@@ -68,7 +69,9 @@ export class TaskComponent implements OnInit {
     this.getTasksTodoToday();
     this.getTasksDelayed();
     this.getTasksToDoAfterToday();
+    this.getConnected();
   }
+
   initForm() {
     this.editForm = new FormGroup({
       selectedSocEdit: new FormControl (''),
@@ -87,7 +90,7 @@ export class TaskComponent implements OnInit {
       (response: Prospect[]) => {
         this.prospects = response;
       }, (err) => {
-      console.log('error while getting clients ', err);
+      console.log('error while getting prospect ', err);
     });
   }
   getUsers(): void {
@@ -97,6 +100,12 @@ export class TaskComponent implements OnInit {
       },
       (err) => {
         console.log('error while getting users ', err);
+      });
+  }
+  getConnected(){
+    this.userService.getConnectedUser().subscribe(
+      (response: Users) => {
+        this.userC= response;
       });
   }
 
