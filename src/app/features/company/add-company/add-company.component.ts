@@ -36,16 +36,16 @@ export class AddCompanyComponent implements OnInit {
     this.currentDate = `${year}-${month}-${day}`;
   }
   ngOnInit(): void {
-
-      this.getprofileadmine();
+      //
+      // this.getprofileadmine();
       // this.initForm() ;
       this.addProspect = this.formBuilder.group({
       tracability: this.user,
-      societyName: ['', Validators.required],
+      societyName: ['', [Validators.required, Validators.minLength(4)]],
       siteWeb: ['', Validators.required],
-      phoneSociety: ['', Validators.required],
+      phoneSociety: ['',[this.phoneCustomValidator, Validators.required]],
 
-     faxSociety: ['', Validators.required],
+     faxSociety: ['',[this.phoneCustomValidator, Validators.required]],
 
       emailSociety: ['', Validators.required],
 
@@ -71,8 +71,7 @@ export class AddCompanyComponent implements OnInit {
 
       email: ['', Validators.required],
 
-      phone: ['', Validators.required],
-
+      phone: new FormControl ( '', [this.phoneCustomValidator, Validators.required]),
 
       social: ['', Validators.required],
 
@@ -113,14 +112,14 @@ export class AddCompanyComponent implements OnInit {
       console.log('error while getting clients ', err);
     });
   }
-  getprofileadmine() {
-    this.authService.getprofile().subscribe(res => {
-      console.log(res);
-      this.user = res;
-      this.role = res['roles'][0]['roleName'];
-
-    });
-  }
+  // getprofileadmine() {
+  //   this.authService.getprofile().subscribe(res => {
+  //     console.log(res);
+  //     this.user = res;
+  //     this.role = res['roles'][0]['roleName'];
+  //
+  //   });
+  // }
   onFileSelected(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -167,10 +166,10 @@ export class AddCompanyComponent implements OnInit {
       siteWeb: new FormControl ( '', [Validators.required]),
       phoneSociety: new FormControl (  '', [this.phoneCustomValidator, Validators.required]),
       faxSociety: new FormControl ( '', [this.phoneCustomValidator, Validators.required]),
-      emailSociety: new FormControl ( '', [Validators.required]),
+      emailSociety: new FormControl ( '', [Validators.required,this.emailValidator]),
       lastName: new FormControl ( '', [Validators.required]),
       firstName: new FormControl ( '', [Validators.required]),
-      email: new FormControl ( '', [Validators.required]),
+      email: new FormControl ( '', [Validators.required,this.emailValidator ]),
       phone: new FormControl ( '', [this.phoneCustomValidator, Validators.required]),
       function: new FormControl ( '', [Validators.required]),
       status: new FormControl ( '', [Validators.required]),
@@ -183,7 +182,21 @@ export class AddCompanyComponent implements OnInit {
       file:  new FormControl ('')
     });
   }
+  emailValidator(control) {
+// tslint:disable
+    const re = /^(([^<>()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+// RFC 2822 compliant regex
+    if (control.value != null && re.test(control.value)) {
+      return null;
+    } else {
+      if (!control.value) {
+        return null;
+      } else {
+        return {'invalidEmailAddress': true};
+      }
+    }
+  }
   phoneCustomValidator(num): any {
     if (num.pristine || !num.value) {
       return null; // No validation necessary for pristine or empty input
@@ -200,39 +213,4 @@ export class AddCompanyComponent implements OnInit {
 
     return null; // Valid phone number
   }
-
-  // public onAddSociety(addForm: FormGroup): void {
-  //   console.log(this.addForm);
-  //   // const society1: Society = {
-  //   //   societyName: addForm.value.societyName,
-  //   //   siteWeb: addForm.value.siteWeb,
-  //   //   // Add other fields as needed
-  //   //   imageUrl: addForm.value.imageUrl // Assuming your form control name for the image is 'image'
-  //   // };
-  //   if (this.addForm.valid) {
-  //     console.log('***********************************');
-  //     this.companyService.addSociety(addForm.value).subscribe(
-  //       (response: Society[]) => {
-  //         console.log(response);
-  //         // addForm.reset();
-  //         Swal.fire({
-  //           position: 'center',
-  //           title: 'Added Successfully',
-  //           html: 'Customer has been added',
-  //           icon: 'success',
-  //           showConfirmButton: false,
-  //           timer: 1500,
-  //           width: 500,
-  //         });
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         alert(error.message);
-  //         addForm.reset();
-  //       }
-  //     );
-  //   } else {
-  //     this.submitted = false;
-  //   }
-  //   // this.router.navigate(['/Entreprise']);
-  // }
 }

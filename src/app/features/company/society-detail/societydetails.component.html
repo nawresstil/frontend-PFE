@@ -11,24 +11,25 @@
             <a class="lobby" (click)="toggleFormVisibility()" >
               <h4>
                 <i class="fa fa-list"></i>
-                Activity
+                  Society information
               </h4>
             </a>
           </li>
           <li>
-            <a href="chat_room.html">
-              <i class="fa fa-rocket"></i>
-              <span>Marketing</span>
-              <i class="fa fa-times pull-right"></i>
+            <a class="lobby">
+              <h4>
+              <i class="fa fa-list"></i>
+              <span>Contact informations</span>
+              </h4>
             </a>
           </li>
-        </ul>
-        <ul class="chat-list chat-user">
           <li>
-            <a href="#">
-              <i class="fa fa-circle text-success"></i>
-              <span>Jonathan Smith</span>
-              <i class="fa fa-times pull-right"></i>
+            <a class="lobby">
+              <h4>
+              <i class="fa fa-list"></i>
+              <span>Task</span>
+                <i class="fa  pull-right"></i>
+              </h4>
             </a>
           </li>
         </ul>
@@ -82,7 +83,6 @@
                   </ul>
                 </header>
                 <div class="panel-body">
-                  <a href="http://localhost:4200/Entreprise" > < Back</a>
                   <div class="tab-content tasi-tab">
                     <div class="tab-pane active" id="popular">
                       <form class="form-horizontal" id="default" action="#" style="border: 1px solid lightgrey; padding: 20px; margin: 20px;">
@@ -147,7 +147,32 @@
                       </form>
                     </div>
                     <div class="tab-pane " id="recent">
-                      Recent Item goes here
+                      <form class="form-horizontal" id="default" action="#" style="border: 1px solid lightgrey; padding: 20px; margin: 20px;">
+                        <div class="form-group" >
+                          <div class="col-lg-4 control-label"><strong>Contact: </strong></div>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society.tacheS.label}} {{society.tacheS.label}} </p>
+                          </div>
+                        </div>
+                        <div class="form-group" >
+                          <div class="col-lg-4 control-label"><strong>Function: </strong></div>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.function}} </p>
+                          </div>
+                        </div>
+                        <div class="form-group" >
+                          <div class="col-lg-4 control-label"><strong>Phone: </strong></div>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.phone}} </p>
+                          </div>
+                        </div>
+                        <div class="form-group" >
+                          <div class="col-lg-4 control-label"><strong>Email: </strong></div>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.email}} </p>
+                          </div>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

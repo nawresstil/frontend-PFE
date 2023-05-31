@@ -35,51 +35,53 @@ export class EditCompanyComponent implements OnInit {
   }
   //
   ngOnInit() {
-
-    this.editCompany = this.formBuilder.group({
-      /*   tracability: this.user,*/
-      societyName: ['', Validators.required],
-      siteWeb: ['', Validators.required],
-      phoneSociety: ['', Validators.required],
-
-      faxSociety: ['', Validators.required],
-
-      emailSociety: ['', Validators.required],
-
-      pays: ['', Validators.required],
-
-      sector: ['', Validators.required],
-
-      nbrEmployee: ['', Validators.required],
-
-      creationDate: this.currentDate.substring(0, 10),
-
-      priority: ['', Validators.required],
-
-      typeSociety: ['', Validators.required],
-
-      gender: ['', Validators.required],
-
-      firstName: ['', Validators.required],
-
-      lastName: ['', Validators.required],
-
-      function: ['', Validators.required],
-
-      email: ['', Validators.required],
-
-      phone: ['', Validators.required],
-
-
-      social: ['', Validators.required],
-
-
-      status: ['', Validators.required],
-    });
+    this.init();
     this.getallCompany();
     // this.today = new Date().toISOString().split('T')[0];
     // this.editCompany.get('creationDate').setValue(this.today);
 
+  }
+  init(){
+  this.editCompany = this.formBuilder.group({
+    /*   tracability: this.user,*/
+    societyName: ['', [Validators.required]],
+    siteWeb: ['', Validators.required],
+    phoneSociety: ['', Validators.required],
+
+    faxSociety: ['', Validators.required],
+
+    emailSociety: ['', Validators.required],
+
+    pays: ['', Validators.required],
+
+    sector: ['', Validators.required],
+
+    nbrEmployee: ['', Validators.required],
+
+    creationDate: this.currentDate.substring(0, 10),
+
+    priority: ['', Validators.required],
+
+    typeSociety: ['', Validators.required],
+
+    gender: ['', Validators.required],
+
+    firstName: ['', Validators.required],
+
+    lastName: ['', Validators.required],
+
+    function: ['', Validators.required],
+
+    email: ['', Validators.required],
+
+    phone: ['', Validators.required],
+
+
+    social: ['', Validators.required],
+
+
+    status: ['', Validators.required],
+    });
   }
   get f() {
     return this.editCompany.controls;

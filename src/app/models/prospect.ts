@@ -1,3 +1,4 @@
+import {TacheS} from "./tasks/tache";
 
 export interface Prospect {
 
@@ -37,5 +38,6 @@ export interface Prospect {
   social: string;
   typeSociety: string;
   status: string;
+  tacheS: TacheS[];
 
 }

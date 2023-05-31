@@ -51,7 +51,7 @@
               </td>
               <td class="text-center">
                 <a routerLink="/home/manager/{}" class="btn btn-success btn-xs"><i class="fa fa-home"></i></a>
-                <button class="btn btn-primary btn-xs spaced-button" type="submit"><i class="fa fa-pencil" ></i></button>
+                <button class="btn btn-primary btn-xs spaced-button" type="submit" (click)="onOpenModal(users,'update')"><i class="fa fa-pencil" ></i></button>
                 <button class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteUser(deleteUser?.id)"><i class="fa fa-trash-o"></i></button>
               </td>
             </tr>
@@ -152,4 +152,86 @@
 </div>
 </div>
 <!-- add user end-->
+<!-- update user -->
+<div class="col-lg-12" *ngIf="openModal">
+  <div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="UpdateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editForm">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="role">Designation</label>
+                <select type="text"  formControlName="role" name="role" class="form-control" id="role" placeholder="Role">
+                  <option>ADMIN</option>
+                  <option>COMMERCIAL</option>
+                  <option>ASSISTANT_COMMERCIAL</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input type="text"  formControlName="lastname" name="lastname" class="form-control" id="lastname" placeholder="Lastname">
+              </div>
+              <div class="form-group">
+                <label for="username">User name</label>
+                <input type="text"  formControlName="username" name="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirmed Password</label>
+                <input type="password"  formControlName="confirmPassword" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="confirmed Password">
+              </div>
+              <div class="form-group">
+                <label for="Departments">Department</label>
+                <input type="text"  formControlName="Departments" name="Departments" class="form-control" id="Departments" placeholder="Department">
+              </div>
+              <!--            <div class="form-group">-->
+              <!--              <label for="country">Country</label>-->
+              <!--              <input type="text"  formControlName="country" name="country" class="form-control" id="country" aria-describedby="country" placeholder="Name">-->
+              <!--            </div>-->
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <input type="text"  formControlName="firstname" name="firstname" class="form-control" id="firstname" aria-describedby="firstname" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text"  formControlName="email" name="email" class="form-control" id="email" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password"  formControlName="password" name="password" class="form-control" id="password" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="role">Phone</label>
+                <input type="text"  formControlName="phone" name="phone" class="form-control" id="phone" placeholder="Phone">
+              </div>
+              <!--            <div class="form-group">-->
+              <!--              <label for="gender">Gender</label>-->
+              <!--              <select matInput formControlName="gender" name="gender" class="form-control" id="gender">-->
+              <!--                <option selected="selected">Female</option>-->
+              <!--                <option>Male</option>-->
+              <!--              </select>-->
+              <!--            </div>-->
+              <!--            <div class="form-group">-->
+              <!--              <label for="JoiningDate">Joining Date</label>-->
+              <!--              <input type="date"  formControlName="JoiningDate" [value]="today" readonly name="JoiningDate" class="form-control" id="JoiningDate" placeholder="">-->
+              <!--            </div>-->
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+              <button type="submit" data-dismiss="modal" (click)="onUpdateManager(updateManager?.id,editForm.value)" class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- update user end-->
 

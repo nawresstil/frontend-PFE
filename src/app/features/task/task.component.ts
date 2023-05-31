@@ -146,9 +146,6 @@ export class TaskComponent implements OnInit {
           title: 'The changes saved'
         });
         this.getAllTaches();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
       }
     );const Toast = Swal.mixin({
         toast: true,
@@ -176,11 +173,7 @@ export class TaskComponent implements OnInit {
     this.tacheService.getAllTaches().subscribe(
       (response: TacheS[]) => {
         this.tacheS = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+      });
   }
   private getTasksDone(): void {
     this.tacheService.getTasksDone().subscribe(result => {

@@ -50,9 +50,6 @@ export class SocietydetailsComponent implements OnInit {
   //   );
   // }
 
-
-
-
   public onOpenModal(prospect: Prospect, mode: string): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');

@@ -26,8 +26,6 @@ const routes: Routes = [
   {path: 'edit-company/:idCompany', component: EditCompanyComponent},
   {path: 'society-details/:id', component: SocietydetailsComponent}
 
-
-
 ];
 
 @NgModule({

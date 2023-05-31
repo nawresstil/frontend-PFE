@@ -8,21 +8,22 @@
 <body>
 <div class="main">
   <input type="checkbox" id="chk" aria-hidden="true">
+
   <div class="signup">
-    <form [formGroup]="forgetForm" (ngSubmit)="resetPassword()">
-      <label for="chk" aria-hidden="true">SellBoost</label>
-      <input type="text" name="email" placeholder="Email" class="form-control" formControlName="email" required>
-      <button type="submit">Reset</button>
-    </form>
-  </div>
-  <div class="login">
     <form [formGroup]="loginForm">
-      <label for="chk" aria-hidden="true">Login</label>
+      <label for="chk" aria-hidden="true">SellBoost</label>
       <input type="text" name="username" placeholder="Username" class="form-control" formControlName="username" >
       <input type="password" name="pswd" placeholder="Password" class="form-control"  formControlName="password" >
       <button (click)="onLogin()">Login</button>
     </form>
   </div>
+  <div class="login">
+  <form [formGroup]="forgetForm" (ngSubmit)="resetPassword()">
+    <label for="chk" aria-hidden="true"><h3>Reset password</h3></label>
+    <input type="text" name="email" placeholder="Email" class="form-control" formControlName="email" required>
+    <button type="submit">Reset</button>
+  </form>
+</div>
 </div>
 <br>
 </body>

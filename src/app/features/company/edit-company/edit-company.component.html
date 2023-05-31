@@ -18,8 +18,8 @@
                 <div class="iconic-input">
                   <i class="fa fa-bullhorn"></i>
                   <input type="text" formControlName='societyName' name="societyName" class="form-control" id="societyName" [(ngModel)]="DetailsCompany.societyName" placeholder="Society name">
-<!--                  <mat-error *ngIf="(editForm.controls.societyName.hasError('required') && editForm.controls.societyName.touched) || submitted">-->
-<!--                    <div>society name is required </div></mat-error>  !-->
+                  <div *ngIf="(editCompany.controls.societyName.hasError('required') && editCompany.controls.societyName.touched) || submitted">
+                    <div class="error-message">society name is required </div></div>
               </div>
               </div>
             </div>

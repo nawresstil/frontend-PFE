@@ -5214,10 +5214,16 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     font-weight: 100;
     letter-spacing: 1px;
 }
-
+/*.chat-room-head {*/
+/*  background:#6cb757;*/
+/*  color: #FFFFFF;*/
+/*  min-height: 70px;*/
+/*  padding: 15px;*/
+/*}*/
 .chat-room-head {
-    background:#6cb757;
+    background:white;
     color: #FFFFFF;
+    border: solid darkgrey 1px;
     min-height: 70px;
     padding: 15px;
 }

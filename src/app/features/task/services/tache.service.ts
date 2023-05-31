@@ -26,8 +26,8 @@ export class TacheService {
     return this.http.post(environment.baseUrl +`/tacheSoc/add`, tacheS,{headers} );
   }
   public updateTacheS(id, tacheS) {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.put(environment.baseUrl +`/tacheSoc/update/`+ id, tacheS,{headers} );
+    // const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.put(environment.baseUrl +`/tacheSoc/update/`+ id, tacheS);
   }
 
   public deleteTacheS(id){

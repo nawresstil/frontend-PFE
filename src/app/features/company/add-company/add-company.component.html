@@ -15,10 +15,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input">
                   <input type="text"  name="societyName" formControlName="societyName" class="form-control" id="societyName" placeholder="Society name" >
-<!--                  <mat-error *ngIf="(addForm.controls.societyName.hasError('required') && addForm.controls.societyName.touched) || submitted">-->
-<!--                    <div>society name is required </div></mat-error>-->
-                  <!--                            <mat-error *ngIf="(addForm.controls.societyName.hasError('pattern') && addForm.controls.societyName.touched)">-->
-                  <!--                              <div>*invalid E-Mail</div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.societyName.hasError('required') && addProspect.controls.societyName.touched) || submitted" >
+                    <div class="error-message">society name is required </div></div>
+                      <div *ngIf="(addProspect.controls.societyName.hasError('minlength') && addProspect.controls.societyName.touched) ">
+                        <div class="error-message">*invalid E-Mail</div></div>
                 </div>
               </div>
             </div>
@@ -27,10 +27,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="text"  name="siteWeb" formControlName="siteWeb" class="form-control" id="siteWeb" placeholder="Site web" pattern="www+.[a-zA-Z.-]+\.[a-zA-Z]{2,4}">
-<!--                  <mat-error *ngIf="(addForm.controls.siteWeb.hasError('required') && addForm.controls.siteWeb.touched) || submitted">-->
-<!--                    <div>Email address is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.siteWeb.hasError('pattern') && addForm.controls.siteWeb.touched) ">-->
-<!--                    <div>*invalid Web Site</div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.siteWeb.hasError('required') && addProspect.controls.siteWeb.touched) || submitted">
+                    <div class="error-message">Email address is required </div></div>
+                  <div *ngIf="(addProspect.controls.siteWeb.hasError('pattern') && addProspect.controls.siteWeb.touched) ">
+                    <div class="error-message">*invalid Web Site</div></div>
                 </div>
               </div>
             </div>
@@ -48,10 +48,10 @@
                 <div class="iconic-input">
                   <i class="fa fa-phone"></i>
                   <input type="number" name="phoneSociety" formControlName="phoneSociety" class="form-control" id="phoneSociety" placeholder="Phone" >
-<!--                  <mat-error *ngIf="(addForm.controls.phoneSociety.hasError('required') && addForm.controls.phoneSociety.touched) || submitted">-->
-<!--                    <div>phone is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.phoneSociety.hasError('invalidPhoneNumber') && addForm.controls.phoneSociety.touched)">-->
-<!--                    <div>*at least 8 number</div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.phoneSociety.hasError('required') && addProspect.controls.phoneSociety.touched) || submitted">
+                    <div class="error-message">phone is required </div></div>
+                  <div *ngIf="(addProspect.controls.phoneSociety.hasError('invalidPhoneNumber') && addProspect.controls.phoneSociety.touched)">
+                    <div class="error-message">*at least 8 number</div></div>
                 </div>
               </div>
             </div>
@@ -61,11 +61,11 @@
                 <div class="iconic-input">
                   <i class="fa fa-phone"></i>
                   <input type="number"  name="faxSociety" formControlName="faxSociety" class="form-control" id="faxSociety" placeholder="Fax" minlength="8">
-<!--                  <mat-error *ngIf="(addForm.controls.faxSociety.hasError('required') && addForm.controls.faxSociety.touched) || submitted">-->
-<!--                    <div>fax address is required</div>-->
-<!--                  </mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.faxSociety.hasError('invalidPhoneNumber') && addForm.controls.faxSociety.touched) ">-->
-<!--                    <div>*at least 8 number</div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.faxSociety.hasError('required') && addProspect.controls.faxSociety.touched) || submitted">
+                    <div class="error-message">fax address is required</div>
+                  </div>
+                  <div *ngIf="(addProspect.controls.faxSociety.hasError('invalidPhoneNumber') && addProspect.controls.faxSociety.touched) ">
+                    <div class="error-message">*at least 8 number</div></div>
                 </div>
               </div>
             </div>
@@ -74,10 +74,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input  name="emailSociety" class="form-control" formControlName="emailSociety" id="emailSociety"  type="email" placeholder="ex: email@gmail.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" >
-<!--                  <mat-error *ngIf="(addForm.controls.emailSociety.hasError('required') && addForm.controls.emailSociety.touched) || submitted" >-->
-<!--                    <div>Email address is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.emailSociety.hasError('pattern') && addForm.controls.emailSociety.touched) ">-->
-<!--                    <div>*invalid E-Mail</div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.emailSociety.hasError('required') && addProspect.controls.emailSociety.touched) || submitted" >
+                    <div class="error-message">Email address is required </div></div>
+                  <div *ngIf="(addProspect.controls.emailSociety.hasError('pattern') && addProspect.controls.emailSociety.touched) ">
+                    <div class="error-message">*invalid E-Mail</div></div>
                 </div>
               </div>
             </div>
@@ -93,10 +93,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="text"  name="lastName"  class="form-control" formControlName="lastName" id="lastName" placeholder="last name" minlength="4" >
-<!--                  <mat-error *ngIf="(addForm.controls.lastName.hasError('required') && addForm.controls.lastName.touched) || submitted">-->
-<!--                    <div>lastname is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.lastName.hasError('minlength') && addForm.controls.lastName.touched)">-->
-<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.lastName.hasError('required') && addProspect.controls.lastName.touched) || submitted">
+                    <div class="error-message">lastname is required </div></div>
+                  <div *ngIf="(addProspect.controls.lastName.hasError('minlength') && addProspect.controls.lastName.touched)">
+                    <div class="error-message">*must be at least 4 character </div></div>
                 </div>
               </div>
             </div>
@@ -105,10 +105,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="text"  name="firstName" formControlName="firstName"  class="form-control" id="firstName" placeholder="first name" minlength="4" >
-<!--                  <mat-error *ngIf="(addForm.controls.firstName.hasError('required') && addForm.controls.firstName.touched) || submitted">-->
-<!--                    <div>first name is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.firstName.hasError('minlength') && addForm.controls.firstName.touched) ">-->
-<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.firstName.hasError('required') && addProspect.controls.firstName.touched) || submitted">
+                    <div class="error-message">first name is required </div></div>
+                  <div *ngIf="(addProspect.controls.firstName.hasError('minlength') && addProspect.controls.firstName.touched) ">
+                    <div class="error-message">*must be at least 4 character </div></div>
                 </div>
               </div>
             </div>
@@ -117,10 +117,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="email" type="text" formControlName="email" name="email"  matInput  class="form-control" id="email" placeholder="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
-<!--                  <mat-error *ngIf="(addForm.controls.email.hasError('required') && addForm.controls.email.touched) || submitted">-->
-<!--                    <div>email is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.email.hasError('pattern') && addForm.controls.email.touched)">-->
-<!--                    <div>*invalid E-Mail</div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.email.hasError('required') && addProspect.controls.email.touched) || submitted">
+                    <div class="error-message">email is required </div></div>
+                  <div *ngIf="(addProspect.controls.email.hasError('pattern') && addProspect.controls.email.touched)">
+                    <div class="error-message">*invalid E-Mail</div></div>
                 </div>
               </div>
             </div>
@@ -130,10 +130,10 @@
                 <div class="iconic-input right">
                   <i class="fa fa-phone"></i>
                   <input type="number"  name="phone" formControlName="phone" class="form-control" id="phone" placeholder="phone">
-<!--                  <mat-error *ngIf="(addForm.controls.phone.hasError('required') && addForm.controls.phone.touched) || submitted">-->
-<!--                    <div>phone is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.phone.hasError('invalidPhoneNumber') && addForm.controls.phone.touched)">-->
-<!--                    <div>*must be at least 8 number</div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.phone.hasError('required') && addProspect.controls.phone.touched) || submitted">
+                    <div class="error-message">phone is required </div></div>
+                  <div *ngIf="(addProspect.controls.phone.hasError('invalidPhoneNumber') && addProspect.controls.phone.touched)">
+                    <div class="error-message">*must be at least 8 number</div></div>
                 </div>
               </div>
             </div>
@@ -142,10 +142,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input">
                   <input type="text"  name="function" formControlName="function"  class="form-control" id="function" placeholder="function" minlength="4">
-<!--                  <mat-error *ngIf="(addForm.controls.function.hasError('required') && addForm.controls.function.touched) || submitted">-->
-<!--                    <div>function is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(addForm.controls.function.hasError('minlength') && addForm.controls.function.touched) ">-->
-<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.function.hasError('required') && addProspect.controls.function.touched) || submitted">
+                    <div class="error-message">function is required </div></div>
+                  <div *ngIf="(addProspect.controls.function.hasError('minlength') && addProspect.controls.function.touched) ">
+                    <div class="error-message">*must be at least 4 character </div></div>
                 </div>
               </div>
             </div>
@@ -227,8 +227,8 @@
                     <option >prospect</option>
                     <option>client</option>
                   </select>
-<!--                  <mat-error *ngIf="(addForm.controls.status.hasError('required') && addForm.controls.status.touched) || submitted">-->
-<!--                    <div>status is required </div></mat-error>-->
+                  <div *ngIf="(addProspect.controls.status.hasError('required') && addProspect.controls.status.touched) || submitted">
+                    <div class="error-message">status is required </div></div>
                 </div>
               </div>
               <div class="form-group">
@@ -251,7 +251,6 @@
     </div>
     <!-- main end -->
   </div>
-
 <!--    <div class="col-lg-2">-->
 <!--      <div for="creationDate" class="iconic-input right">-->
 <!--        <input type="date" name="creationDate" formControlName="creationDate" readonly class="form-control" id="creationDate" placeholder="Date">-->
@@ -259,7 +258,7 @@
 <!--    </div>-->
   <div class="col-lg-12" style="padding-top:10px">
     <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-    <button type="submit" class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+    <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
   </div>
 
 </form>

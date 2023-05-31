@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {UserService} from "./services/user.service";
 import {Users} from "../../models/users";
 import {Society} from "../../models/society";
@@ -9,6 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import Swal from "sweetalert2";
 import {RegisterRequest} from "../../models/registerRequest";
 import {AuthenticationResponse} from "../../models/authenticationResponse";
+import {Project} from "../../models/Project";
 
 @Component({
   selector: 'app-manager',
@@ -27,6 +28,7 @@ export class ManagerComponent implements OnInit {
 
   editForm: FormGroup;
   currentDate :string;
+  public updateManager: Users;
   constructor(private userService: UserService,
               private actvroute: ActivatedRoute,
               private router: Router,
@@ -69,13 +71,24 @@ export class ManagerComponent implements OnInit {
 
       oldPassword: ['', Validators.required],
 
-      role: ['', Validators.required],
-
-
-
+      role: ['', Validators.required]
     });
   }
-
+  initForm() {
+    this.editForm = new FormGroup({
+      firstname: new FormControl (this.updateManager.firstname),
+      lastname: new FormControl (this.updateManager.lastname),
+      Designation: new FormControl (this.updateManager.Designation),
+      Departments: new FormControl (this.updateManager.Departments),
+      username: new FormControl (this.updateManager.username),
+      email: new FormControl (this.updateManager.email),
+      password: new FormControl (this.updateManager.password),
+      confirmPassword: new FormControl (this.updateManager.confirmPassword),
+      phone: new FormControl (this.updateManager.phone),
+      oldPassword: new FormControl (this.updateManager.oldPassword),
+      role: new FormControl (this.updateManager.role),
+    });
+  }
   getUsers(){
     this.userService.getUsers().subscribe((response: Users[]) => {
       this.user = response;
@@ -106,6 +119,46 @@ export class ManagerComponent implements OnInit {
 }
 this.router.navigate(['/home/features/manager']);
 }
+  public onUpdateManager(Id: number, user: Users): void {
+    if (this.editForm.valid) {
+      this.openModal = false;
+      this.submitted = false;
+      this.userService.updateUser(Id, user).subscribe(
+        (response: Users) => {
+          console.log(response);
+          this.getUsers();
+          Toast.fire({
+            icon: 'success',
+            title: 'The changes saved'
+          });
+          this.getUsers();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'center',
+        width: 500,
+        padding: 50,
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      });
+      Toast.fire({
+        icon: 'success',
+        title: 'The changes saved'
+      });
+    }else {
+      this.submitted = false;
+    }
+    this.router.navigate(['/home/features/project']);
+  }
   // add() {
   //   if (this.addForm.valid) {
   //     this.openModal = false;
@@ -201,7 +254,7 @@ this.router.navigate(['/home/features/manager']);
 
     if (mode === 'update') {
       this.updateUser = user;
-      // this.initForm();
+      this.initForm();
       button.setAttribute('data-target', '#updateUserModal');
     }
 
