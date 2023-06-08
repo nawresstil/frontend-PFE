@@ -16,6 +16,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class ClientComponent implements OnInit {
   listClient;
   public client: Client[];
+  p: 2;
   constructor(private clientService: ClientService, private actvroute: ActivatedRoute, private companyService: CompanyService,
               private formBuilder: FormBuilder, private router: Router) { }
   ngOnInit() {

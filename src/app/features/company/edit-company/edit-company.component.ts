@@ -6,6 +6,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CompanyService} from "../services/company.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../login/services/authentification.service";
+import {Users} from "../../../models/users";
+import {UserService} from "../../manager/services/user.service";
 
 @Component({
   selector: 'app-edit-company',
@@ -20,8 +22,9 @@ export class EditCompanyComponent implements OnInit {
   editCompany: FormGroup;
   today;
   currentDate;
+  public userC: Users;
   constructor(private actvroute: ActivatedRoute, private companyService: CompanyService, private formBuilder: FormBuilder ,
-              private router: Router , private authService: AuthenticationService) {
+              private router: Router , private authService: AuthenticationService, private userService:UserService) {
     this.idCompany = this.actvroute.params['value']['idCompany'];
 
     this.companyService.getById(this.idCompany).subscribe(result => {
@@ -35,6 +38,7 @@ export class EditCompanyComponent implements OnInit {
   }
   //
   ngOnInit() {
+    this.getConnected();
     this.init();
     this.getallCompany();
     // this.today = new Date().toISOString().split('T')[0];
@@ -43,7 +47,7 @@ export class EditCompanyComponent implements OnInit {
   }
   init(){
   this.editCompany = this.formBuilder.group({
-    /*   tracability: this.user,*/
+       tracability: this.userC,
     societyName: ['', [Validators.required]],
     siteWeb: ['', Validators.required],
     phoneSociety: ['', Validators.required],
@@ -92,10 +96,15 @@ export class EditCompanyComponent implements OnInit {
     console.log('addform', this.editCompany.value);
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editCompany.value, null, 4));
   }
-
+  getConnected(){
+    this.userService.getConnectedUser().subscribe(
+      (response: Users) => {
+        this.userC= response;
+      });
+  }
   edit() {
-   /* this.editCompany.patchValue({
-      trac: this.user.lastname + ' ' + this.user.firstName});*/
+    this.editCompany.patchValue({
+      trac: this.userC.lastname + ' ' + this.userC.username});
     this.companyService.updateSociety(this.idCompany, this.editCompany.value).subscribe(res => {
       console.log(res);
       // this.getallCompany();

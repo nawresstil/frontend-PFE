@@ -129,7 +129,7 @@ export class TaskComponent implements OnInit {
       Swal.fire({
         position: 'center',
         title: 'Added Successfully',
-        html: 'Trial quote has been added',
+        html: 'Task has been added',
         icon: 'success',
         showConfirmButton: false,
         timer: 1500,
@@ -233,7 +233,7 @@ export class TaskComponent implements OnInit {
             this.getAllTaches();
             Swal.fire(
               'Deleted!',
-              'Your Society has been deleted.',
+              'Your Task has been deleted.',
               'success'
             );
           },

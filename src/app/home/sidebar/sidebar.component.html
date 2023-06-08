@@ -7,6 +7,12 @@
         <span>Dashboard</span>
       </a>
     </li>
+    <li class="sub-menu">
+      <a (click)="navigateTo('home/features/prospection_guide')">
+        <i class="fa fa-bookmark"></i>
+        <span>Prospection Guide</span>
+      </a>
+    </li>
     <li *ngIf="userC?.role === 'ADMIN'">
       <a (click)="navigateTo('home/features/manager')">
         <i class="fa fa-users"></i>
@@ -36,22 +42,6 @@
         <i class="fa fa-tasks"></i>
         <span>Manage Tasks </span>
       </a>
-      <ul class="sub">
-        <li><a>Menu Item 1</a></li>
-        <li class="sub-menu">
-          <a >Menu Item 2</a>
-          <ul class="sub">
-            <li><a>Menu Item 2.1</a></li>
-            <li class="sub-menu">
-              <a >Menu Item 3</a>
-              <ul class="sub">
-                <li><a>Menu Item 3.1</a></li>
-                <li><a>Menu Item 3.2</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
     </li>
 
     <li class="sub-menu">
@@ -64,7 +54,6 @@
       </ul>
     </li>
 
-
     <li class="sub-menu">
       <a (click)="navigateTo('home/features/project')">
         <i class="fa fa-suitcase"></i>
@@ -72,21 +61,13 @@
       </a>
     </li>
 
+<!--    <li class="sub-menu">-->
+<!--      <a (click)="navigateTo('home/features/reclamation')">-->
+<!--        <i class="fa  fa-bullhorn"></i>-->
+<!--        <span>Reclamation</span>-->
+<!--      </a>-->
+<!--    </li>-->
 
-    <li class="sub-menu">
-      <a (click)="navigateTo('home/features/reclamation')">
-        <i class="fa  fa-bullhorn"></i>
-        <span>Reclamation</span>
-      </a>
-    </li>
-
-
-    <!--   <li class="sub-menu">
-         <a>
-           <i class=" fa fa-bar-chart-o"></i>
-           <span>Charts</span>
-         </a>
-       </li>-->
   </ul>
 </div>
 

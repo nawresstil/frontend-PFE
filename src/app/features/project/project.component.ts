@@ -36,6 +36,7 @@ export class ProjectComponent implements OnInit {
       date_debut: new FormControl (''),
       date_fin: new FormControl (''),
       budget: new FormControl (''),
+      status: new FormControl (''),
     });
     this.getProject();
     this.getallCompany();
@@ -48,6 +49,7 @@ export class ProjectComponent implements OnInit {
       date_debut: new FormControl (this.updateProject.date_debut),
       date_fin: new FormControl (this.updateProject.date_fin),
       budget: new FormControl (this.updateProject.budget),
+      status: new FormControl (this.updateProject.status),
     });
   }
   getProject(){
@@ -157,7 +159,7 @@ export class ProjectComponent implements OnInit {
             this.getProject();
             Swal.fire(
               'Deleted!',
-              'Your Society has been deleted.',
+              'Your Project has been deleted.',
               'success'
             );
           },

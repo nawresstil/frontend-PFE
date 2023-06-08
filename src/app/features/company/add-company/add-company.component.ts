@@ -82,7 +82,9 @@ export class AddCompanyComponent implements OnInit {
     });
 
   }
-
+  navigateTo(link: string) {
+    this.router.navigateByUrl(link);
+  }
   get f() {
     return this.addProspect.controls;
   }
@@ -90,11 +92,11 @@ export class AddCompanyComponent implements OnInit {
     this.submitted = true;
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addProspect.value, null, 4));
   }
-  add() {
+  add(addProspect: NgForm) {
     this.addProspect.patchValue({
       tracability: this.userC.lastname + ' ' + this.userC.firstname
        });
-    this.companyService.addSociety(this.addProspect.value).subscribe(res => {
+    this.companyService.addSociety(addProspect.value).subscribe(res => {
       this.getallCompany();
       Swal.fire({
         position: 'center',
@@ -122,91 +124,7 @@ export class AddCompanyComponent implements OnInit {
       console.log('error while getting clients ', err);
     });
   }
-  // getprofileadmine() {
-  //   this.authService.getprofile().subscribe(res => {
-  //     console.log(res);
-  //     this.user = res;
-  //     this.role = res['roles'][0]['roleName'];
-  //
-  //   });
-  // }
-  onFileSelected(event: any): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.userFile = file;
-      const mimeType: string = file.type;
-      if (mimeType.match(/image\/*/) == null) {
-        this.message = 'Only images are supported.';
-        return;
-      }
-      const reader: FileReader = new FileReader();
-      this.imagePath = file;
-      reader.readAsDataURL(file);
-      // tslint:disable-next-line:variable-name
-      reader.onload = (_event) => {
-        this.imgURL = reader.result as string;
-      };
-    }
-  }
-  getFormControlConfig = (formBuilder: FormBuilder): FormGroup => {
-    return formBuilder.group({
-      societyName: ['', [Validators.required]],
-      siteWeb: ['', [Validators.required]],
-      phoneSociety: ['', [this.phoneCustomValidator, Validators.required]],
-      faxSociety: ['', [this.phoneCustomValidator, Validators.required]],
-      emailSociety: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      firstName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      phone: ['', [this.phoneCustomValidator, Validators.required]],
-      function: ['', [Validators.required]],
-      status: ['', [Validators.required]],
-      sector: [''],
-      creationDate: [''],
-      nbrEmployee: [''],
-      typeSociety: [''],
-      social: [''],
-      priority: [''],
-    });
-  }
 
-  initForm() {
-    this.addForm = new FormGroup({
-      societyName: new FormControl ( '', [Validators.required]),
-      siteWeb: new FormControl ( '', [Validators.required]),
-      phoneSociety: new FormControl (  '', [this.phoneCustomValidator, Validators.required]),
-      faxSociety: new FormControl ( '', [this.phoneCustomValidator, Validators.required]),
-      emailSociety: new FormControl ( '', [Validators.required,this.emailValidator]),
-      lastName: new FormControl ( '', [Validators.required]),
-      firstName: new FormControl ( '', [Validators.required]),
-      email: new FormControl ( '', [Validators.required,this.emailValidator ]),
-      phone: new FormControl ( '', [this.phoneCustomValidator, Validators.required]),
-      function: new FormControl ( '', [Validators.required]),
-      status: new FormControl ( '', [Validators.required]),
-      sector: new FormControl (''),
-      creationDate: new FormControl( this.today),
-      nbrEmployee:  new FormControl (''),
-      typeSociety:  new FormControl (''),
-      social:  new FormControl (''),
-      priority:  new FormControl (''),
-      file:  new FormControl ('')
-    });
-  }
-  emailValidator(control) {
-// tslint:disable
-    const re = /^(([^<>()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-// RFC 2822 compliant regex
-    if (control.value != null && re.test(control.value)) {
-      return null;
-    } else {
-      if (!control.value) {
-        return null;
-      } else {
-        return {'invalidEmailAddress': true};
-      }
-    }
-  }
   phoneCustomValidator(num): any {
     if (num.pristine || !num.value) {
       return null; // No validation necessary for pristine or empty input

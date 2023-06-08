@@ -208,16 +208,39 @@ this.router.navigate(['/home/features/manager']);
         console.log('error while getting clients ', err);
       });
   }
-  public onDeleteUser(userId: number): void {
+  public onDeleteUser(userId){
+    Swal.fire({
+      position: 'center',
+      title: 'Are you sure?',
+      html: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      width: 500,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
     this.userService.deleteUser(userId).subscribe(
-      response => {
-        console.log(response);
+      () => {
+        console.log('user deleted');
         this.getUsers();
+        Swal.fire(
+          'Deleted!',
+          'Your Society has been deleted.',
+          'success'
+        );
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        Swal.fire(
+          'Deleted!',
+          'Your User has been deleted.',
+          'success'
+        );
       }
     );
+      }
+    });
   }
   public searchUsers(key: string): void {
     const result: Users[] = [];

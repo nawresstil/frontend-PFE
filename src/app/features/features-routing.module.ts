@@ -12,6 +12,7 @@ import {AddCompanyComponent} from "./company/add-company/add-company.component";
 import {AuthGuard} from "../authgarde/auth.guards";
 import {EditCompanyComponent} from "./company/edit-company/edit-company.component";
 import {SocietydetailsComponent} from "./company/society-detail/societydetails.component";
+import {GuideComponent} from "../guide/guide.component";
 
 const routes: Routes = [
   {path: 'client', component: ClientComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'reclamation', component: ReclamationComponent},
   {path: 'add-company', component: AddCompanyComponent},
   {path: 'edit-company/:idCompany', component: EditCompanyComponent},
-  {path: 'society-details/:id', component: SocietydetailsComponent}
+  {path: 'society-details/:id', component: SocietydetailsComponent},
+  {path: 'prospection_guide', component: GuideComponent}
 
 ];
 

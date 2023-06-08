@@ -20,7 +20,10 @@ export class ClientService {
     return this.http.get(environment.baseUrl +`/clients/${clientId}`,{headers});
   }
 
-
+  public updateClient(clientId, client) {
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.put(environment.baseUrl +`/clients/update/${clientId}`, client);
+  }
 
   public getClients(){
     const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});

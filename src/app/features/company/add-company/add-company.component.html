@@ -1,7 +1,7 @@
 <section class="wrapper site-min-height">
   <!-- page start-->
   <section class="panel" style="border: 1px solid grey;">
-  <form [formGroup]="addProspect" (ngSubmit)="add()">
+  <form [formGroup]="addProspect" (ngSubmit)="add(addProspect)">
   <div class="row" >
     <div class="col-lg-6">
       <section class="panel">
@@ -153,7 +153,6 @@
         </div>
       </section>
     </div>
-
     <div class="col-lg-6" >
       <div class="vertical-line">
         <section class="panel">
@@ -211,11 +210,11 @@
                 <label for="typeSociety" class="col-lg-3 col-sm-3 control-label">Type</label>
                 <div class="form-input col-lg-9">
                   <select  name="typeSociety" formControlName="typeSociety" class="form-control" id="typeSociety">
-                    <option value="">Aucun</option>
-                    <option>Nouveau client</option>
-                    <option>Client fidèle</option>
-                    <option>Client inactif</option>
-                    <option>Autre</option>
+                    <option value="">Nothing</option>
+                    <option>New client</option>
+                    <option>Loyal client</option>
+                    <option>Inactif client</option>
+                    <option>Other</option>
                   </select>
                 </div>
               </div>
@@ -257,8 +256,8 @@
 <!--      </div>-->
 <!--    </div>-->
   <div class="col-lg-12" style="padding-top:10px">
-    <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-    <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+    <button type="button" (click)="navigateTo('home/features/prospect')" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+    <button type="submit" class="btn btn-primary" style="float: right; margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
   </div>
 
 </form>

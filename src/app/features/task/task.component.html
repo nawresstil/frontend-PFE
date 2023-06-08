@@ -49,7 +49,7 @@
                       <th><i class=" fa fa-edit"></i> Date</th>
                       <th><i class="fa fa-question-circle"></i> Contact</th>
                       <th><i class=" fa fa-edit"></i> Titre</th>
-                      <th><i class=" fa fa-edit"></i> Description</th>
+<!--                      <th><i class=" fa fa-edit"></i> Description</th>-->
                       <th><i class=" fa fa-edit"></i> Edit</th>
                     </tr>
                     </thead>
@@ -61,7 +61,7 @@
                       <td class="hidden-phone">{{t?.date}},{{t?.times}}</td>
                       <td><span class="hidden-phone">{{t?.contact}}</span></td>
                       <td><span class="hidden-phone">{{t?.titre}}</span></td>
-                      <td><span class="hidden-phone">{{t?.description}}</span></td>
+<!--                      <td><span class="hidden-phone">{{t?.description}}</span></td>-->
                       <td class="text-center">
                         <a class="btn btn-danger btn-xs" ><i class="fa fa-trash-o "  (click)="onDeleteTache(t.id)" data-original-title="delete"></i></a>
                         <a class="btn btn-primary btn-xs" style="margin-left: 5px;"><i class="fa fa-pencil "  (click)="onOpenModal(t, 'update')" data-original-title="update"></i></a>
@@ -76,7 +76,7 @@
                       <td class="hidden-phone">{{tasksDone?.date}},{{tasksDone?.times}}</td>
                       <td><span class="hidden-phone">{{tasksDone?.contact}}</span></td>
                       <td><span class="hidden-phone">{{tasksDone?.titre}}</span></td>
-                      <td><span class="hidden-phone">{{tasksDone?.description}}</span></td>
+<!--                      <td><span class="hidden-phone">{{tasksDone?.description}}</span></td>-->
                       <td class="text-center">
                         <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " (click)="onDeleteTache(tasksDone.id)" data-original-title="delete"></i></a>
                         <a class="btn btn-primary btn-xs"><i class="fa fa-pencil " (click)="onOpenModal(tasksDone, 'update')" data-original-title="update"></i></a>
@@ -92,7 +92,7 @@
                       <td class="hidden-phone">{{tasksToday?.date}},{{tasksToday?.times}}</td>
                       <td><span class="hidden-phone">{{tasksToday?.contact}}</span></td>
                       <td><span class="hidden-phone">{{tasksToday?.titre}}</span></td>
-                      <td><span class="hidden-phone">{{tasksToday?.description}}</span></td>
+<!--                      <td><span class="hidden-phone">{{tasksToday?.description}}</span></td>-->
                       <td class="text-center">
                         <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " (click)="onDeleteTache(tasksToday.id)" data-original-title="delete"></i></a>
                         <a class="btn btn-primary btn-xs"><i class="fa fa-pencil " (click)="onOpenModal(tasksToday, 'update')" data-original-title="delete"></i></a>
@@ -107,7 +107,7 @@
                       <td class="hidden-phone">{{taskDelayed?.date}},{{taskDelayed?.times}}</td>
                       <td><span class="hidden-phone">{{taskDelayed?.contact}}</span></td>
                       <td><span class="hidden-phone">{{taskDelayed?.titre}}</span></td>
-                      <td><span class="hidden-phone">{{taskDelayed?.description}}</span></td>
+<!--                      <td><span class="hidden-phone">{{taskDelayed?.description}}</span></td>-->
                       <td class="text-center">
                         <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " (click)="onDeleteTache(taskDelayed.id)" data-original-title="delete"></i></a>
                         <a class="btn btn-primary btn-xs"><i class="fa fa-pencil " (click)="onOpenModal(taskDelayed, 'update')" data-original-title="delete"></i></a>
@@ -123,7 +123,7 @@
                       <td class="hidden-phone">{{tasksTodo?.date}},{{tasksTodo?.times}}</td>
                       <td><span class="hidden-phone">{{tasksTodo?.contact}}</span></td>
                       <td><span class="hidden-phone">{{tasksTodo?.titre}}</span></td>
-                      <td><span class="hidden-phone">{{tasksTodo?.description}}</span></td>
+<!--                      <td><span class="hidden-phone">{{tasksTodo?.description}}</span></td>-->
                       <td class="text-center">
                         <a class="btn btn-danger btn-xs" (click)="onDeleteTache(tasksTodo.id)" ><i class="fa fa-trash-o " data-original-title="delete"></i></a>
                         <a class="btn btn-primary btn-xs" (click)="onOpenModal(tasksTodo, 'update')"><i class="fa fa-pencil " data-original-title="delete"></i></a>
@@ -137,7 +137,7 @@
                 <!-- Add Task Modal -->
                 <div class="col-lg-12" *ngIf="openModal">
                   <div class="modal fade" id="addTacheSModal" tabindex="-1" role="dialog" aria-labelledby="addTacheModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dial" role="document">
                       <div class="modal-content">
                         <div class="modal-header " style="background-color: #572AD7">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -243,7 +243,7 @@
                                         <div class="col-lg-9">
                                           <div class="iconic-input">
                                             <select class="form-control" formControlName="selectedSo">
-                                              <option value="Societies">Societies</option>
+                                              <option value="Societies">Prospect</option>
                                               <option value="Client">Client</option>
                                             </select>
                                           </div>
@@ -275,8 +275,8 @@
                               <!-- main end -->
                             </div>
                             <div class="modal-footer">
-                              <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-                              <button type="submit"  class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button></div>
+                              <button type="button" id="" class="btn btn-secondary" data-dismiss="modal" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+                              <button type="submit"  class="btn green" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button></div>
                           </form>
                         </div>
                       </div>
@@ -436,10 +436,10 @@
                 <!--update start-->
                 <div class="col col-lg-12" *ngIf="openModal">
                   <div class="modal fade" id="updateTacheSModal" tabindex="-1" role="dialog" aria-labelledby="updateTacheSModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content " >
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="updateTacheSModalLabel">New Prospect</h5>
+                    <div class="modal-dial" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header" style="background-color: #572AD7">
+                          <h5 class="modal-title" id="updateTacheSModalLabel">Update Task</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -527,10 +527,9 @@
                                         <div class="col-lg-9">
                                           <div class="iconic-input">
                                             <select class="form-control" formControlName="selectedSocEdit">
-                                              <option value="Societies">Societies</option>
+                                              <option value="Societies">Prospect</option>
                                               <option value="Client">Client</option>
                                             </select>
-                                            <p>{{editForm.controls['selectedSocEdit'].value}}</p>
                                           </div>
                                         </div>
                                       </div>
@@ -557,7 +556,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button (click)="onUpdateTache(updateTacheS?.id,editForm.value)" [disabled]="editForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+                              <button (click)="onUpdateTache(updateTacheS?.id,editForm.value)" [disabled]="editForm.invalid" type="submit" class="btn green" >Save changes</button>
                             </div>
                           </form>
                         </div>

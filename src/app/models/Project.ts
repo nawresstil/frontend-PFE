@@ -10,5 +10,6 @@ export interface Project {
   date_fin: string;
 
   budget: number;
+  status: string;
 
 }

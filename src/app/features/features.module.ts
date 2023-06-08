@@ -15,6 +15,7 @@ import { AddCompanyComponent } from './company/add-company/add-company.component
 import { EditCompanyComponent } from './company/edit-company/edit-company.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SocietydetailsComponent} from "./company/society-detail/societydetails.component";
+import {GuideComponent} from "../guide/guide.component";
 
 @NgModule({
   declarations: [
@@ -28,13 +29,14 @@ import {SocietydetailsComponent} from "./company/society-detail/societydetails.c
     TaskComponent,
     AddCompanyComponent,
     EditCompanyComponent,
-    SocietydetailsComponent
+    SocietydetailsComponent,
+    GuideComponent
   ],
     imports: [
         CommonModule,
         FeaturesRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
 
     ],
   providers: [

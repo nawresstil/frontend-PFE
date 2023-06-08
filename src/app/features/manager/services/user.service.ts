@@ -27,8 +27,8 @@ export class UserService {
   }
 
   public updateUser(userId: number, user: Users){
-    // const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.put<Users>(environment.baseUrl+`/user/update/${userId}`, user/*, {headers}*/);
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.put<Users>(environment.baseUrl+`/user/update/${userId}`, user, {headers});
   }
   // public registerUser(registerRequest: RegisterRequest): Observable<AuthenticationResponse> {
   //   return this.http.post<AuthenticationResponse>(environment.baseUrl+`auth/register`, registerRequest);
@@ -42,8 +42,8 @@ export class UserService {
     return this.http.post(environment.baseUrl+`auth/register`, registerRequest/*, {headers}*/);
   }
   public deleteUser(userId){
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.delete(environment.baseUrl+`/user/delete/${userId}`, {headers});
+    // const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    return this.http.delete(environment.baseUrl+`/user/delete/`+ userId/*,{headers}*/);
   }
   getConnectedUser(){
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
