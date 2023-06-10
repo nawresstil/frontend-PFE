@@ -21,7 +21,7 @@
           </div>
           <div style="margin-top:20px">
             <!--get clients-->
-            <div class="col-lg-4" *ngFor="let clients of listClient">
+            <div class="col-lg-4" *ngFor="let clients of client">
               <!--user info table start-->
               <section class="panel card" style="width:390px">
                 <div class="panel-body ">
@@ -70,8 +70,10 @@
                     <td>
                     </td>
                     <td>
-                      <button class="btn btn-primary btn-xs spaced-button" type="submit" (click)="onOpenModal(clients,'update')"><i class="fa fa-pencil" ></i></button>
-                    </td>
+                      <button class="btn btn-primary btn-xs spaced-button" type="submit">
+                        <i routerLink="/home/features/edit-company/{{clients.id}}" class="fa fa-pencil">
+                          </i>
+                      </button></td>
                   </tr>
 
                   </tbody>

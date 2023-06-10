@@ -14,7 +14,9 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent implements OnInit {
-  listClient;
+
+  editClient;
+  idClient;
   public client: Client[];
   p: 2;
   constructor(private clientService: ClientService, private actvroute: ActivatedRoute, private companyService: CompanyService,
@@ -23,13 +25,32 @@ export class ClientComponent implements OnInit {
     this.getallClient();
   }
   getallClient() {
-    this.clientService.getClients().subscribe(result => {
-      this.listClient = result ;
+    this.clientService.getClients().subscribe((response: Society[]) => {
+      this.client = response ;
     }, (err) => {
       console.log('error while getting clients ', err);
     });
   }
-  public onUpdateClient(societyId: number, society: Society): void {
+  recuper(id,societyname, siteweb,phonesociety,faxsociety,
+          emailsociety,nbremployee,creationdate,Priority,typesociety,firstname,lastname,fonction,Email,Phone,Social,Status) {
+    this.idClient = id;
+    this.editClient.get('societyName').setValue(societyname);
+    this.editClient.get('siteWeb').setValue(siteweb);
+    this.editClient.get('phoneSociety').setValue(phonesociety);
+    this.editClient.get('faxSociety').setValue(faxsociety);
+    this.editClient.get('emailSociety').setValue(emailsociety);
+    this.editClient.get('nbrEmployee').setValue(nbremployee);
+    this.editClient.get('priority').setValue(Priority);
+    this.editClient.get('firstName').setValue(firstname);
+    this.editClient.get('lastName').setValue(lastname);
+    this.editClient.get('function').setValue(fonction);
+    this.editClient.get('email').setValue(Email);
+    this.editClient.get('phone').setValue(Phone);
+    this.editClient.get('social').setValue(Social);
+    this.editClient.get('status').setValue(Status);
+  }
+
+  public updateClient(societyId: number, society: Society): void {
     this.companyService.updateSociety(societyId, society).subscribe(
       (response: Society) => {
         console.log(response);

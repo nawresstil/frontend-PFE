@@ -7,11 +7,10 @@ export interface Guide {
 
   qualification: string;
 
-  projectinfo: string;
+  description: string;
 
-  problematic: string;
-
-  budget: number;
+  suivi: string;
+  creationDate:string;
 
 
 }

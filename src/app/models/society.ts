@@ -1,5 +1,6 @@
 import {SafeUrl} from '@angular/platform-browser';
 import {Project} from "./Project";
+import {TacheS} from "./tasks/tache";
 
 export interface Society {
   id: number;
@@ -41,4 +42,5 @@ export interface Society {
   imageUrl: File;
   url: SafeUrl;
   projets: Project[];
+  tacheS: TacheS[];
 }

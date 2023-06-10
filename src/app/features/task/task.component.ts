@@ -23,13 +23,9 @@ export class TaskComponent implements OnInit {
   public prospects: Prospect[];
   public users: Users[];
   public userC: Users;
-
   public tache: TacheS;
   openModal = false;
   submitted = false;
-
-  listProspect;
-  listClients;
   tasksDelayed;
   taskDone;
   taskfortoday;
@@ -59,7 +55,8 @@ export class TaskComponent implements OnInit {
       titre: new FormControl (''),
       label: new FormControl (''),
       times: new FormControl (''),
-      collaborateurs: new FormControl ('')
+      collaborateurs: new FormControl (''),
+      etat:new FormControl (''),
     });
     this.getProspects();
     this.getClients();
@@ -82,7 +79,7 @@ export class TaskComponent implements OnInit {
       label: new FormControl (this.updateTacheS.label),
       times: new FormControl (this.updateTacheS.times),
       collaborateurs: new FormControl (this.updateTacheS.collaborateurs),
-      etat: new FormControl (this.updateTacheS.collaborateurs)
+      etat: new FormControl (this.updateTacheS.etat)
     });
   }
   getProspects() {
@@ -250,7 +247,7 @@ export class TaskComponent implements OnInit {
     const result: TacheS[] = [];
     for (const tacheS of this.tacheS) {
       if (tacheS.titre.toLowerCase().indexOf(key.toLowerCase()) !== -1
-        // || tacheS.collaborateurs.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || tacheS.collaborateurs.toLowerCase().indexOf(key.toLowerCase()) !== -1
         || tacheS.label.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {
         result.push(tacheS);
@@ -261,6 +258,7 @@ export class TaskComponent implements OnInit {
       this.getAllTaches();
     }
   }
+
   public onOpenModal(tacheS: TacheS, mode: string): void {
     this.openModal = true;
     this.submitted = false;

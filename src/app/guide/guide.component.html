@@ -6,7 +6,7 @@
     </header>
     <div class="pull-right">
       <div class="col-lg-12">
-        <div class="dataTables_filter" id="editable-sample_filter" *ngIf="userC?.role == 'ADMIN'">
+        <div class="dataTables_filter" id="editable-sample_filter">
           <input type="search" aria-controls="editable-sample" (ngModelChange)="searchGuide(keys.value)" #keys="ngModel" ngModel
                  name="key" id="searchName" class="form-control medium" placeholder="Search Societies..." required>
         </div>
@@ -22,70 +22,40 @@
           </div>
         </div>
         <br>
-          <div style="margin-top:20px;">
-            <!--get guide-->
-            <div class="col-lg-4" style="" *ngFor="let guides of guide">
-              <!--user info table start-->
-              <section class="panel card" style="width:700px; border: black solid 1px">
-                <div class="panel-body ">
-                  <div class="col-lg-1" style="margin-left: 57%;">
-                    <label class="label label-info label-mini client" style="border-radius: 10px; margin-left: 60%"></label>
-                  </div>
-                  <div class="task-thumb-details">
-                    <h2>Year<a style="padding-left:20px">{{guides?.annee}} </a></h2>
-                    <!--<p style="padding-left:20px">Senior Architect</p>-->
-                  </div>
-                </div>
-                <table class="table table-hover personal-task">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <i class=" "></i>
-                    </td>
-                    <td><strong>Objectif: </strong><a>{{ guides?.objectif}}</a></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class=""></i>
-                    </td>
-                    <td><strong>Qualification: </strong>{{guides?.qualification}}</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class=""></i>
-                    </td>
-                    <td><strong>project informations: </strong>{{guides?.projectinfo}}</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class=""></i>
-                    </td>
-                    <td><strong>Problematic: </strong> {{guides?.problematic}}</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class=""></i>
-                    </td>
-                    <td><strong>Budget: </strong>{{guides?.budget}}</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>
-                      <button class="btn btn-primary btn-xs" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-pencil" (click)="onOpenModal(guides, 'update')" data-original-title="Edit"></i></button>
-                      <button class="btn btn-danger btn-xs" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-trash-o " (click)="onDeleteGuide(guides.id)"></i> </button>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </section>
-              <!--user info table end-->
-            </div>
-          </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-bordered" id="editable-sample">
+            <thead>
+            <tr>
+              <th class="text-center">Object</th>
+              <th class="text-center">Year</th>
+              <th class="text-center">Qualification</th>
+              <th class="text-center">description</th>
+              <th class="text-center">To follow</th>
+              <th class="text-center">Creation date</th>
+              <th class="text-center">Tracability</th>
+              <th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr class="odd gradeX" *ngFor="let g of guide">
+              <td class="text-center">{{g.objectif}}</td>
+              <td class="text-center">{{g.annee}}</td>
+              <td class="text-center">{{g.qualification}}</td>
+              <td class="text-center">{{g.description}}</td>
+              <td class="text-center">{{g.suivi}}</td>
+              <td class="text-center" >{{g.creationDate| date: 'yyyy-MM-dd'}}</td>
+              <td class="text-center">
+                <a class="btn btn-warning btn-xs">{{g.tracability}}</a>
+              </td>
+              <td class="text-center">
+                <a routerLink="/home/features/guide-details/{{g.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>
+                <button class="btn btn-primary btn-xs" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-pencil" (click)="onOpenModal(g, 'update')" data-original-title="Edit"></i></button>
+                <button class="btn btn-danger btn-xs" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-trash-o " (click)="onDeleteGuide(g.id)"></i> </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
           <!-- Notification for no clients -->
           <div *ngIf="guide?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
             <div class="alert alert-info" role="alert">
@@ -107,11 +77,17 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" style="margin-bottom:1px"><strong>New Guide</strong></h4>
+          <h4 class="modal-title" style="margin-bottom:1px"><strong>Add Guide</strong></h4>
         </div>
         <div class="modal-body">
           <form [formGroup]="addForm" (ngSubmit)="add(addForm)">
 
+            <div class="form-group">
+              <label for="annee">Year*</label>
+              <input type="text" formControlName="annee" name="annee" class="form-control" id="annee" placeholder="">
+              <div *ngIf="(addForm.controls.annee.hasError('required') && addForm.controls.annee.touched) || submitted">
+                <div class="error-message">Year is required </div></div>
+            </div>
             <div class="form-group">
               <label for="objectif">Objectif*</label>
               <input type="text"  formControlName="objectif" name="objectif" class="form-control" id="objectif" placeholder="">
@@ -121,29 +97,22 @@
 
               <div class="form-group">
                 <label for="qualification">Qualification*</label>
-                <input type="text"  formControlName="qualification" name="qualification" class="form-control" id="qualification" placeholder="">
+                <input type="text" formControlName="qualification" name="qualification" class="form-control" id="qualification" placeholder="">
                 <div *ngIf="(addForm.controls.qualification.hasError('required') && addForm.controls.qualification.touched) || submitted">
                   <div class="error-message">qualification is required </div></div>
               </div>
               <div class="form-group">
-                <label for="projectinfo">Project info*</label>
-                <input type="text"  formControlName="projectinfo" name="projectinfo" class="form-control" id="projectinfo" aria-describedby="emailHelp" placeholder="">
-                <div *ngIf="(addForm.controls.projectinfo.hasError('required') && addForm.controls.projectinfo.touched) || submitted">
-                  <div class="error-message">projectinfo is required </div></div>
+                <label for="description">Description*</label>
+                <input type="text"  formControlName="description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="">
+                <div *ngIf="(addForm.controls.description.hasError('required') && addForm.controls.description.touched) || submitted">
+                  <div class="error-message">Description is required </div></div>
               </div>
               <div class="form-group">
-                <label for="problematic">Problematic*</label>
-                <input type="text"  formControlName="problematic" name="problematic" class="form-control" id="problematic" placeholder="">
-                <div *ngIf="(addForm.controls.problematic.hasError('required') && addForm.controls.problematic.touched) || submitted">
-                  <div class="error-message">Problematic is required </div></div>
+                <label for="suivi">To follow*</label>
+                <input type="text" formControlName="suivi" name="suivi" class="form-control" id="suivi" placeholder="">
+                <div *ngIf="(addForm.controls.suivi.hasError('required') && addForm.controls.suivi.touched) || submitted">
+                  <div class="error-message">Field is required </div></div>
               </div>
-              <div class="form-group">
-                <label for="budget">Budget*</label>
-                <input type="text"  formControlName="budget" name="budget" class="form-control" id="budget" placeholder="">
-                <div *ngIf="(addForm.controls.budget.hasError('required') && addForm.controls.budget.touched) || submitted">
-                  <div class="error-message">budget is required </div></div>
-              </div>
-
             <div class="modal-footer">
               <button type="button" id="" class="btn btn-secondary" data-dismiss="modal" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
               <button type="submit"  class="btn green" [disabled]="addForm.invalid" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
@@ -155,7 +124,7 @@
   </div>
 </div>
 <!-- add user end-->
- update user
+<!-- update user-->
 <div class="col-lg-12" *ngIf="openModal">
   <div class="modal fade" id="updateGuideModal" tabindex="-1" role="dialog" aria-labelledby="UpdateModalLabel" aria-hidden="true">
     <div class="modal-dial" role="document">
@@ -170,36 +139,35 @@
           <form [formGroup]="editForm">
 
             <div class="form-group">
+              <label for="annee">Year*</label>
+              <input type="text" formControlName="annee" name="annee" class="form-control" id="annee" placeholder="">
+              <div *ngIf="(editForm.controls.annee.hasError('required') && editForm.controls.annee.touched) || submitted">
+                <div class="error-message">Year is required </div></div>
+            </div>
+            <div class="form-group">
               <label for="objectif">Objectif*</label>
               <input type="text"  formControlName="objectif" name="objectif" class="form-control" id="objectif" placeholder="">
               <div *ngIf="(editForm.controls.objectif.hasError('required') && editForm.controls.objectif.touched) || submitted">
                 <div class="error-message">Objectif is required </div></div>
             </div>
-
-              <div class="form-group">
-                <label for="qualification">Qualification*</label>
-                <input type="text"  formControlName="qualification" name="qualification" class="form-control" id="qualification" placeholder="">
-                <div *ngIf="(editForm.controls.qualification.hasError('required') && editForm.controls.qualification.touched) || submitted">
-                  <div class="error-message">qualification is required </div></div>
-              </div>
-              <div class="form-group">
-                <label for="projectinfo">Project info*</label>
-                <input type="text"  formControlName="projectinfo" name="projectinfo" class="form-control" id="projectinfo" aria-describedby="emailHelp" placeholder="">
-                <div *ngIf="(editForm.controls.projectinfo.hasError('required') && editForm.controls.projectinfo.touched) || submitted">
-                  <div class="error-message">projectinfo is required </div></div>
-              </div>
-              <div class="form-group">
-                <label for="problematic">Problematic*</label>
-                <input type="text"  formControlName="problematic" name="problematic" class="form-control" id="problematic" placeholder="">
-                <div *ngIf="(editForm.controls.problematic.hasError('required') && editForm.controls.problematic.touched) || submitted">
-                  <div class="error-message">Problematic is required </div></div>
-              </div>
-              <div class="form-group">
-                <label for="budget">Budget*</label>
-                <input type="text"  formControlName="budget" name="budget" class="form-control" id="budget" placeholder="">
-                <div *ngIf="(editForm.controls.budget.hasError('required') && editForm.controls.budget.touched) || submitted">
-                  <div class="error-message">budget is required </div></div>
-              </div>
+            <div class="form-group">
+              <label for="qualification">Qualification*</label>
+              <input type="text" formControlName="qualification" name="qualification" class="form-control" id="qualification" placeholder="">
+              <div *ngIf="(editForm.controls.qualification.hasError('required') && editForm.controls.qualification.touched) || submitted">
+                <div class="error-message">qualification is required </div></div>
+            </div>
+            <div class="form-group">
+              <label for="description">Description*</label>
+              <input type="text" formControlName="description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="">
+              <div *ngIf="(editForm.controls.description.hasError('required') && editForm.controls.description.touched) || submitted">
+                <div class="error-message">Description is required </div></div>
+            </div>
+            <div class="form-group">
+              <label for="suivi">To follow*</label>
+              <input type="text" formControlName="suivi" name="suivi" class="form-control" id="suivi" placeholder="">
+              <div *ngIf="(editForm.controls.suivi.hasError('required') && editForm.controls.suivi.touched) || submitted">
+                <div class="error-message">Field is required </div></div>
+            </div>
             <div class="modal-footer">
               <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
               <button type="submit" data-dismiss="modal" (click)="onUpdateGuide(updateGuide?.id,editForm.value)" class="btn green" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>

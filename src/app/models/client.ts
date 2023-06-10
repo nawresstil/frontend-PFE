@@ -30,9 +30,9 @@ export interface Client {
   email: string;
 
   phone: number;
-
-  fax: number;
   social: string;
+
   typeSociety: string;
+
   status: string;
 }

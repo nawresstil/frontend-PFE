@@ -1,8 +1,5 @@
-
 <section class="wrapper site-min-height">
   <!-- page start-->
-
-
     <div class="chat-room ">
       <!-- page start-->
       <aside class="mid-side" >
@@ -143,7 +140,7 @@
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <h3 class="modal-title" style="margin-bottom:1px"><strong>New Task</strong></h3>
+                          <h3 class="modal-title" style="margin-bottom:1px"><strong>Add Task</strong></h3>
                         </div>
                         <div class="modal-body">
                           <form [formGroup]="addForm" (ngSubmit)="add(addForm)" >
@@ -157,7 +154,7 @@
                                   <div class="panel-body">
                                     <div class="form-horizontal" role="form">
                                       <div class="form-group">
-                                        <label for="titre" class="col-lg-3 col-sm-3 control-label">Titre</label>
+                                        <label for="titre" class="col-lg-3 col-sm-3 control-label">Title</label>
                                         <div class="col-lg-9">
                                           <div class="iconic-input">
                                             <input type="text" formControlName="titre" name="titre" class="form-control" id="titre" placeholder="">
@@ -210,7 +207,7 @@
                                           <div class="col-lg-9">
                                             <div class="iconic-input">
                                               <select name="collaborateurs" formControlName="collaborateurs" id="collaborateurs" class="form-control select" >
-                                                <option *ngFor="let u of users">{{u.firstname}}</option>
+                                                <option *ngFor="let u of users">{{u.username}}</option>
                                               </select>
                                             </div>
                                           </div>
@@ -225,7 +222,7 @@
                                           <div class="iconic-input">
                                             <select name="collaborateurs" formControlName="collaborateurs" id="collaborateurs" class="form-control select">
                                               <ng-container *ngFor="let u of users">
-                                                <option *ngIf="u.firstname == userC?.firstname" [value]="u.firstname">{{u.firstname}}</option>
+                                                <option *ngIf="u.firstname == userC?.firstname" [value]="u.username">{{u.firstname}}</option>
                                               </ng-container>
                                             </select>
                                           </div>
@@ -510,13 +507,28 @@
                                           <div class="col-lg-9">
                                             <div class="iconic-input">
                                               <select type="text" formControlName="collaborateurs" name="collaborateurs" class="form-control" id="collaborateurs" placeholder="">
-                                                <option *ngFor="let user of users" >{{ user.firstname}}</option>
+                                                <option *ngFor="let user of users" >{{ user.username}}</option>
                                               </select>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
+                                  <div class="panel-body">
+                                    <div class="form-horizontal" role="form">
+                                      <div class="form-group">
+                                        <label for="etat" class="col-lg-3 col-sm-3 control-label">Status</label>
+                                        <div class="col-lg-9">
+                                          <div class="iconic-input">
+                                            <select type="text" formControlName="etat" name="etat" class="form-control" id="etat" placeholder="">
+                                              <option>Task not done</option>
+                                              <option>Task done</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                   <header class="panel-heading">
                                     <label> Additional links</label>
                                   </header>
@@ -568,8 +580,8 @@
                 <!-- Notification for no societies -->
                 <div *ngIf="tacheS?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
                   <div class="alert alert-info" role="alert">
-                    <h4 class="alert-heading">NO SOCIETIES!</h4>
-                    <p>No SOCIETIES were found.</p>
+                    <h4 class="alert-heading">NO TASKS!</h4>
+                    <p>No TASKS were found.</p>
                   </div>
                 </div>
 

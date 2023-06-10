@@ -11,19 +11,23 @@ export class GuideService {
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   getGuide() {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.get(environment.baseUrl +`/guide/all`,{headers} );
   }
   addGuide(project) {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.post(environment.baseUrl +`/guide/create`, project, {headers} );
   }
   public updateGuide(projectId , project){
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.put(environment.baseUrl +`/guide/edit/`+ projectId, project, {headers} );
   }
   public deleteGuide(guideId){
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.delete(environment.baseUrl +`/guide/delete/` + guideId,{headers});
+  }
+  public getGuideById(id){
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
+    return this.http.get(environment.baseUrl +`/guide/`+id,{headers});
   }
 }

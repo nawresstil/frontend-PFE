@@ -1,7 +1,7 @@
 <section class="wrapper site-min-height">
   <!-- page start-->
   <section class="panel" style="border: 1px solid grey;">
-<form [formGroup]="editCompany" (ngSubmit)="edit()">
+<form [formGroup]="editCompany" (ngSubmit)="edit(editCompany)">
 
   <div class="row">
     <div class="col-lg-6">
@@ -29,10 +29,8 @@
                 <div class="iconic-input right">
                   <i class="fa fa-book"></i>
                   <input type="text" formControlName='siteWeb' name="siteWeb" class="form-control" id="siteWeb" placeholder="Site web" pattern="www+.[a-zA-Z.-]+\.[a-zA-Z]{2,4}">
-<!--                  <mat-error *ngIf="(editForm.controls.siteWeb.hasError('required') && editForm.controls.siteWeb.touched) || submitted">-->
-<!--                    <div>Web site is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.siteWeb.hasError('pattern') && editForm.controls.siteWeb.touched)">-->
-<!--                    <div>*invalid Web Site</div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.siteWeb.hasError('required') && editCompany.controls.siteWeb.touched) || submitted">
+                    <div>Web site is required </div></div>
                 </div>
               </div>
             </div>
@@ -225,7 +223,7 @@
                 <label for="status" class="col-lg-3 col-sm-3 control-label">Status</label>
                 <div class="form-input col-lg-9">
                   <select formControlName="status" name="status" [(ngModel)]="DetailsCompany.status" class="form-control" id="status">
-                    <option selected="selected">prospect</option>
+                    <option selected="selected" *ngIf="userC?.role == 'ADMIN'|| userC?.role == 'COMMERCIAL'">prospect</option>
                     <option>client</option>
                   </select>
 <!--                  <mat-error *ngIf="(editForm.controls.status.hasError('required') && editForm.controls.status.touched) || submitted">-->

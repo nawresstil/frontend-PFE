@@ -13,6 +13,9 @@ import {AuthGuard} from "../authgarde/auth.guards";
 import {EditCompanyComponent} from "./company/edit-company/edit-company.component";
 import {SocietydetailsComponent} from "./company/society-detail/societydetails.component";
 import {GuideComponent} from "../guide/guide.component";
+import {EditClientComponent} from "./client/edit-client/edit-client.component";
+import {GuideDetailsComponent} from "../guide/guide-details/guide-details.component";
+import {ProfileComponent} from "./manager/profile/profile.component";
 
 const routes: Routes = [
   {path: 'client', component: ClientComponent},
@@ -26,8 +29,10 @@ const routes: Routes = [
   {path: 'add-company', component: AddCompanyComponent},
   {path: 'edit-company/:idCompany', component: EditCompanyComponent},
   {path: 'society-details/:id', component: SocietydetailsComponent},
-  {path: 'prospection_guide', component: GuideComponent}
-
+  {path: 'prospection_guide', component: GuideComponent},
+  {path: 'edit-client/:idCompany', component: EditClientComponent},
+  {path: 'guide-details/:id', component: GuideDetailsComponent},
+  {path: 'profile', component: ProfileComponent},
 ];
 
 @NgModule({

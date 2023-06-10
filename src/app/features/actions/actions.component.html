@@ -1,1 +1,296 @@
-<p>actions works!</p>
+<section class="wrapper site-min-height">
+  <!-- page start-->
+
+
+  <div class="chat-room ">
+    <!-- page start-->
+    <aside class="mid-side" >
+      <div class="row">
+        <div class="col-lg-12">
+          <section class="panel">
+            <div id="main-container">
+                          <header class="panel-heading">
+                            Actions List
+                          </header>
+              <div class="btn-group" class="col-lg-12" style="margin-top:10px">
+                <button id="editable-sample_new" class="btn green" (click)="onOpenModal(null, 'add')">
+                  Add New <i class="fa fa-plus"></i>
+                </button>
+                <div class="dataTables_filter" id="editable-sample_filter" style="margin-top:-15px">
+                  <input type="search" aria-controls="editable-sample" (ngModelChange)="searchActions(keys.value)" #keys="ngModel" ngModel
+                         name="key" id="searchName" class="form-control medium" placeholder="Search Societies..." required>
+                </div>
+              </div>
+              <div class="row"></div>
+              <!--            <ul>-->
+              <!--              <li *ngFor="let task of filteredTasks">{{ task.name }}</li>-->
+              <!--            </ul>-->
+              <div class="table-responsive" style="margin: 0px 15px 0px 15px">
+                <table class="table  table-advance table-hover table-bordered" >
+                  <thead>
+                  <tr>
+                    <th class="text-center"> Type</th>
+                    <th class="text-center"> Title</th>
+                    <th class="text-center"> Collaborateur</th>
+                    <th class="text-center"> Start date</th>
+                    <th class="text-center"> End date</th>
+                    <th class="text-center">Tracebility</th>
+                    <th class="text-center"> Edit</th>
+                  </tr>
+                  </thead>
+                  <!--get all society-detail-->
+                  <tbody>
+                  <tr *ngFor="let t of actions" >
+                    <td><span class="hidden-phone">{{t?.typeAction}}</span></td>
+                    <td><span class="hidden-phone">{{t?.titreAction}} </span></td>
+                    <td><span class="hidden-phone">{{t?.collaborateur}}</span></td>
+                    <td class="hidden-phone">{{t?.dateDebut}},{{t?.tempsDebut}}</td>
+                    <td><span class="hidden-phone">{{t?.dateFin}},{{t?.tempFin}}</span></td>
+                    <td class="text-center">
+                      <a class="btn btn-warning btn-xs">{{t.tracability}}</a>
+                    </td>
+                    <td class="text-center">
+                      <a class="btn btn-danger btn-xs" ><i class="fa fa-trash-o "  (click)="onDeleteAction(t.id)" data-original-title="delete"></i></a>
+                      <a class="btn btn-primary btn-xs" style="margin-left: 5px;"><i class="fa fa-pencil "  (click)="onOpenModal(t, 'update')" data-original-title="update"></i></a>
+                      <a class="btn btn-success btn-xs" style="margin-left: 5px;"><i class="fa fa-eye " (click)="onOpenModal(t, 'viewDetails')" data-original-title="viewDetails"></i></a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Add Action Modal -->
+              <div class="col-lg-12" *ngIf="openModal">
+                <div class="modal fade" id="addActionModal" tabindex="-1" role="dialog" aria-labelledby="addActionModalLabel" aria-hidden="true">
+                  <div class="modal-dial" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header " style="background-color: #572AD7">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title" style="margin-bottom:1px"><strong>Add Action</strong></h3>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="addForm" (ngSubmit)="add(addForm)" >
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <section class="panel">
+                                <header class="panel-heading">
+                                  <label>Action detail</label>
+                                </header>
+                                <div class="panel-body">
+                                  <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                      <label for="titreAction" class="col-lg-3 col-sm-3 control-label">Title*</label>
+                                      <div class="col-lg-9">
+                                        <div class="iconic-input">
+                                          <input type="text" formControlName="titreAction" name="titreAction" class="form-control" id="titreAction" placeholder="">
+                                          <div *ngIf="(addForm.controls.titreAction.hasError('required') && addForm.controls.titreAction.touched) || submitted">
+                                            <div class="error-message">Title is required</div></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="typeAction" class="col-lg-3 col-sm-3 control-label">Action Type*</label>
+                                      <div class="col-lg-9">
+                                        <div class="iconic-input">
+                                          <input id="typeAction" formControlName="typeAction"  name="typeAction" class="form-control" >
+                                          <div *ngIf="(addForm.controls.typeAction.hasError('required') && addForm.controls.typeAction.touched) || submitted">
+                                            <div class="error-message">Action type is required</div></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="dateDebut" class="col-lg-3 control-label">Start date*</label>
+                                      <div class="col-lg-5">
+                                        <div>
+                                          <input type="date" formControlName="dateDebut" name="dateDebut" class="form-control" id="dateDebut" placeholder="">
+                                          <div *ngIf="(addForm.controls.dateDebut.hasError('required') && addForm.controls.dateDebut.touched) || submitted">
+                                            <div class="error-message">start date is required</div></div>
+                                        </div>
+                                      </div>
+                                      <div for="tempsDebut" class="col-lg-4" >
+                                        <input type="time" formControlName="tempsDebut" name="tempsDebut" class="form-control" id="tempsDebut" placeholder="00:00">
+                                        <div *ngIf="(addForm.controls.tempsDebut.hasError('required') && addForm.controls.tempsDebut.touched) || submitted">
+                                          <div class="error-message">Time is required</div></div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="dateFin" class="col-lg-3 control-label">End date</label>
+                                      <div class="col-lg-5">
+                                        <div>
+                                          <input type="date" formControlName="dateFin" dateDebut="dateFin" class="form-control" id="dateFin" placeholder="">
+                                          <div *ngIf="(addForm.controls.dateFin.hasError('required') && addForm.controls.dateFin.touched) || submitted">
+                                            <div class="error-message">End date is required</div></div>
+                                        </div>
+                                      </div>
+                                      <div for="tempFin" class="col-lg-4" >
+                                        <input type="time" formControlName="tempFin" name="tempFin" class="form-control" id="tempFin" placeholder="00:00">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <header class="panel-heading">
+                                  <label>Advanced parametres</label>
+                                </header>
+                                <div class="panel-body" >
+                                  <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                      <label for="collaborateur" class="col-lg-3 col-sm-3 control-label">Collaborator</label>
+                                      <div class="col-lg-9">
+                                        <div class="iconic-input">
+                                          <select name="collaborateur" formControlName="collaborateur" id="collaborateur" class="form-control select" >
+                                            <option *ngFor="let u of users">{{u.username}}</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
+                            </div>
+                            <!-- main end -->
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" id="" class="btn btn-secondary" data-dismiss="modal" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+                            <button type="submit"  class="btn green" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;" [disabled]="!addForm.valid">Save</button></div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end Add Action -->
+              <!--update start-->
+              <div class="col col-lg-12" *ngIf="openModal">
+                <div class="modal fade" id="updateActionModal" tabindex="-1" role="dialog" aria-labelledby="updateTacheSModalLabel" aria-hidden="true">
+                  <div class="modal-dial" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #572AD7">
+                        <h5 class="modal-title">Update Action</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="editForm">
+                          <div class="row">
+                            <div class="col-lg-12">
+
+                              <section class="panel">
+                                <header class="panel-heading">
+                                  <label>Action detail</label>
+                                </header>
+                                <div class="panel-body">
+                                  <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                      <label for="titreAction" class="col-lg-3 col-sm-3 control-label">Title*</label>
+                                      <div class="col-lg-9">
+                                        <div class="iconic-input">
+                                          <input type="text" formControlName="titreAction" name="titreAction" class="form-control" id="titreAction" placeholder="">
+<!--                                          <div *ngIf="(editForm.controls.titreAction.hasError('required') && editForm.controls.titreAction.touched) || submitted">-->
+<!--                                            <div class="error-message">Title is required</div></div>-->
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="typeAction" class="col-lg-3 col-sm-3 control-label">Action Type*</label>
+                                      <div class="col-lg-9">
+                                        <div class="iconic-input">
+                                          <input formControlName="typeAction"  name="typeAction" class="form-control" id="typeAction">
+<!--                                          <div *ngIf="(editForm.controls.typeAction.hasError('required') && editForm.controls.typeAction.touched) || submitted">-->
+<!--                                            <div class="error-message">Action type is required</div></div>-->
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="dateDebut" class="col-lg-3 control-label">Start date*</label>
+                                      <div class="col-lg-5">
+                                        <div>
+                                          <input type="date" formControlName="dateDebut" name="dateDebut" class="form-control" id="dateDebut" placeholder="">
+<!--                                          <div *ngIf="(editForm.controls.dateDebut.hasError('required') && editForm.controls.dateDebut.touched) || submitted">-->
+<!--                                            <div class="error-message">start date is required</div></div>-->
+                                        </div>
+                                      </div>
+                                      <div for="tempsDebut" class="col-lg-4" >
+                                          <input type="time" formControlName="tempsDebut" name="tempsDebut" class="form-control" id="tempsDebut" placeholder="00:00">
+<!--                                          <div *ngIf="(editForm.controls.tempsDebut.hasError('required') && editForm.controls.tempsDebut.touched) || submitted">-->
+<!--                                          <div class="error-message">Time is required</div></div>-->
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="dateFin" class="col-lg-3 control-label">End date</label>
+                                      <div class="col-lg-5">
+                                        <div>
+                                          <input type="date" formControlName="dateFin" dateDebut="dateFin" class="form-control" id="dateFin" placeholder="">
+<!--                                          <div *ngIf="(editForm.controls.dateFin.hasError('required') && editForm.controls.dateFin.touched) || submitted">-->
+<!--                                            <div class="error-message">End date is required</div></div>-->
+                                        </div>
+                                      </div>
+                                      <div for="tempFin" class="col-lg-4" >
+                                        <input type="time" formControlName="tempFin" name="tempFin" class="form-control" id="tempFin" placeholder="00:00">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <header class="panel-heading">
+                                  <label>Advanced parametres</label>
+                                </header>
+                                <div class="panel-body" >
+                                  <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                      <label for="collaborateur" class="col-lg-3 col-sm-3 control-label">Collaborator</label>
+                                      <div class="col-lg-9">
+                                        <div class="iconic-input">
+                                          <select name="collaborateur" formControlName="collaborateur" id="collaborateur" class="form-control select" >
+                                            <option *ngFor="let u of users">{{u.username}}</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
+                            </div>
+                            <!-- main end -->
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button (click)="onUpdateAction(updateAction?.id,editForm.value)" [disabled]="!editForm.valid" type="submit" class="btn green" >Save changes</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--update end-->
+              <!-- Notification for no societies -->
+              <div *ngIf="actions?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+                <div class="alert alert-info" role="alert">
+                  <h4 class="alert-heading">NO ACTIONS!</h4>
+                  <p>No ACTIONS were found.</p>
+                </div>
+              </div>
+
+              <!--                <div class="row">-->
+              <!--                  <div class="pull-right">-->
+              <!--                    <div class="col-lg-12" >-->
+              <!--                      <div class="dataTables_paginate paging_bootstrap pagination">-->
+              <!--                        <ul>-->
+              <!--                          <pagination-controls (pageChange)="p = ($event)"></pagination-controls>-->
+              <!--                        </ul>-->
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </div>-->
+              <!--                </div>-->
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </aside>
+  </div><!-- page end-->
+</section>
+<!-- page end-->
+
+

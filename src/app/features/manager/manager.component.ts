@@ -21,7 +21,6 @@ export class ManagerComponent implements OnInit {
   public userC: Users;
   openModal = false;
   submitted = false;
-  public updateUser: Users;
   private deleteUser: Users;
   public errorMessage: string;
   addForm: FormGroup;
@@ -48,16 +47,13 @@ export class ManagerComponent implements OnInit {
 
     this.addForm = this.formBuilder.group({
 
-
       firstname: ['', Validators.required],
 
       lastname: ['', Validators.required],
 
-      JoiningDate: this.currentDate.substring(0, 10),
+      joiningDate: this.currentDate.substring(0, 10),
 
-      Designation: ['', Validators.required],
-
-      Departments: ['', Validators.required],
+      departments: ['', Validators.required],
 
       username: ['', Validators.required],
 
@@ -69,8 +65,6 @@ export class ManagerComponent implements OnInit {
 
       phone: ['', Validators.required],
 
-      oldPassword: ['', Validators.required],
-
       role: ['', Validators.required]
     });
   }
@@ -79,7 +73,7 @@ export class ManagerComponent implements OnInit {
       firstname: new FormControl (this.updateManager.firstname),
       lastname: new FormControl (this.updateManager.lastname),
       Designation: new FormControl (this.updateManager.Designation),
-      Departments: new FormControl (this.updateManager.Departments),
+      departments: new FormControl (this.updateManager.departments),
       username: new FormControl (this.updateManager.username),
       email: new FormControl (this.updateManager.email),
       password: new FormControl (this.updateManager.password),
@@ -87,6 +81,7 @@ export class ManagerComponent implements OnInit {
       phone: new FormControl (this.updateManager.phone),
       oldPassword: new FormControl (this.updateManager.oldPassword),
       role: new FormControl (this.updateManager.role),
+      joiningDate: new FormControl(this.currentDate.substring(0, 10)),
     });
   }
   getUsers(){
@@ -96,13 +91,14 @@ export class ManagerComponent implements OnInit {
       console.log('error while getting users ', err);
     });
   }
-  add() {
-    console.log(this.addForm);
+  add(addForm: NgForm) {
+    console.log(this.addForm.valid)
     if (this.addForm.valid) {
       this.openModal = false;
       this.submitted = false;
-      console.log('***********************************');
-    this.userService.registerUser(this.addForm.value).subscribe(res => {
+      console.log("********************");
+      console.log(this.addForm);
+    this.userService.registerUser(addForm.value).subscribe(res => {
       this.getUsers();
       Swal.fire({
         position: 'center',
@@ -157,48 +153,8 @@ this.router.navigate(['/home/features/manager']);
     }else {
       this.submitted = false;
     }
-    this.router.navigate(['/home/features/project']);
+    this.router.navigate(['/home/features/manager']);
   }
-  // add() {
-  //   if (this.addForm.valid) {
-  //     this.openModal = false;
-  //     this.submitted = false;
-  //     const registerRequest: RegisterRequest = {
-  //       firstname: this.addForm.value.firstname,
-  //       lastname: this.addForm.value.lastname,
-  //       joiningDate: this.addForm.value.JoiningDate,
-  //       // designation: this.addForm.value.Designation,
-  //       Departments: this.addForm.value.Departments,
-  //       username: this.addForm.value.username,
-  //       email: this.addForm.value.email,
-  //       password: this.addForm.value.password,
-  //       confirmPassword: this.addForm.value.confirmPassword,
-  //       phone: this.addForm.value.phone,
-  //       role: this.addForm.value.role
-  //     };
-  //
-  //     this.userService.registerUser(registerRequest).subscribe(
-  //       (res: AuthenticationResponse) => {
-  //         this.getUsers();
-  //         Swal.fire({
-  //           position: 'center',
-  //           title: 'Added Successfully',
-  //           html: 'Trial quote has been added',
-  //           icon: 'success',
-  //           showConfirmButton: false,
-  //           timer: 1500,
-  //           width: 500,
-  //         });
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         console.log('error while adding user ', error);
-  //       }
-  //     );
-  //   } else {
-  //     this.submitted = false;
-  //   }
-  //   this.router.navigate(['/home/features/manager']);
-  // }
   getConnectedUser(){
     this.userService.getConnectedUser().subscribe(
       (response: Users) => {
@@ -227,15 +183,15 @@ this.router.navigate(['/home/features/manager']);
         this.getUsers();
         Swal.fire(
           'Deleted!',
-          'Your Society has been deleted.',
+          'Your User has been deleted.',
           'success'
         );
       },
       (error: HttpErrorResponse) => {
         Swal.fire(
-          'Deleted!',
-          'Your User has been deleted.',
-          'success'
+          'Not Deleted!',
+          'This User has an actions or a tasks.',
+          'info'
         );
       }
     );
@@ -276,7 +232,7 @@ this.router.navigate(['/home/features/manager']);
     }
 
     if (mode === 'update') {
-      this.updateUser = user;
+      this.updateManager = user;
       this.initForm();
       button.setAttribute('data-target', '#updateUserModal');
     }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Project} from "../models/Project";
 import {ProjectService} from "../features/project/services/project.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {CompanyService} from "../features/company/services/company.service";
 import {GuideService} from "./service/guide.service";
 import {Guide} from "../models/guide";
@@ -25,32 +25,41 @@ export class GuideComponent implements OnInit {
   public guide: Guide[];
   addForm: FormGroup;
   editForm: FormGroup;
+  currentDate :string;
   openModal = false;
   submitted = false;
   constructor(private guideService: GuideService, private actvroute: ActivatedRoute,
               private formBuilder: FormBuilder, private router: Router,
-              private userService: UserService) { }
+              private userService: UserService) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    this.currentDate = `${year}-${month}-${day}`;
+  }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      annee: new FormControl (''),
+      tracability: this.userC,
+      annee:['', Validators.required],
       objectif:  ['', Validators.required],
       qualification:  ['', Validators.required],
-      projectinfo: ['', Validators.required],
-      problematic: ['', Validators.required],
-      budget: ['', Validators.required],
+      description: ['', Validators.required],
+      suivi: ['', Validators.required],
+      creationDate: this.currentDate.substring(0, 10),
     });
     this.getGuide();
     this.getConnected();
   }
   initForm() {
     this.editForm = new FormGroup({
-      annee: new FormControl (this.updateGuide.annee || '', [Validators.required]),
-      objectif: new FormControl (this.updateGuide.objectif || '', [Validators.required]),
-      qualification: new FormControl (this.updateGuide.qualification || '', [Validators.required]),
-      projectinfo: new FormControl (this.updateGuide.projectinfo || '', [Validators.required]),
-      problematic: new FormControl (this.updateGuide.problematic || '', [Validators.required]),
-      budget: new FormControl (this.updateGuide.budget || '', [Validators.required]),
+      annee: new FormControl(this.updateGuide.annee || '', [Validators.required]),
+      objectif: new FormControl(this.updateGuide.objectif || '', [Validators.required]),
+      qualification: new FormControl(this.updateGuide.qualification || '', [Validators.required]),
+      description: new FormControl(this.updateGuide.description || '', [Validators.required]),
+      suivi: new FormControl(this.updateGuide.suivi || '', [Validators.required]),
+      creationDate: new FormControl(this.currentDate.substring(0, 10)),
+
     });
   }
   getGuide(){
@@ -67,13 +76,16 @@ export class GuideComponent implements OnInit {
         this.userC= response;
       });
   }
-  add() {
-    console.log(this.addForm);
-    if (this.addForm.valid) {
+  add(addForm: NgForm) {
+    this.addForm.patchValue({
+      tracability: this.userC.lastname + ' ' + this.userC.firstname
+    });
+    console.log(addForm);
+    if (addForm.valid) {
       this.openModal = false;
       this.submitted = false;
       console.log('***********************************');
-      this.guideService.addGuide(this.addForm.value).subscribe(res => {
+      this.guideService.addGuide(addForm.value).subscribe(res => {
         this.getGuide();
         Swal.fire({
           position: 'center',

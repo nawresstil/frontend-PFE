@@ -1,254 +1,215 @@
-  <section class="wrapper site-min-height">
-    <!-- page start-->
-
-    <div class="chat-room full-screen-panel">
-      <aside class="left-side"  style=" width: 15%;">
-        <div class="user-head">
-          <h3><strong>{{society?.societyName}}</strong></h3>
-        </div>
-        <ul class="chat-list" >
-          <li>
-            <a class="lobby" (click)="toggleFormVisibility()" >
-              <h4>
-                <i class="fa fa-list"></i>
-                  Society information
-              </h4>
-            </a>
-          </li>
-          <li>
-            <a class="lobby">
-              <h4>
+<section class="wrapper site-min-height">
+  <!-- page start-->
+  <div class="chat-room">
+    <aside class="left-side">
+      <div class="user-head">
+        <h3><strong>{{society?.societyName}}</strong></h3>
+      </div>
+      <ul class="chat-list" >
+        <li>
+          <a class="lobby" (click)="toggleFormVisibility1()" >
+            <h4>
               <i class="fa fa-list"></i>
-              <span>Contact informations</span>
-              </h4>
-            </a>
-          </li>
-          <li>
-            <a class="lobby">
-              <h4>
-              <i class="fa fa-list"></i>
-              <span>Task</span>
-                <i class="fa  pull-right"></i>
-              </h4>
-            </a>
-          </li>
-        </ul>
-        <footer style=" width: 23%;">
-          <a class="chat-avatar" href="javascript:;">
-            <img alt="" src="https://play-lh.googleusercontent.com/BHL8X-KfiJiZ5uQ_8uuknlIVOwrN3Gm95fmNDe0SbW5SbpQvsVB1LXoHme1Hk6iCRGg" style="margin-right: 10px; ">
+                Society informations
+            </h4>
           </a>
-          <div class="user-status">
-          <label class="label label-info label-mini society" style="border-radius: 10px; margin-left: 110%;">
-            society
-          </label>
-          <label [class]="society?.status === 'client' ? 'label label-info label-mini client' : 'label label-info label-mini prospect'" style="border-radius: 10px; margin-left: 5px;">
-            {{ society?.status }}
-          </label>
-          </div>
-        </footer>
-      </aside>
-
-      <aside class="mid-side">
-        <div class="chat-room-head" style="height:5%;">
-                    <h3>Details</h3>
-          <!--          <form action="#" class="pull-right position">-->
-          <!--            <input type="text" placeholder="Search" class="form-control search-btn ">-->
-          <!--          </form>-->
-
-
-
+        </li>
+        <li>
+          <a class="lobby" (click)="toggleFormVisibility()">
+            <h4>
+            <i class="fa fa-list"></i>
+            <span>Project informations</span>
+            </h4>
+          </a>
+        </li>
+        <li>
+          <a class="lobby" (click)="toggleFormVisibility2()">
+            <h4>
+            <i class="fa fa-list"></i>
+            <span>Task informations</span>
+              <i class="fa pull-right"></i>
+            </h4>
+          </a>
+        </li>
+      </ul>
+      <footer>
+        <a class="chat-avatar" href="javascript:;">
+          <img alt="" src="assets/img/file-search/ai.png" style="margin-right: 10px; ">
+        </a>
+        <div class="user-status">
+        <label class="label label-info label-mini society" style="border-radius: 10px; margin-left: 105%;">
+          society
+        </label>
+        <label  [class]="society?.status === 'client' ? 'label label-info label-mini client' : 'label label-info label-mini prospect'" style="border-radius: 10px; margin-left: 5px;">
+          {{ society?.status }}
+        </label>
         </div>
-        <div class="col-lg-8" style="padding-top:10px;">
-          <div class="row" >
-            <div class="col-lg-11">
-              <!--widget start-->
-              <section class="panel" >
-                <header class="panel-heading tab-bg-dark-navy-blue ">
-                  <ul class="nav nav-tabs" style=" border: 1px solid black;">
-                    <li class="active" style=" border-bottom: 1px solid #3a495b;">
-                      <a href="#popular" data-toggle="tab">
-                        Society informations
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#comments" data-toggle="tab">
-                        Contact
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="#recent" data-toggle="tab">
-                        Tasks
-                      </a>
-                    </li>
-                  </ul>
-                </header>
-                <div class="panel-body">
-                  <div class="tab-content tasi-tab">
-                    <div class="tab-pane active" id="popular">
-                      <form class="form-horizontal" id="default" action="#" style="border: 1px solid lightgrey; padding: 20px; margin: 20px;">
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Society name: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.societyName}}</p>
-                          </div>
+      </footer>
+    </aside>
+
+    <aside class="mid-side">
+      <div class="chat-room-head" style="height:5%;">
+                  <h3>Details</h3>
+      </div>
+      <div class="col-lg-8" style="padding-top:10px;">
+        <div class="row" >
+          <div class="col-lg-11">
+            <!--widget start-->
+            <section class="panel">
+              <div class="panel-body">
+                <div class="tab-content tasi-tab">
+                  <div class="tab-pane active" *ngIf="isFormVisible && !isFormVisible1 && !isFormVisible2">
+                    <form class="form-horizontal"  style="border: 1px solid lightgrey; padding: 20px; margin: 20px; width: 500px">
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Society name: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{society?.societyName}}</p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Site Web: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.siteWeb}}</p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Site Web:</strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{society?.siteWeb}}</p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Phone: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.phoneSociety}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Phone: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{society?.phoneSociety}} </p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Email: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.emailSociety}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Email: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{society?.emailSociety}} </p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Society type: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.typeSociety}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Society type: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{society?.typeSociety}} </p>
                         </div>
-                      </form>
-                    </div>
-                    <div class="tab-pane" id="comments">
-                      <form class="form-horizontal" id="default" action="#" style="border: 1px solid lightgrey; padding: 20px; margin: 20px;">
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Contact: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.lastName}} {{society?.firstName}} </p>
-                          </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="tab-pane active"  *ngFor="let projet of society.projets" >
+                    <form class="form-horizontal" *ngIf="isFormVisible1 && !isFormVisible && !isFormVisible2" style="border: 1px solid lightgrey; padding: 20px; margin: 20px; width: 500px" >
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Project name: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{projet?.name}}</p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Function: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.function}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Start date: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{projet?.date_debut}} </p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Phone: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.phone}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>End date: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{projet?.date_fin}} </p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Email: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.email}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Budget: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{projet?.budget}}</p>
                         </div>
-                      </form>
-                    </div>
-                    <div class="tab-pane " id="recent">
-                      <form class="form-horizontal" id="default" action="#" style="border: 1px solid lightgrey; padding: 20px; margin: 20px;">
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Contact: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society.tacheS.label}} {{society.tacheS.label}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Status: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{projet?.status}}</p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Function: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.function}} </p>
-                          </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="tab-pane active "  *ngIf="isFormVisible2 && !isFormVisible1 && !isFormVisible">
+                    <form class="form-horizontal" style="border: 1px solid lightgrey; padding: 20px; margin: 20px; width: 500px"  *ngFor="let tache of society.tacheS">
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Label: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache.label}}</p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Phone: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.phone}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Collaborateurs: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache?.collaborateurs}} </p>
                         </div>
-                        <div class="form-group" >
-                          <div class="col-lg-4 control-label"><strong>Email: </strong></div>
-                          <div class="col-lg-6">
-                            <p class="form-control-static">{{society?.email}} </p>
-                          </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Date: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache?.date}} </p>
                         </div>
-                      </form>
-                    </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Time:</strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache?.times}} </p>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Contact: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache?.contact}} </p>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Title: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache?.titre}} </p>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Status: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache?.etat}} </p>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
-              </section>
-              <!--widget end-->
-            </div>
+              </div>
+            </section>
+            <!--widget end-->
           </div>
         </div>
-      </aside>
-      <!--      <aside class="right-side">-->
-      <!--        <div class="user-head">-->
-      <!--          <a href="#" class="chat-tools btn-success"><i class="fa fa-cog"></i> </a>-->
-      <!--          <a href="#" class="chat-tools btn-key"><i class="fa fa-key"></i> </a>-->
-      <!--        </div>-->
-      <!--        <div class="invite-row">-->
-      <!--          <h4 class="pull-left">People</h4>-->
-      <!--        </div>-->
-      <!--        <ul class="chat-available-user">-->
-      <!--          <li>-->
-      <!--            <a href="chat_room.html">-->
-      <!--              <i class="fa fa-circle text-success"></i>-->
-      <!--              Jonathan Smith-->
-      <!--              <span class="text-muted">3h:22m</span>-->
-      <!--            </a>-->
-      <!--          </li>-->
-      <!--          <li>-->
-      <!--            <a href="chat_room.html">-->
-      <!--              <i class="fa fa-circle text-success"></i>-->
-      <!--              Jhone Due-->
-      <!--              <span class="text-muted">1h:2m</span>-->
-      <!--            </a>-->
-      <!--          </li>-->
-      <!--          <li>-->
-      <!--            <a href="chat_room.html">-->
-      <!--              <i class="fa fa-circle text-success"></i>-->
-      <!--              Franklyn Kalley-->
-      <!--              <span class="text-muted">2h:32m</span>-->
-      <!--            </a>-->
-      <!--          </li>-->
-      <!--          <li>-->
-      <!--            <a href="chat_room.html">-->
-      <!--              <i class="fa fa-circle text-danger"></i>-->
-      <!--              Anjelina joe-->
-      <!--              <span class="text-muted">3h:22m</span>-->
-      <!--            </a>-->
-      <!--          </li>-->
-      <!--          <li>-->
-      <!--            <a href="chat_room.html">-->
-      <!--              <i class="fa fa-circle text-warning"></i>-->
-      <!--              Aliace Stalvien-->
-      <!--              <span class="text-muted">1h:12m</span>-->
-      <!--            </a>-->
-      <!--          </li>-->
-      <!--          <li>-->
-      <!--            <a href="chat_room.html">-->
-      <!--              <i class="fa fa-circle text-muted"></i>-->
-      <!--              Stive jones-->
-      <!--              &lt;!&ndash;<span class="text-muted">3h:22m</span>&ndash;&gt;-->
-      <!--            </a>-->
-      <!--          </li>-->
-      <!--          <li>-->
-      <!--            <a href="chat_room.html">-->
-      <!--              <i class="fa fa-circle text-muted"></i>-->
-      <!--              Jonathan Smith-->
-      <!--              &lt;!&ndash;<span class="text-muted">3h:22m</span>&ndash;&gt;-->
-      <!--            </a>-->
-      <!--          </li>-->
-      <!--        </ul>-->
-      <!--        <footer>-->
-      <!--          <a href="#" class="guest-on">-->
-      <!--            <i class="fa fa-check"></i>-->
-      <!--            Guest Access On-->
-      <!--          </a>-->
-      <!--        </footer>-->
-      <!--      </aside>-->
-    </div>
+      </div>
+    </aside>
+          <aside class="right-side">
+            <div class="user-head">
+                <h3>Contact</h3>
+            </div>
+            <div class="invite-row">
+              <h4 class="pull-left">{{society?.lastName}} {{society?.firstName}} </h4>
+            </div>
+            <ul class="chat-available-user">
+              <li>
+                <div>
+                  <i class="fa fa-circle text-success"></i>
+                  {{society?.function}}
+                </div>
+              </li>
+              <li>
+                <div>
+                  <i class="fa fa-envelope"></i>
+                  {{society?.email}}
+<!--                    <span class="text-muted">3h:22m</span>-->
+                </div>
+              </li>
+              <li>
+                <div>
+                  <i class="fa fa-phone"></i>
+                  {{society?.phone}}
+                </div>
+              </li>
+            </ul>
+          </aside>
+  </div>
 
-    <!-- page end-->
-  </section>
+  <!-- page end-->
+</section>

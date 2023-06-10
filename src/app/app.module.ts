@@ -23,7 +23,6 @@ import {JwtModule} from "@auth0/angular-jwt";
     ContainerComponent,
     FooterComponent,
     LoginComponent
-
   ],
   imports: [
     BrowserModule,

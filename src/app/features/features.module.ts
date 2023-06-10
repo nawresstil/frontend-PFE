@@ -16,6 +16,9 @@ import { EditCompanyComponent } from './company/edit-company/edit-company.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SocietydetailsComponent} from "./company/society-detail/societydetails.component";
 import {GuideComponent} from "../guide/guide.component";
+import {EditClientComponent} from "./client/edit-client/edit-client.component";
+import {GuideDetailsComponent} from "../guide/guide-details/guide-details.component";
+import {ProfileComponent} from "./manager/profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import {GuideComponent} from "../guide/guide.component";
     AddCompanyComponent,
     EditCompanyComponent,
     SocietydetailsComponent,
-    GuideComponent
+    GuideComponent,
+    EditClientComponent,
+    GuideDetailsComponent,
+    ProfileComponent
   ],
     imports: [
         CommonModule,

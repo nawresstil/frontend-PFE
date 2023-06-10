@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {Society} from "../../../models/society";
-import {HttpErrorResponse} from "@angular/common/http";
-import Swal from "sweetalert2";
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {CompanyService} from "../services/company.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../../login/services/authentification.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Users} from "../../../models/users";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CompanyService} from "../../company/services/company.service";
+import {AuthenticationService} from "../../../login/services/authentification.service";
 import {UserService} from "../../manager/services/user.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-edit-company',
-  templateUrl: './edit-company.component.html',
-  styleUrls: ['./edit-company.component.scss']
+  selector: 'app-edit-client',
+  templateUrl: './edit-client.component.html',
+  styleUrls: ['./edit-client.component.scss']
 })
-export class EditCompanyComponent implements OnInit {
+export class EditClientComponent implements OnInit {
+
   DetailsCompany;
   idCompany;
   submitted = false;
@@ -22,9 +21,10 @@ export class EditCompanyComponent implements OnInit {
   editCompany: FormGroup;
   today;
   currentDate;
-
   public userC: Users;
-  constructor(private actvroute: ActivatedRoute, private companyService: CompanyService, private formBuilder: FormBuilder ,
+  constructor(private actvroute: ActivatedRoute,
+              private companyService: CompanyService,
+              private formBuilder: FormBuilder ,
               private router: Router , private authService: AuthenticationService, private userService:UserService) {
     this.idCompany = this.actvroute.params['value']['idCompany'];
 
@@ -44,74 +44,69 @@ export class EditCompanyComponent implements OnInit {
     this.getallCompany();
     // this.today = new Date().toISOString().split('T')[0];
     // this.editCompany.get('creationDate').setValue(this.today);
+
   }
   init(){
+    this.editCompany = this.formBuilder.group({
+      tracability: this.userC,
+      societyName: ['', [Validators.required]],
+      siteWeb: ['', Validators.required],
+      phoneSociety: ['', Validators.required],
 
-  this.editCompany = this.formBuilder.group({
+      faxSociety: ['', Validators.required],
 
-    tracability: this.userC,
+      emailSociety: ['', Validators.required],
 
-    societyName: ['', [Validators.required]],
+      pays: ['', Validators.required],
 
-    siteWeb: ['', Validators.required],
+      sector: ['', Validators.required],
 
-    phoneSociety: ['', Validators.required],
+      nbrEmployee: ['', Validators.required],
 
-    faxSociety: ['', Validators.required],
+      creationDate: this.currentDate.substring(0, 10),
 
-    emailSociety: ['', Validators.required],
+      priority: ['', Validators.required],
 
-    pays: ['', Validators.required],
+      typeSociety: ['', Validators.required],
 
-    sector: ['', Validators.required],
+      gender: ['', Validators.required],
 
-    nbrEmployee: ['', Validators.required],
+      firstName: ['', Validators.required],
 
-    creationDate: this.currentDate.substring(0, 10),
+      lastName: ['', Validators.required],
 
-    priority: ['', Validators.required],
+      function: ['', Validators.required],
 
-    typeSociety: ['', Validators.required],
+      email: ['', Validators.required],
 
-    gender: ['', Validators.required],
-
-    firstName: ['', Validators.required],
-
-    lastName: ['', Validators.required],
-
-    function: ['', Validators.required],
-
-    email: ['', Validators.required],
-
-    phone: ['', Validators.required],
+      phone: ['', Validators.required],
 
 
-    social: ['', Validators.required],
+      social: ['', Validators.required],
 
 
-    status: ['', Validators.required]
-
+      status: ['', Validators.required],
     });
   }
-  // get f() {
-  //   return this.editCompany.controls;
-  // }
-  // onSubmit() {
-  //   this.submitted = true;
-  //
-  //   console.log('addform', this.editCompany.value);
-  //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editCompany.value, null, 4));
-  // }
+  get f() {
+    return this.editCompany.controls;
+  }
+  onSubmit() {
+    this.submitted = true;
+
+    console.log('addform', this.editCompany.value);
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editCompany.value, null, 4));
+  }
   getConnected(){
     this.userService.getConnectedUser().subscribe(
       (response: Users) => {
         this.userC= response;
       });
   }
-  edit(editCompany: NgForm) {
+  edit() {
     this.editCompany.patchValue({
       trac: this.userC.lastname + ' ' + this.userC.username});
-    this.companyService.updateSociety(this.idCompany, editCompany.value).subscribe(res => {
+    this.companyService.updateSociety(this.idCompany, this.editCompany.value).subscribe(res => {
       console.log(res);
       // this.getallCompany();
     });
@@ -132,11 +127,7 @@ export class EditCompanyComponent implements OnInit {
       icon: 'success',
       title: 'The changes saved'
     });
-    if (this.userC.role === 'ASSISTANT_COMMERCIAL') {
-      this.router.navigate(['/home/features/client']);
-    } else {
-      this.router.navigate(['/home/features/prospect']);
-    }
+    this.router.navigate(['/home/features/prospect']);
   }
   getallCompany() {
     this.companyService.getCompany().subscribe(result => {

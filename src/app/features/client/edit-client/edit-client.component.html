@@ -1,0 +1,263 @@
+<section class="wrapper site-min-height">
+  <!-- page start-->
+  <section class="panel" style="border: 1px solid grey;">
+    <form [formGroup]="editCompany" (ngSubmit)="edit()">
+
+      <div class="row">
+        <div class="col-lg-6">
+
+          <section class="panel">
+            <header class="panel-heading">
+              <label>GENERAL INFORMATIONS</label>
+            </header>
+            <div class="panel-body">
+              <div class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="societyName" class="col-lg-3 col-sm-3 control-label">Society name* </label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input">
+                      <i class="fa fa-bullhorn"></i>
+                      <input type="text" formControlName='societyName' name="societyName" class="form-control" id="societyName" [(ngModel)]="DetailsCompany.societyName" placeholder="Society name">
+                      <div *ngIf="(editCompany.controls.societyName.hasError('required') && editCompany.controls.societyName.touched) || submitted">
+                        <div class="error-message">society name is required </div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="siteWeb" class="col-lg-3 col-sm-3 control-label">Site web</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input right">
+                      <i class="fa fa-book"></i>
+                      <input type="text" formControlName='siteWeb' name="siteWeb" class="form-control" id="siteWeb" placeholder="Site web" pattern="www+.[a-zA-Z.-]+\.[a-zA-Z]{2,4}">
+                        <div *ngIf="(editCompany.controls.siteWeb.hasError('required') && editCompany.controls.siteWeb.touched) || submitted">
+                          <div>Web site is required </div></div>
+                        <div *ngIf="(editCompany.controls.siteWeb.hasError('pattern') && editCompany.controls.siteWeb.touched)">
+                          <div>*invalid Web Site</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <header class="panel-heading">
+              <label>SOCIETY COORDINATES</label>
+            </header>
+            <div class="panel-body">
+              <div class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="phoneSociety" class="col-lg-3 col-sm-3 control-label">Phone</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input">
+                      <i class="fa fa-bullhorn"></i>
+                      <input type="number" formControlName='phoneSociety' name="phoneSociety" class="form-control" id="phoneSociety" [(ngModel)]="DetailsCompany.phoneSociety" placeholder="Phone">
+                      <!--                  <mat-error *ngIf="(editForm.controls.phoneSociety.hasError('required') && editForm.controls.phoneSociety.touched) || submitted">-->
+                      <!--                    <div>phone is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.phoneSociety.hasError('invalidPhoneNumber') && editForm.controls.phoneSociety.touched)">-->
+                      <!--                    <div>*at least 8 number</div></mat-error>-->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="faxSociety" class="col-lg-3 col-sm-3 control-label">Fax</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input">
+                      <i class="fa fa-bullhorn"></i>
+                      <input type="number" formControlName='faxSociety' name="faxSociety" class="form-control" id="faxSociety" [(ngModel)]="DetailsCompany.faxSociety" placeholder="Fax">
+                      <!--                  <mat-error *ngIf="(editForm.controls.faxSociety.hasError('required') && editForm.controls.faxSociety.touched) || submitted">-->
+                      <!--                    <div>phone is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.faxSociety.hasError('invalidPhoneNumber') && editForm.controls.faxSociety.touched)">-->
+                      <!--                    <div>*at least 8 number</div></mat-error>-->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="emailSociety" class="col-lg-3 col-sm-3 control-label">Email</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input right">
+                      <i class="fa fa-book"></i>
+                      <input type="email" formControlName='emailSociety' name="emailSociety" class="form-control" id="emailSociety" [(ngModel)]="DetailsCompany.emailSociety" placeholder="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+                      <!--                  <mat-error *ngIf="(editForm.controls.emailSociety.hasError('required') && editForm.controls.emailSociety.touched) || submitted" >-->
+                      <!--                    <div>Email address is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.emailSociety.hasError('pattern') && editForm.controls.emailSociety.touched)">-->
+                      <!--                    <div>*invalid E-Mail</div></mat-error>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <header class="panel-heading">
+              <label> PRINCIPAL CONTACT</label>
+            </header>
+            <div class="panel-body">
+              <div class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="lastName" class="col-lg-3 col-sm-3 control-label">Last name</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input right">
+                      <input type="text" formControlName='lastName' name="lastName" class="form-control" [(ngModel)]="DetailsCompany.lastName" id="lastName" placeholder="last name" minlength="4">
+                      <!--                  <mat-error *ngIf="(editForm.controls.lastName.hasError('required') && editForm.controls.lastName.touched) || submitted">-->
+                      <!--                    <div>lastname is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.lastName.hasError('minlength') && editForm.controls.lastName.touched)">-->
+                      <!--                    <div>*must be at least 4 character </div></mat-error>-->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="firstName" class="col-lg-3 col-sm-3 control-label">First name</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input right">
+                      <input type="text" formControlName='firstName' name="firstName" class="form-control" id="firstName" [(ngModel)]="DetailsCompany.firstName" placeholder="first name" minlength="4">
+                      <!--                  <mat-error *ngIf="(editForm.controls.firstName.hasError('required') && editForm.controls.firstName.touched) || submitted">-->
+                      <!--                    <div>lastname is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.firstName.hasError('minlength') && editForm.controls.firstName.touched)">-->
+                      <!--                    <div>*must be at least 4 character </div></mat-error>-->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="col-lg-3 col-sm-3 control-label">Phone</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input right">
+                      <input type="text" formControlName='phone' name="phone" class="form-control" id="phone" [(ngModel)]="DetailsCompany.phone" placeholder="">
+                      <!--                  <mat-error *ngIf="(editForm.controls.phone.hasError('required') && editForm.controls.phone.touched) || submitted">-->
+                      <!--                    <div>phone is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.phone.hasError('invalidPhoneNumber') && editForm.controls.phone.touched)">-->
+                      <!--                    <div>*at least 8 number</div></mat-error>-->
+
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="col-lg-3 col-sm-3 control-label">Email</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input right">
+                      <input type="text" formControlName='email' name="email" class="form-control" [(ngModel)]="DetailsCompany.email" id="email" placeholder="" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+                      <!--                  <mat-error *ngIf="(editForm.controls.email.hasError('required') && editForm.controls.email.touched) || submitted" >-->
+                      <!--                    <div>Email address is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.email.hasError('pattern') && editForm.controls.email.touched)">-->
+                      <!--                    <div>*invalid E-Mail</div></mat-error>-->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="function" class="col-lg-3 col-sm-3 control-label">Function</label>
+                  <div class="col-lg-9">
+                    <div class="iconic-input">
+                      <i class="fa fa-bullhorn"></i>
+                      <input type="text" formControlName='function' name="function" [(ngModel)]="DetailsCompany.function" class="form-control" id="function" placeholder="function">
+                      <!--                  <mat-error *ngIf="(editForm.controls.function.hasError('required') && editForm.controls.function.touched) || submitted">-->
+                      <!--                    <div>lastname is required </div></mat-error>-->
+                      <!--                  <mat-error *ngIf="(editForm.controls.function.hasError('minlength') && editForm.controls.function.touched)">-->
+                      <!--                    <div>*must be at least 4 character </div></mat-error>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="vertical-line">
+            <section class="panel">
+              <header class="panel-heading">
+                <label>OTHER INFORMATIONS</label>
+              </header>
+              <div class="panel-body">
+                <div class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="sector" class="col-lg-3 col-sm-3 control-label">Activity sector</label>
+                    <div class="col-lg-9">
+                      <input type="text" formControlName="sector" name="sector" [(ngModel)]="DetailsCompany.sector" class="form-control" id="sector" placeholder="aucun">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="nbrEmployee" class="col-lg-3 col-sm-3 control-label">Employee</label>
+                    <div class="col-lg-9">
+                      <input type="number" formControlName="nbrEmployee" name="nbrEmployee" [(ngModel)]="DetailsCompany.nbrEmployee" class="form-control" id="nbrEmployee" placeholder="aucun">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <header class="panel-heading">
+                <label>SOCIAL</label>
+              </header>
+              <div class="panel-body">
+                <div class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="social" class="col-lg-3 col-sm-3 control-label">Twitter</label>
+                    <div class="col-lg-9">
+                      <input type="text" formControlName="social" name="social" [(ngModel)]="DetailsCompany.social" class="form-control" id="social" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="social" class="col-lg-3 col-sm-3 control-label">LinkedIN</label>
+                    <div class="col-lg-9">
+                      <input type="text" formControlName="social" name="social" class="form-control"  placeholder="">
+
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="social" class="col-lg-3 col-sm-3 control-label">Facebook</label>
+                    <div class="col-lg-9">
+                      <input type="text" formControlName="social" name="social" class="form-control"  placeholder="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <header class="panel-heading">
+                <label>CLIENT</label>
+              </header>
+              <div class="panel-body">
+                <div class="form-horizontal" role="form">
+                  <div class="form-group" >
+                    <label for="typeSociety" class="col-lg-3 col-sm-3 control-label">Type </label>
+                    <div class="form-input col-lg-9">
+                      <select formControlName="typeSociety" name="typeSociety" [(ngModel)]="DetailsCompany.typeSociety" class="form-control" id="typeSociety">
+                        <option selected="selected">Nothing</option>
+                        <option>New client</option>
+                        <option>Loyal client</option>
+                        <option>Inactif client</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <label for="status" class="col-lg-3 col-sm-3 control-label">Status</label>
+                    <div class="form-input col-lg-9">
+                      <select formControlName="status" name="status" [(ngModel)]="DetailsCompany.status" class="form-control" id="status" readonly>
+                        <option selected="selected">prospect</option>
+                        <option>client</option>
+                      </select>
+                      <!--                  <mat-error *ngIf="(editForm.controls.status.hasError('required') && editForm.controls.status.touched) || submitted">-->
+                      <!--                    <div>status is required </div></mat-error>-->
+                    </div>
+                  </div>
+                  <input type="hidden" formControlName="id" name="id"  class="form-control" id="id" placeholder="">
+
+                  <div class="form-group">
+                    <label for="priority" class="col-lg-3 col-sm-3 control-label">Priority</label>
+                    <div class="col-lg-9">
+                      <input type="number" formControlName="priority" name="priority" [(ngModel)]="DetailsCompany.priority" class="form-control" id="priority" placeholder="">
+                    </div>
+                  </div>
+                  <!--              <div class="form-group">-->
+                  <!--                <label for="imageUrl" class="col-lg-3 col-sm-3 control-label">Logo</label>-->
+                  <!--                <div class="col-lg-9">-->
+                  <!--                  <input type="file" formControlName="imageUrl" name="imageUrl" class="form-control" id="imageUrl" (change)="onFileSelected($event)" accept="image/*">-->
+                  <!--                  <img [src]="imgURL" height="50" *ngIf="imgURL">-->
+                  <!--                </div>-->
+                  <!--              </div>-->
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- main end -->
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
+        <button type="submit" class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+      </div>
+    </form>
+  </section>
+</section>

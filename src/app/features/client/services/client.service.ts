@@ -15,18 +15,18 @@ export class ClientService {
 
 
 
-  public getClientById(clientId) {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.get(environment.baseUrl +`/clients/${clientId}`,{headers});
-  }
-
-  public updateClient(clientId, client) {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
-    return this.http.put(environment.baseUrl +`/clients/update/${clientId}`, client);
-  }
+  // public getClientById(clientId) {
+  //   const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+  //   return this.http.get(environment.baseUrl +`/clients/${clientId}`,{headers});
+  // }
+  //
+  // public updateClient(clientId, client) {
+  //   const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+  //   return this.http.put(environment.baseUrl +`/clients/update/${clientId}`, client,{headers});
+  // }
 
   public getClients(){
-    const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.get(environment.baseUrl +`/clients/all`,{headers});
   }
 

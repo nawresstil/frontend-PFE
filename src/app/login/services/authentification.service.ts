@@ -23,21 +23,20 @@ export class AuthenticationService {
   login(data) {
     return this.http.post(environment.baseUrl + '/auth/authenticate', data, {observe: 'response'});
   }
-
   getConnectedUser() {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.jwt});
     return this.http.get(environment.baseUrl+`/user/profile`, {headers});
   }
   parseJWT() {
     const objJWT = this.jwt ? this.jwtHelper.decodeToken(this.jwt) : {};
-    /*    const jwtHelper = new JwtHelperService();
+    /*  const jwtHelper = new JwtHelperService();
         const objJWT = jwtHelper.decodeToken(this.jwt);*/
     this.username = objJWT.obj;
     this.roles = objJWT.roles;
   }
   loadToken() {
-    this.jwt = localStorage.getItem('token');
-    this.parseJWT();
+    let jwt = localStorage.getItem('token');
+    return jwt;
   }
   saveToken(jwt: string) {
     localStorage.setItem('token', jwt);
@@ -55,12 +54,12 @@ export class AuthenticationService {
     this.roles = undefined;
   }
 
-  isAuth(): boolean {
-    const token = localStorage.getItem('token');
-    if (token) {
-      return !this.jwtHelper.isTokenExpired(token);
-    } else {
-      return false;
-    }
-  }
+  // isAuth(): boolean {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     return !this.jwtHelper.isTokenExpired(token);
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }

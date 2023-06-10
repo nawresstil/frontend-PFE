@@ -12,23 +12,23 @@ export class ProjectService {
   }
 
   getproject() {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.get(environment.baseUrl +`/project/all`,{headers} );
   }
   addProject(project) {
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.post(environment.baseUrl +`/project/add`, project, {headers} );
   }
   public updateProject(projectId , project){
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.put(environment.baseUrl +`/project/update/`+ projectId, project, {headers} );
   }
   public deleteProject(projectId){
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.delete(environment.baseUrl +`/project/delete/` + projectId,{headers});
   }
   public getprojectById(projectId){
-    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.jwt});
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.get(environment.baseUrl +`/project/` + projectId,{headers});
   }
 }
