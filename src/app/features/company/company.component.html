@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col-lg-6">
           <div class="btn-group" class="col-lg-12">
-            <button (click)="navigateTo('home/features/add-company')" id="editable-sample_new" class="btn green">
+            <button *ngIf="userC?.role !== 'ASSISTANT_COMMERCIAL'" (click)="navigateTo('home/features/add-company')" id="editable-sample_new" class="btn green">
               Add New <i class="fa fa-plus"></i>
             </button>
           </div>
@@ -59,14 +59,15 @@
               </td>
               <td class="text-center">
                 <a routerLink="/home/features/society-details/{{e.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>
-                <button class="btn btn-primary btn-xs spaced-button" type="submit">
+                <button  class="btn btn-primary btn-xs spaced-button" type="submit" >
                   <i routerLink="/home/features/edit-company/{{e.id}}" class="fa fa-pencil">
                    <!--  (click)="recuper(e.id,e.societyname, e.siteweb,e.phonesociety,e.faxsociety,
-                      e.emailsociety,e.nbremployee,e.Priority,e.typesociety,e.firstname,e.lastname,e.fonction,e.Email,e.Phone,e.Social,e.Status)"--></i>
+                      e.emailsociety,e.nbremployee,e.Priority,e.typesociety,e.firstname,e.lastname,e.fonction,e.Email,e.Phone,e.Social,e.Status)"-->
+                  </i>
                 </button>
-                <button *ngIf="e.status === 'prospect' && userC?.role !== 'ADMIN'" class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)"><i class="fa fa-trash-o"></i></button>
-                <button *ngIf="userC?.role == 'ADMIN'" class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)"><i class="fa fa-trash-o"></i></button>
-
+                <button *ngIf="e.status === 'prospect' && userC?.role !== 'ASSISTANT_COMMERCIAL' || e.status === 'client' && userC?.role !== 'COMMERCIAL' && userC?.role == 'ADMIN' " class="btn btn-danger btn-xs  spaced-button" type="submit" (click)="onDeleteSociety(e.id)">
+                  <i class="fa fa-trash-o"></i>
+                </button>
               </td>
             </tr>
             </tbody>

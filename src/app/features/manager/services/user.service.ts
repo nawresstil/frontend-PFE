@@ -44,4 +44,8 @@ export class UserService {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.get(environment.baseUrl+`/user/profile`, {headers});
   }
+  public getUserById(userId){
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
+    return this.http.get(environment.baseUrl +`/user/`+ userId,{headers});
+  }
 }

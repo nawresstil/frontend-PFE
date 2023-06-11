@@ -568,7 +568,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button (click)="onUpdateTache(updateTacheS?.id,editForm.value)" [disabled]="editForm.invalid" type="submit" class="btn green" >Save changes</button>
+                              <button (click)="onUpdateTache(updateTacheS?.id,editForm.value)" [disabled]="editForm.invalid" data-dismiss="modal" type="submit" class="btn green" >Save changes</button>
                             </div>
                           </form>
                         </div>

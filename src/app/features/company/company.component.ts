@@ -122,7 +122,7 @@ export class CompanyComponent implements OnInit {
       console.log('error while getting clients ', err);
     });
   }
-
+ 
   // phoneCustomValidator(num): any {
   //   if (num.pristine || !num.value) {
   //     return null; // No validation necessary for pristine or empty input

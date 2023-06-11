@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
-import {Prospect} from "../../../models/prospect";
 import {Society} from "../../../models/society";
-import {TacheS} from "../../../models/tasks/tache";
 import {ActivatedRoute} from "@angular/router";
 import {ClientService} from "../../client/services/client.service";
 import {ProspectService} from "../../client/services/prospect.service";
@@ -26,7 +23,6 @@ export class SocietydetailsComponent implements OnInit {
               private societyService: CompanyService,
               private route: ActivatedRoute) {
   }
-
   ngOnInit(): void {
     this.route.params.subscribe(params => this.getSocietyById(params.id));
     // this.route.params.subscribe(params => this.getTacheSById(params.id));
@@ -36,7 +32,6 @@ export class SocietydetailsComponent implements OnInit {
     this.societyService.getById(id).subscribe((data: Society) => this.society = data);
 
   }
-
   // getTacheSById(id: number) {
   //   this.tacheService.getTacheSById(id).subscribe((data: TacheS) => this.tacheSo = data);
   // }

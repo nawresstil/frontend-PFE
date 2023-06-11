@@ -219,15 +219,26 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group" >
+              <div class="form-group" *ngIf="userC?.role == 'ADMIN'|| userC?.role == 'COMMERCIAL'">
                 <label for="status" class="col-lg-3 col-sm-3 control-label">Status</label>
-                <div class="form-input col-lg-9">
+                <div class="form-input col-lg-9" >
                   <select formControlName="status" name="status" [(ngModel)]="DetailsCompany.status" class="form-control" id="status">
-                    <option selected="selected" *ngIf="userC?.role == 'ADMIN'|| userC?.role == 'COMMERCIAL'">prospect</option>
-                    <option>client</option>
+                    <option selected="selected" >Nothing</option>
+                    <option >prospect</option>
+                    <option >client</option>
                   </select>
 <!--                  <mat-error *ngIf="(editForm.controls.status.hasError('required') && editForm.controls.status.touched) || submitted">-->
 <!--                    <div>status is required </div></mat-error>-->
+                </div>
+              </div>
+              <div class="form-group" *ngIf="userC?.role == 'ASSISTANT_COMMERCIAL'">
+                <label for="status" class="col-lg-3 col-sm-3 control-label">Status</label>
+                <div class="form-input col-lg-9" >
+                  <select formControlName="status" name="status" [(ngModel)]="DetailsCompany.status" class="form-control" id="status">
+                    <option >client</option>
+                  </select>
+                  <!--                  <mat-error *ngIf="(editForm.controls.status.hasError('required') && editForm.controls.status.touched) || submitted">-->
+                  <!--                    <div>status is required </div></mat-error>-->
                 </div>
               </div>
               <input type="hidden" formControlName="id" name="id"  class="form-control" id="id" placeholder="">

@@ -3,7 +3,8 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {AuthenticationService} from "../../../login/services/authentification.service";
-
+import {Observable} from "rxjs";
+import {CountSocieties} from "../../../models/countSocieties";
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +20,10 @@ export class CompanyService {
   getProjectBySocietyName(entrepriseName) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
     return this.http.get(environment.baseUrl +`/entreprise/entreprises/projects/`+ entrepriseName, {headers} );
+  }
+  getPercentageGroupByStatus(): Observable<CountSocieties[]> {
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});
+    return this.http.get<CountSocieties[]>(environment.baseUrl +`/entreprise/percentageCountStatus`, {headers} );
   }
   addSociety(society) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.authService.loadToken()});

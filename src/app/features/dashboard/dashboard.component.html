@@ -10,23 +10,24 @@
             <i class="fa fa-user"></i>
           </div>
           <div class="value">
-            <h1 class="count">
-              0
+            <h1 class="count" *ngIf="society.length > 0 && society[0].type === 'client'">
+              {{ society[0].count }}%
             </h1>
-            <p>New Clients</p>
+            <p *ngIf="society.length > 0 && society[0].type === 'client'">Clients</p>
           </div>
         </section>
       </div>
+
       <div class="col-lg-3 col-sm-6">
         <section class="panel">
           <div class="symbol red">
             <i class="fa fa-tags"></i>
           </div>
           <div class="value">
-            <h1 class=" count2">
-              0
+            <h1 class="count2" *ngIf="society.length > 1 && society[1].type === 'prospect'">
+              {{ society[1].count }}%
             </h1>
-            <p>Sales</p>
+            <p *ngIf="society.length > 1 && society[1].type === 'prospect'">Sales</p>
           </div>
         </section>
       </div>

@@ -7,7 +7,7 @@
         <span>Dashboard</span>
       </a>
     </li>
-    <li class="sub-menu">
+    <li class="sub-menu" *ngIf="userC?.role === 'ADMIN' || userC?.role === 'COMMERCIAL'">
       <a (click)="navigateTo('home/features/prospection_guide')">
         <i class="fa fa-bookmark"></i>
         <span>Prospection Guide</span>
@@ -20,7 +20,7 @@
       </a>
     </li>
 
-    <li class="sub-menu">
+    <li class="sub-menu" *ngIf="userC?.role === 'ADMIN'">
       <a (click)="navigateTo('home/features/action')">
         <i class="fa fa-bolt"></i>
         <span>Manage Actions</span>
@@ -36,8 +36,7 @@
       <!--        <li><a>Horizontal Menu</a></li>-->
       <!--      </ul>-->
     </li>
-
-    <li class="sub-menu">
+    <li *ngIf="userC?.role === 'ADMIN' || userC?.role === 'COMMERCIAL'">
       <a (click)="navigateTo('home/features/task')">
         <i class="fa fa-tasks"></i>
         <span>Manage Tasks </span>

@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'prospection_guide', component: GuideComponent},
   {path: 'edit-client/:idCompany', component: EditClientComponent},
   {path: 'guide-details/:id', component: GuideDetailsComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:id', component: ProfileComponent},
 ];
 
 @NgModule({

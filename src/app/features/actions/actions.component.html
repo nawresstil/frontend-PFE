@@ -255,7 +255,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button (click)="onUpdateAction(updateAction?.id,editForm.value)" [disabled]="!editForm.valid" type="submit" class="btn green" >Save changes</button>
+                            <button (click)="onUpdateAction(updateAction?.id,editForm.value)" [disabled]="!editForm.valid" data-dismiss="modal" type="submit" class="btn green" >Save changes</button>
                           </div>
                         </form>
                       </div>
