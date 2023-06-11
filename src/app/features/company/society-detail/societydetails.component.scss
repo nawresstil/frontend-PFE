@@ -2,3 +2,33 @@
   background-color: #ccc;
   /* Add any other styles to indicate the selected state */
 }
+.form-card {
+  border: 1px solid lightgrey;
+  padding: 50px 50px 50px 50px;
+  margin: 20px;
+  width: 500px;
+  background: linear-gradient(to bottom right, #a7d0f6, #b5ffed);
+  border-radius: 10px;
+  color: #555;
+}
+
+.form-card .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+.form-card label {
+  flex: 1;
+  font-weight: bold;
+  border-right: 2px solid #bbb;
+  padding-right: 10px;
+}
+
+.form-card p {
+  margin: 0;
+}
+.scrollable {
+  height: 400px;
+  width: 585px;
+  overflow-y: auto;
+}

@@ -248,6 +248,7 @@ export class TaskComponent implements OnInit {
     for (const tacheS of this.tacheS) {
       if (tacheS.titre.toLowerCase().indexOf(key.toLowerCase()) !== -1
         || tacheS.collaborateurs.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || tacheS.contact.toLowerCase().indexOf(key.toLowerCase()) !== -1
         || tacheS.label.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {
         result.push(tacheS);

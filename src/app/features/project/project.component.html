@@ -29,6 +29,7 @@
         <tr>
           <th class="text-center">Project Name</th>
           <th class="text-center">Team Member</th>
+          <th class="text-center">Society Name</th>
           <th class="text-center">Project Date</th>
           <th class="text-center">Project Status</th>
           <th class="text-center" >Action</th>
@@ -53,8 +54,11 @@
 <!--            </ng-container>-->
           </td>
           <td class="text-center">
+            <a>{{projects.societName}}</a>
+          </td>
+          <td class="text-center">
 <!--            <div class="progress progress-xs">-->
-<!--              <div style="width: 87%;" class="progress-bar progress-bar-success"></div>-->
+<!--            <div style="width: 87%;" class="progress-bar progress-bar-success"></div>-->
 <!--            </div>-->
 <!--            <small>87% Complete </small>-->
             <small>Started date {{projects.date_debut| date:'yyyy-MM-dd'}}</small>
@@ -64,9 +68,9 @@
           <td class="text-center">
             <span [class]="projects?.status === 'inactif' ? 'label label-info label-mini inactif' : 'label label-info label-mini actif'">{{projects?.status}}</span>
           </td>
-          <td class="text-center">
-<!--            <a routerLink="/home/features/society-details/{{projects.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>-->
-            <a href="project_details.html" class="btn btn-primary btn-xs "><i class="fa fa-folder"></i> View </a>
+          <td class="text-center" >
+<!--        <a routerLink="/home/features/society-details/{{projects.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>-->
+            <a routerLink="/home/features/society-details/{{projects.id}}" class="btn btn-primary btn-xs "><i class="fa fa-folder"></i> View </a>
             <a class="btn btn-info btn-xs  spaced-button" (click)="onOpenModal(projects, 'update')" ><i class="fa fa-pencil" data-original-title="update"></i> Edit </a>
             <a  class="btn btn-danger btn-xs  spaced-button" (click)="onDeleteProject(projects.id)"><i class="fa fa-trash-o"></i> Delete </a>
           </td>

@@ -59,76 +59,95 @@
               <div class="panel-body">
                 <div class="tab-content tasi-tab">
                   <div class="tab-pane active" *ngIf="isFormVisible && !isFormVisible1 && !isFormVisible2">
-                    <form class="form-horizontal"  style="border: 1px solid lightgrey; padding: 20px; margin: 20px; width: 500px">
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Society name: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{society?.societyName}}</p>
+                    <div class="form-card">
+                      <form class="form-horizontal">
+                        <div class="form-group">
+                          <label><strong>Society name:</strong></label>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.societyName}}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Site Web:</strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{society?.siteWeb}}</p>
+                        <div class="form-group">
+                          <label><strong>Site Web:</strong></label>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.siteWeb}}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Phone: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{society?.phoneSociety}} </p>
+                        <div class="form-group">
+                          <label><strong>Phone:</strong></label>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.phoneSociety}}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Email: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{society?.emailSociety}} </p>
+                        <div class="form-group">
+                          <label><strong>Email:</strong></label>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.emailSociety}}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Society type: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{society?.typeSociety}} </p>
+                        <div class="form-group">
+                          <label><strong>Society type:</strong></label>
+                          <div class="col-lg-6">
+                            <p class="form-control-static">{{society?.typeSociety}}</p>
+                          </div>
                         </div>
-                      </div>
-                    </form>
+                      </form>
+                    </div>
                   </div>
-                  <div class="tab-pane active"  *ngFor="let projet of society.projets" >
-                    <form class="form-horizontal" *ngIf="isFormVisible1 && !isFormVisible && !isFormVisible2" style="border: 1px solid lightgrey; padding: 20px; margin: 20px; width: 500px" >
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Project name: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{projet?.name}}</p>
+                  <div class="tab-pane active" [ngClass]="{'scrollable': society.projets.length > 1}" *ngIf="isFormVisible1 && !isFormVisible && !isFormVisible2">
+                    <ng-container *ngIf="society.projets.length > 0; else noProjects">
+                      <ng-container *ngFor="let projet of society.projets">
+                        <div class="form-card">
+                          <form class="form-horizontal">
+                            <div class="form-group">
+                              <label><strong>Project name:</strong></label>
+                              <div class="col-lg-6">
+                                <p class="form-control-static">{{projet?.name}}</p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label><strong>Start date:</strong></label>
+                              <div class="col-lg-6">
+                                <p class="form-control-static">{{projet?.date_debut}}</p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label><strong>End date:</strong></label>
+                              <div class="col-lg-6">
+                                <p class="form-control-static">{{projet?.date_fin}}</p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label><strong>Budget:</strong></label>
+                              <div class="col-lg-6">
+                                <p class="form-control-static">{{projet?.budget}}</p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label><strong>Status:</strong></label>
+                              <div class="col-lg-6">
+                                <p class="form-control-static">{{projet?.status}}</p>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-template #noProjects>
+                      <div class="col-lg-12 col-lg-12 col-xl-12">
+                        <div class="alert alert-info" role="alert" style="font-size: 24px; padding: 20px; width: 500px; height: 300px">
+                          <h4 class="alert-heading">NO PROJECTS!</h4>
+                          <p>No Projects were found.</p>
                         </div>
                       </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Start date: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{projet?.date_debut}} </p>
-                        </div>
-                      </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>End date: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{projet?.date_fin}} </p>
-                        </div>
-                      </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Budget: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{projet?.budget}}</p>
-                        </div>
-                      </div>
-                      <div class="form-group" >
-                        <div class="col-lg-4 control-label"><strong>Status: </strong></div>
-                        <div class="col-lg-6">
-                          <p class="form-control-static">{{projet?.status}}</p>
-                        </div>
-                      </div>
-                    </form>
+                    </ng-template>
                   </div>
-                  <div class="tab-pane active "  *ngIf="isFormVisible2 && !isFormVisible1 && !isFormVisible">
-                    <form class="form-horizontal" style="border: 1px solid lightgrey; padding: 20px; margin: 20px; width: 500px"  *ngFor="let tache of society.tacheS">
-                      <div class="form-group" >
+                  <div class="tab-pane active " [ngClass]="{'scrollable': society.tacheS.length > 1}" *ngIf="isFormVisible2 && !isFormVisible1 && !isFormVisible">
+                    <ng-container *ngIf="society.tacheS.length > 0; else noTasks">
+                      <ng-container  *ngFor="let tache of society.tacheS">
+                      <div class="form-card">
+                    <form class="form-horizontal">
+                      <div class="form-group">
                         <div class="col-lg-4 control-label"><strong>Label: </strong></div>
                         <div class="col-lg-6">
                           <p class="form-control-static">{{tache.label}}</p>
@@ -171,6 +190,17 @@
                         </div>
                       </div>
                     </form>
+                      </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-template #noTasks>
+                      <div class="col-lg-12 col-lg-12 col-xl-12">
+                        <div class="alert alert-info" role="alert" style="font-size: 24px; padding: 20px; width: 500px; height: 300px">
+                          <h4 class="alert-heading">NO TASKS!</h4>
+                          <p>No Tasks were found.</p>
+                        </div>
+                      </div>
+                    </ng-template>
                   </div>
                 </div>
               </div>

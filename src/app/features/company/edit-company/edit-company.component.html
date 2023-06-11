@@ -30,7 +30,9 @@
                   <i class="fa fa-book"></i>
                   <input type="text" formControlName='siteWeb' name="siteWeb" class="form-control" id="siteWeb" placeholder="Site web" pattern="www+.[a-zA-Z.-]+\.[a-zA-Z]{2,4}">
                   <div *ngIf="(editCompany.controls.siteWeb.hasError('required') && editCompany.controls.siteWeb.touched) || submitted">
-                    <div>Web site is required </div></div>
+                    <div class="error-message">Web site is required </div></div>
+                  <div *ngIf="(editCompany.controls.siteWeb.hasError('pattern') && editCompany.controls.siteWeb.touched) ">
+                    <div class="error-message">*invalid Web Site</div></div>
                 </div>
               </div>
             </div>
@@ -47,10 +49,10 @@
                 <div class="iconic-input">
                   <i class="fa fa-bullhorn"></i>
                   <input type="number" formControlName='phoneSociety' name="phoneSociety" class="form-control" id="phoneSociety" [(ngModel)]="DetailsCompany.phoneSociety" placeholder="Phone">
-<!--                  <mat-error *ngIf="(editForm.controls.phoneSociety.hasError('required') && editForm.controls.phoneSociety.touched) || submitted">-->
-<!--                    <div>phone is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.phoneSociety.hasError('invalidPhoneNumber') && editForm.controls.phoneSociety.touched)">-->
-<!--                    <div>*at least 8 number</div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.phoneSociety.hasError('required') && editCompany.controls.phoneSociety.touched) || submitted">
+                    <div class="error-message">phone is required </div></div>
+                  <div *ngIf="(editCompany.controls.phoneSociety.hasError('invalidPhoneNumber') && editCompany.controls.phoneSociety.touched)">
+                    <div class="error-message">*at least 8 number</div></div>
                 </div>
               </div>
             </div>
@@ -60,10 +62,10 @@
                 <div class="iconic-input">
                   <i class="fa fa-bullhorn"></i>
                   <input type="number" formControlName='faxSociety' name="faxSociety" class="form-control" id="faxSociety" [(ngModel)]="DetailsCompany.faxSociety" placeholder="Fax">
-<!--                  <mat-error *ngIf="(editForm.controls.faxSociety.hasError('required') && editForm.controls.faxSociety.touched) || submitted">-->
-<!--                    <div>phone is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.faxSociety.hasError('invalidPhoneNumber') && editForm.controls.faxSociety.touched)">-->
-<!--                    <div>*at least 8 number</div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.faxSociety.hasError('required') && editCompany.controls.faxSociety.touched) || submitted">
+                    <div class="error-message">phone is required </div></div>
+                  <div *ngIf="(editCompany.controls.faxSociety.hasError('invalidPhoneNumber') && editCompany.controls.faxSociety.touched)">
+                    <div class="error-message">*at least 8 number</div></div>
                 </div>
               </div>
             </div>
@@ -73,10 +75,10 @@
                 <div class="iconic-input right">
                   <i class="fa fa-book"></i>
                   <input type="email" formControlName='emailSociety' name="emailSociety" class="form-control" id="emailSociety" [(ngModel)]="DetailsCompany.emailSociety" placeholder="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
-<!--                  <mat-error *ngIf="(editForm.controls.emailSociety.hasError('required') && editForm.controls.emailSociety.touched) || submitted" >-->
-<!--                    <div>Email address is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.emailSociety.hasError('pattern') && editForm.controls.emailSociety.touched)">-->
-<!--                    <div>*invalid E-Mail</div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.emailSociety.hasError('required') && editCompany.controls.emailSociety.touched) || submitted" >
+                    <div class="error-message">Email address is required </div></div>
+                  <div *ngIf="(editCompany.controls.emailSociety.hasError('pattern') && editCompany.controls.emailSociety.touched)">
+                    <div class="error-message">*invalid E-Mail</div></div>
                 </div>
               </div>
             </div>
@@ -92,10 +94,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="text" formControlName='lastName' name="lastName" class="form-control" [(ngModel)]="DetailsCompany.lastName" id="lastName" placeholder="last name" minlength="4">
-<!--                  <mat-error *ngIf="(editForm.controls.lastName.hasError('required') && editForm.controls.lastName.touched) || submitted">-->
-<!--                    <div>lastname is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.lastName.hasError('minlength') && editForm.controls.lastName.touched)">-->
-<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.lastName.hasError('required') && editCompany.controls.lastName.touched) || submitted">
+                    <div class="error-message">lastname is required </div></div>
+                  <div *ngIf="(editCompany.controls.lastName.hasError('minlength') && editCompany.controls.lastName.touched)">
+                    <div class="error-message">*must be at least 4 character </div></div>
                 </div>
               </div>
             </div>
@@ -104,10 +106,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="text" formControlName='firstName' name="firstName" class="form-control" id="firstName" [(ngModel)]="DetailsCompany.firstName" placeholder="first name" minlength="4">
-<!--                  <mat-error *ngIf="(editForm.controls.firstName.hasError('required') && editForm.controls.firstName.touched) || submitted">-->
-<!--                    <div>lastname is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.firstName.hasError('minlength') && editForm.controls.firstName.touched)">-->
-<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.firstName.hasError('required') && editCompany.controls.firstName.touched) || submitted">
+                    <div class="error-message">lastname is required </div></div>
+                  <div *ngIf="(editCompany.controls.firstName.hasError('minlength') && editCompany.controls.firstName.touched)">
+                    <div class="error-message">*must be at least 4 character </div></div>
                 </div>
               </div>
             </div>
@@ -116,11 +118,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="text" formControlName='phone' name="phone" class="form-control" id="phone" [(ngModel)]="DetailsCompany.phone" placeholder="">
-<!--                  <mat-error *ngIf="(editForm.controls.phone.hasError('required') && editForm.controls.phone.touched) || submitted">-->
-<!--                    <div>phone is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.phone.hasError('invalidPhoneNumber') && editForm.controls.phone.touched)">-->
-<!--                    <div>*at least 8 number</div></mat-error>-->
-
+                  <div *ngIf="(editCompany.controls.phone.hasError('required') && editCompany.controls.phone.touched) || submitted">
+                    <div class="error-message">phone is required </div></div>
+                  <div *ngIf="(editCompany.controls.phone.hasError('invalidPhoneNumber') && editCompany.controls.phone.touched)">
+                    <div class="error-message">*at least 8 number</div></div>
                 </div>
               </div>
             </div>
@@ -129,10 +130,10 @@
               <div class="col-lg-9">
                 <div class="iconic-input right">
                   <input type="text" formControlName='email' name="email" class="form-control" [(ngModel)]="DetailsCompany.email" id="email" placeholder="" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
-<!--                  <mat-error *ngIf="(editForm.controls.email.hasError('required') && editForm.controls.email.touched) || submitted" >-->
-<!--                    <div>Email address is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.email.hasError('pattern') && editForm.controls.email.touched)">-->
-<!--                    <div>*invalid E-Mail</div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.email.hasError('required') && editCompany.controls.email.touched) || submitted" >
+                    <div class="error-message">Email address is required </div></div>
+                  <div *ngIf="(editCompany.controls.email.hasError('pattern') && editCompany.controls.email.touched)">
+                    <div class="error-message">*invalid E-Mail</div></div>
                 </div>
               </div>
             </div>
@@ -142,10 +143,10 @@
                 <div class="iconic-input">
                   <i class="fa fa-bullhorn"></i>
                   <input type="text" formControlName='function' name="function" [(ngModel)]="DetailsCompany.function" class="form-control" id="function" placeholder="function">
-<!--                  <mat-error *ngIf="(editForm.controls.function.hasError('required') && editForm.controls.function.touched) || submitted">-->
-<!--                    <div>lastname is required </div></mat-error>-->
-<!--                  <mat-error *ngIf="(editForm.controls.function.hasError('minlength') && editForm.controls.function.touched)">-->
-<!--                    <div>*must be at least 4 character </div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.function.hasError('required') && editCompany.controls.function.touched) || submitted">
+                    <div class="error-message">lastname is required </div></div>
+                  <div *ngIf="(editCompany.controls.function.hasError('minlength') && editCompany.controls.function.touched)">
+                    <div class="error-message">*must be at least 4 character </div></div>
                 </div>
               </div>
             </div>
@@ -227,8 +228,8 @@
                     <option >prospect</option>
                     <option >client</option>
                   </select>
-<!--                  <mat-error *ngIf="(editForm.controls.status.hasError('required') && editForm.controls.status.touched) || submitted">-->
-<!--                    <div>status is required </div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.status.hasError('required') && editCompany.controls.status.touched) || submitted">
+                    <div class="error-message">status is required </div></div>
                 </div>
               </div>
               <div class="form-group" *ngIf="userC?.role == 'ASSISTANT_COMMERCIAL'">
@@ -237,8 +238,8 @@
                   <select formControlName="status" name="status" [(ngModel)]="DetailsCompany.status" class="form-control" id="status">
                     <option >client</option>
                   </select>
-                  <!--                  <mat-error *ngIf="(editForm.controls.status.hasError('required') && editForm.controls.status.touched) || submitted">-->
-                  <!--                    <div>status is required </div></mat-error>-->
+                  <div *ngIf="(editCompany.controls.status.hasError('required') && editCompany.controls.status.touched) || submitted">
+                    <div class="error-message">status is required </div></div>
                 </div>
               </div>
               <input type="hidden" formControlName="id" name="id"  class="form-control" id="id" placeholder="">

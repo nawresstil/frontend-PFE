@@ -19,12 +19,9 @@ export class CompanyComponent implements OnInit {
   public society: Society[];
   public userC: Users;
 
-  listCompany;
-  currentDate;
   addForm: FormGroup;
   today: string;
-  idCompany;
-  addProspect;
+
   public project: Project[];
   constructor(private companyService: CompanyService, private actvroute: ActivatedRoute,
               private formBuilder: FormBuilder, private router: Router,private userService: UserService) {
@@ -122,7 +119,7 @@ export class CompanyComponent implements OnInit {
       console.log('error while getting clients ', err);
     });
   }
- 
+
   // phoneCustomValidator(num): any {
   //   if (num.pristine || !num.value) {
   //     return null; // No validation necessary for pristine or empty input

@@ -55,9 +55,9 @@ export class EditCompanyComponent implements OnInit {
 
     siteWeb: ['', Validators.required],
 
-    phoneSociety: ['', Validators.required],
+    phoneSociety: ['',[this.phoneCustomValidator, Validators.required]],
 
-    faxSociety: ['', Validators.required],
+    faxSociety: ['',[this.phoneCustomValidator, Validators.required]],
 
     emailSociety: ['', Validators.required],
 
@@ -83,7 +83,7 @@ export class EditCompanyComponent implements OnInit {
 
     email: ['', Validators.required],
 
-    phone: ['', Validators.required],
+    phone: ['',[this.phoneCustomValidator, Validators.required]],
 
 
     social: ['', Validators.required],
@@ -92,6 +92,22 @@ export class EditCompanyComponent implements OnInit {
     status: ['', Validators.required]
 
     });
+  }
+  phoneCustomValidator(num): any {
+    if (num.pristine || !num.value) {
+      return null; // No validation necessary for pristine or empty input
+    }
+
+    const PHONE_REGEXP = new RegExp(/^[0-9]{8,15}$/); // Regular expression to match exactly 8 digits
+    num.markAsTouched(); // Mark the input as touched
+
+    if (num.value.toString().length < 8 || !PHONE_REGEXP.test(num.value)) {
+      return {
+        invalidPhoneNumber: true // Invalid phone number
+      };
+    }
+
+    return null; // Valid phone number
   }
   // get f() {
   //   return this.editCompany.controls;
