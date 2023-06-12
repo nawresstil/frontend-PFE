@@ -4,6 +4,8 @@ import {TacheS} from "./tasks/tache";
 
 export interface Society {
   id: number;
+
+  tracability: string;
   societyName: string;
 
   siteWeb: string;

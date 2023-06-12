@@ -1,6 +1,6 @@
 export interface Action {
   id: number;
-
+  tracability: string;
   typeAction: string;
 
   titreAction: string;

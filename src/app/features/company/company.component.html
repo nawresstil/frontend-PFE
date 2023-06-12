@@ -59,7 +59,7 @@
               </td>
               <td class="text-center">
                 <a routerLink="/home/features/society-details/{{e.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>
-                <button  class="btn btn-primary btn-xs spaced-button" type="submit" >
+                <button  class="btn btn-primary btn-xs spaced-button" type="submit" *ngIf="userC?.role !== 'ASSISTANT_COMMERCIAL' ">
                   <i routerLink="/home/features/edit-company/{{e.id}}" class="fa fa-pencil">
                    <!--  (click)="recuper(e.id,e.societyname, e.siteweb,e.phonesociety,e.faxsociety,
                       e.emailsociety,e.nbremployee,e.Priority,e.typesociety,e.firstname,e.lastname,e.fonction,e.Email,e.Phone,e.Social,e.Status)"-->

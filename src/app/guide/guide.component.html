@@ -48,9 +48,9 @@
                 <a class="btn btn-warning btn-xs">{{g.tracability}}</a>
               </td>
               <td class="text-center">
-                <a routerLink="/home/features/guide-details/{{g.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>
-                <button class="btn btn-primary btn-xs" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-pencil" (click)="onOpenModal(g, 'update')" data-original-title="Edit"></i></button>
-                <button class="btn btn-danger btn-xs" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-trash-o " (click)="onDeleteGuide(g.id)"></i> </button>
+<!--                <a routerLink="/home/features/guide-details/{{g.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>-->
+                <button class="btn btn-primary btn-xs spaced-button" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-pencil" (click)="onOpenModal(g, 'update')" data-original-title="Edit"></i></button>
+                <button class="btn btn-danger btn-xs spaced-button" *ngIf="userC?.role == 'ADMIN'" ><i class="fa fa-trash-o " (click)="onDeleteGuide(g.id)"></i> </button>
               </td>
             </tr>
             </tbody>
@@ -80,7 +80,7 @@
           <h4 class="modal-title" style="margin-bottom:1px"><strong>Add Guide</strong></h4>
         </div>
         <div class="modal-body">
-          <form [formGroup]="addForm" (ngSubmit)="add(addForm)">
+          <form [formGroup]="addForm">
 
             <div class="form-group">
               <label for="annee">Year*</label>
@@ -115,7 +115,7 @@
               </div>
             <div class="modal-footer">
               <button type="button" id="" class="btn btn-secondary" data-dismiss="modal" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-              <button type="submit"  class="btn green" [disabled]="addForm.invalid" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+              <button type="submit"  class="btn green" (click)="add(addForm)" data-dismiss="modal" [disabled]="addForm.invalid" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
             </div>
           </form>
         </div>

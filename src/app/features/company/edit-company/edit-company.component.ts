@@ -61,19 +61,19 @@ export class EditCompanyComponent implements OnInit {
 
     emailSociety: ['', Validators.required],
 
-    pays: ['', Validators.required],
+    pays: [''],
 
-    sector: ['', Validators.required],
+    sector: [''],
 
-    nbrEmployee: ['', Validators.required],
+    nbrEmployee: [''],
 
     creationDate: this.currentDate.substring(0, 10),
 
-    priority: ['', Validators.required],
+    priority: [''],
 
-    typeSociety: ['', Validators.required],
+    typeSociety: [''],
 
-    gender: ['', Validators.required],
+    gender: [''],
 
     firstName: ['', Validators.required],
 
@@ -86,10 +86,10 @@ export class EditCompanyComponent implements OnInit {
     phone: ['',[this.phoneCustomValidator, Validators.required]],
 
 
-    social: ['', Validators.required],
+    social: [''],
 
 
-    status: ['', Validators.required]
+    status: ['']
 
     });
   }
@@ -126,7 +126,7 @@ export class EditCompanyComponent implements OnInit {
   }
   edit(editCompany: NgForm) {
     this.editCompany.patchValue({
-      trac: this.userC.lastname + ' ' + this.userC.username});
+      tracability: this.userC.username});
     this.companyService.updateSociety(this.idCompany, editCompany.value).subscribe(res => {
       console.log(res);
       // this.getallCompany();

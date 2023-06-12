@@ -39,7 +39,6 @@ export class ManagerComponent implements OnInit {
     const day = String(today.getDate()).padStart(2, '0');
     this.currentDate = `${year}-${month}-${day}`;
   }
-
   ngOnInit() {
     this.getUsers();
 
@@ -65,7 +64,8 @@ export class ManagerComponent implements OnInit {
 
       phone: ['', Validators.required],
 
-      role: ['', Validators.required]
+      role: ['', Validators.required],
+
     });
   }
   initForm() {

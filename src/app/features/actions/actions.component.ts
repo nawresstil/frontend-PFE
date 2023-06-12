@@ -33,9 +33,9 @@ export class ActionsComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit() {
-    this.addForm = new FormGroup({
+    this.addForm = this.formBuilder.group({
 
-      tracability: new FormControl(this.userC),
+      tracability: this.userC,
 
       typeAction: new FormControl ('',[Validators.required]),
 
@@ -56,24 +56,25 @@ export class ActionsComponent implements OnInit {
     this.getConnected();
   }
   initForm() {
-    this.editForm = new FormGroup({
-      tracability: new FormControl(this.userC),
+    this.editForm = this.formBuilder.group({
 
-      typeAction: new FormControl (this.updateAction.typeAction),
+      // tracability: this.userC,
 
-      titreAction:new FormControl (this.updateAction.titreAction),
+      typeAction: new FormControl (this.updateAction.typeAction, Validators.required),
 
-      tempsDebut: new FormControl (this.updateAction.tempsDebut ),
+      titreAction:new FormControl (this.updateAction.titreAction, Validators.required),
 
-      tempFin: new FormControl (this.updateAction.tempFin),
+      tempsDebut: new FormControl (this.updateAction.tempsDebut, Validators.required),
 
-      collaborateur:new FormControl (this.updateAction.collaborateur ),
+      tempFin: new FormControl (this.updateAction.tempFin, Validators.required),
 
-      dateDebut: new FormControl (this.updateAction.dateDebut ),
+      collaborateur:new FormControl (this.updateAction.collaborateur, Validators.required),
 
-      dateFin: new FormControl (this.updateAction.dateFin ),
+      dateDebut: new FormControl (this.updateAction.dateDebut, Validators.required),
 
-      etat: new FormControl (this.updateAction.etat)
+      dateFin: new FormControl (this.updateAction.dateFin, Validators.required),
+
+      etat: new FormControl (this.updateAction.etat, Validators.required)
 
     });
   }
@@ -84,16 +85,17 @@ export class ActionsComponent implements OnInit {
       console.log('error while getting Actions ', err);
     });
   }
-  add() {
+  add(addForm: NgForm) {
+    const tracabilityValue = this.userC ? `${this.userC.username}` : '';
     this.addForm.patchValue({
-      tracability: this.userC.lastname + ' ' + this.userC.firstname
+      tracability: tracabilityValue
     });
     console.log(this.addForm.valid);
     if (this.addForm.valid) {
       this.openModal = false;
       this.submitted = false;
       console.log('***********************************');
-      this.actionsService.createAction(this.addForm.value).subscribe(res => {
+      this.actionsService.createAction(addForm.value).subscribe(res => {
         this.getAllActions();
         Swal.fire({
           position: 'center',
@@ -112,8 +114,9 @@ export class ActionsComponent implements OnInit {
   }
 
   public onUpdateAction(id: number, action:Action): void {
+    const tracabilityValue1 = this.userC ? `${this.userC.username}` : '';
     this.editForm.patchValue({
-      tracability: this.userC.lastname + ' ' + this.userC.firstname
+      tracability: tracabilityValue1
     });
     console.log(this.editForm.valid);
     if (this.editForm.valid) {

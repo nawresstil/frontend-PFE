@@ -1,6 +1,6 @@
 export interface Guide {
   id: number;
-
+  tracability:string;
   annee: string;
 
   objectif: string;

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthenticationService, private route: ActivatedRoute, private router: Router,
               private formBuilder: FormBuilder,
-              private userService: UserService,) {}
+              private userService: UserService) {}
 
   get f() {
     return this.loginForm.controls;
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       if (jwt) {
         this.authService.saveToken(jwt);
       }
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/home/features/dashboard');
     }, error1 => {
       Swal.fire('Error ! ' , 'Check your data ! ');
     });

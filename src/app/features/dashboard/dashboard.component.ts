@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Society} from "../../models/society";
 import {CompanyService} from "../company/services/company.service";
 import {ActivatedRoute} from "@angular/router";
 import {CountSocieties} from "../../models/countSocieties";
@@ -11,7 +10,6 @@ import {CountSocieties} from "../../models/countSocieties";
 })
 export class DashboardComponent implements OnInit {
   public society: CountSocieties[];
-  public societies: CountSocieties;
   constructor(private companyService: CompanyService, private actvroute: ActivatedRoute) { }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 <section class="wrapper site-min-height">
   <!-- page start-->
   <section class="panel" style="border: 1px solid grey;">
-  <form [formGroup]="addProspect" (ngSubmit)="add(addProspect)">
+  <form [formGroup]="addProspect" >
   <div class="row" >
     <div class="col-lg-6">
       <section class="panel">
@@ -252,7 +252,7 @@
   </div>
   <div class="col-lg-12" style="padding-top:10px">
     <button type="button" (click)="navigateTo('home/features/prospect')" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-    <button type="submit" class="btn btn-primary" style="float: right; margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+    <button type="submit" class="btn btn-primary" style="float: right; margin-right: 1%;padding: 8px 50px;font-size: 16px;" (click)="add(addProspect)" [disabled]="addProspect.invalid">Save</button>
   </div>
 </form>
 

@@ -1,6 +1,6 @@
 <section class="wrapper site-min-height">
   <!-- page start-->
-  <div class="chat-room">
+  <div class="chat-room" style="height: 620px">
     <aside class="left-side">
       <div class="user-head">
         <h3><strong>{{society?.societyName}}</strong></h3>
@@ -47,7 +47,7 @@
       </footer>
     </aside>
 
-    <aside class="mid-side">
+    <aside class="mid-side" style="background-color: #d9edf7">
       <div class="chat-room-head" style="height:5%;">
                   <h3>Details</h3>
       </div>
@@ -56,7 +56,7 @@
           <div class="col-lg-11">
             <!--widget start-->
             <section class="panel">
-              <div class="panel-body">
+              <div class="panel-body" style="background-color: #d9edf7">
                 <div class="tab-content tasi-tab">
                   <div class="tab-pane active" *ngIf="isFormVisible && !isFormVisible1 && !isFormVisible2">
                     <div class="form-card">
@@ -189,6 +189,41 @@
                           <p class="form-control-static">{{tache?.etat}} </p>
                         </div>
                       </div>
+                      <div class="form-group" >
+                        <div class="col-lg-4 control-label"><strong>Comment: </strong></div>
+                        <div class="col-lg-6">
+                          <p class="form-control-static">{{tache?.comment}} </p>
+                        </div>
+                      </div>
+
+
+<!--                          <table class="table table-striped  table-advance table-hover table-bordered" >-->
+<!--                            <thead>-->
+<!--                            <tr style="background-color: white">-->
+<!--                              <th>Label</th>-->
+<!--                              <th>Collaborators</th>-->
+<!--                              <th>Date</th>-->
+<!--                              <th>Times</th>-->
+<!--                              <th>Contact</th>-->
+<!--                              <th>Title</th>-->
+<!--                              <th>Status</th>-->
+<!--                              <th>Comment</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody *ngFor="let tache of society.tacheS">-->
+<!--                            <tr>-->
+
+<!--                              <td>{{tache.label}}</td>-->
+<!--                              <td>{{tache.collaborateurs}}</td>-->
+<!--                              <td>{{tache.date}}</td>-->
+<!--                              <td>{{tache.times}}</td>-->
+<!--                              <td>{{tache.contact}}</td>-->
+<!--                              <td>{{tache.titre}}</td>-->
+<!--                              <td>{{tache.etat}}</td>-->
+<!--                              <td>{{tache.comment}}</td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                          </table>-->
                     </form>
                       </div>
                       </ng-container>

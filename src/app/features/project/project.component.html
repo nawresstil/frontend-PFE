@@ -70,7 +70,7 @@
           </td>
           <td class="text-center" >
 <!--        <a routerLink="/home/features/society-details/{{projects.id}}" class="btn btn-info btn-xs"><i class="fa fa-home"></i></a>-->
-            <a routerLink="/home/features/society-details/{{projects.id}}" class="btn btn-primary btn-xs "><i class="fa fa-folder"></i> View </a>
+<!--            <a routerLink="/home/features/society-details/{{projects.id}}" class="btn btn-primary btn-xs "><i class="fa fa-folder"></i> View </a>-->
             <a class="btn btn-info btn-xs  spaced-button" (click)="onOpenModal(projects, 'update')" ><i class="fa fa-pencil" data-original-title="update"></i> Edit </a>
             <a  class="btn btn-danger btn-xs  spaced-button" (click)="onDeleteProject(projects.id)"><i class="fa fa-trash-o"></i> Delete </a>
           </td>
@@ -94,7 +94,7 @@
           <h3 class="modal-title" style="margin-bottom:1px"><strong>New Project</strong></h3>
         </div>
         <div class="modal-body">
-          <form [formGroup]="addForm" (ngSubmit)="add(addForm)">
+          <form [formGroup]="addForm" >
             <div class="row">
               <div class="col-lg-12">
 
@@ -166,7 +166,7 @@
                         <label for="status" class="col-lg-3 col-sm-3 control-label">Status*</label>
                         <div class="form-input col-lg-9">
                           <select  name="status" formControlName="status" class="form-control" id="status" >
-                            <option value="">Aucun</option>
+                            <option value="">Nothing</option>
                             <option >Actif</option>
                             <option>inactif</option>
                           </select>
@@ -181,7 +181,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" data-dismiss="modal" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-              <button type="submit" class="btn green" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button></div>
+              <button type="submit" class="btn green" (click)="add()" data-dismiss="modal" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button></div>
           </form>
         </div>
       </div>

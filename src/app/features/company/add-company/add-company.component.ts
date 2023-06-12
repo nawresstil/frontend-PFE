@@ -51,19 +51,19 @@ export class AddCompanyComponent implements OnInit {
 
       emailSociety: ['', Validators.required],
 
-      pays: ['', Validators.required],
+      pays: [''],
 
-      sector: ['', Validators.required],
+      sector: [''],
 
-      nbrEmployee: ['', Validators.required],
+      nbrEmployee: [''],
 
       creationDate: this.currentDate.substring(0, 10),
 
-      priority: ['', Validators.required],
+      priority: [''],
 
-      typeSociety: ['', Validators.required],
+      typeSociety: [''],
 
-      gender: ['', Validators.required],
+      gender: [''],
 
       firstName: ['', Validators.required],
 
@@ -75,7 +75,7 @@ export class AddCompanyComponent implements OnInit {
 
       phone: new FormControl ( '', [this.phoneCustomValidator, Validators.required]),
 
-      social: ['', Validators.required],
+      social: [''],
 
 
       status: ['', Validators.required],
@@ -94,7 +94,7 @@ export class AddCompanyComponent implements OnInit {
   }
   add(addProspect: NgForm) {
     this.addProspect.patchValue({
-      tracability: this.userC.lastname + ' ' + this.userC.firstname
+      tracability: this.userC.firstname
        });
     this.companyService.addSociety(addProspect.value).subscribe(res => {
       this.getallCompany();

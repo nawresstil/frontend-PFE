@@ -3,7 +3,7 @@
     <div class="chat-room ">
       <!-- page start-->
       <aside class="mid-side" >
-        <div class="chat-room-head" style="height:0px;">
+        <div class="chat-room-head" style="height:0px; margin-right: 10px">
             <span class="pull-right col-lg-6">
                   <button type="button" class="btn btn-shadow btn-default " (click)="toggleFormVisibility1()">All Tasks</button>
                   <button type="button" class="btn btn-shadow btn-primary spaced-button" (click)="toggleFormVisibility()">Tasks done</button>
@@ -62,7 +62,7 @@
                       <td class="text-center">
                         <a class="btn btn-danger btn-xs" ><i class="fa fa-trash-o "  (click)="onDeleteTache(t.id)" data-original-title="delete"></i></a>
                         <a class="btn btn-primary btn-xs" style="margin-left: 5px;"><i class="fa fa-pencil "  (click)="onOpenModal(t, 'update')" data-original-title="update"></i></a>
-                        <a class="btn btn-success btn-xs" style="margin-left: 5px;"><i class="fa fa-eye " (click)="onOpenModal(t, 'viewDetails')" data-original-title="viewDetails"></i></a>
+<!--                        <a class="btn btn-success btn-xs" style="margin-left: 5px;"><i class="fa fa-eye " (click)="onOpenModal(t, 'viewDetails')" data-original-title="viewDetails"></i></a>-->
                       </td>
                     </tr>
                     </tbody>
@@ -512,8 +512,17 @@
                                             </div>
                                           </div>
                                         </div>
+                                        <div class="form-group">
+                                          <label for="comment" class="col-lg-3 col-sm-3 control-label">Comment</label>
+                                          <div class="col-lg-9">
+                                            <div class="iconic-input">
+                                              <textarea id="comment" formControlName="comment" name="comment" placeholder="write a comment..." data-resizable="true" ></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
+
                                   <div class="panel-body">
                                     <div class="form-horizontal" role="form">
                                       <div class="form-group">

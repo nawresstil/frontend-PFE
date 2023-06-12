@@ -74,21 +74,14 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #572AD7">
-        <h4 class="modal-title" style="margin-bottom:1px"><strong>New User</strong></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h4 class="modal-title" style="margin-bottom:1px"><strong>Add User</strong></h4>
       </div>
       <div class="modal-body">
-        <form [formGroup]="addForm" (ngSubmit)="add(addForm)">
-            <div class="form-group">
-              <label for="role">Designation</label>
-              <select type="text"  formControlName="role" name="role" class="form-control" id="role" placeholder="Role">
-                <option>ADMIN</option>
-                <option>COMMERCIAL</option>
-                <option>ASSISTANT_COMMERCIAL</option>
-              </select>
-            </div>
+        <form [formGroup]="addForm">
+<br>
           <div class="col-lg-6">
             <div class="form-group">
               <label for="lastname">Lastname</label>
@@ -106,10 +99,14 @@
               <label for="departments">Department</label>
               <input type="text"  formControlName="departments" name="departments" class="form-control" id="departments" placeholder="Department">
             </div>
-<!--            <div class="form-group">-->
-<!--              <label for="country">Country</label>-->
-<!--              <input type="text"  formControlName="country" name="country" class="form-control" id="country" aria-describedby="country" placeholder="Name">-->
-<!--            </div>-->
+            <div class="form-group">
+              <label for="role">Designation</label>
+              <select type="text"  formControlName="role" name="role" class="form-control" id="role" placeholder="Role">
+                <option>ADMIN</option>
+                <option>COMMERCIAL</option>
+                <option>ASSISTANT_COMMERCIAL</option>
+              </select>
+            </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">
@@ -129,10 +126,16 @@
               <label for="role">Phone</label>
               <input type="text"  formControlName="phone" name="phone" class="form-control" id="phone" placeholder="Phone">
             </div>
+            <div class="form-group">
+              <label for="JoiningDate">Joining Date</label>
+              <input type="date"  formControlName="JoiningDate" [value]="currentDate" readonly name="JoiningDate" class="form-control" id="JoiningDate" placeholder="">
+            </div>
+            <br>
           </div>
+
           <div class="modal-footer">
             <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-            <button type="submit"  class="btn green" [disabled]="!addForm.valid" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;" >Save</button>
+            <button type="submit"  class="btn green" (click)="add(addForm)" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;" data-dismiss="modal">Save</button>
           </div>
         </form>
       </div>
@@ -151,17 +154,11 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <h4 class="modal-title" style="margin-bottom:1px"><strong>Update User</strong></h4>
         </div>
         <div class="modal-body">
           <form [formGroup]="editForm">
-              <div class="form-group">
-                <label for="role">Designation</label>
-                <select type="text"  formControlName="role" name="role" class="form-control" id="role" placeholder="Role">
-                  <option>ADMIN</option>
-                  <option>COMMERCIAL</option>
-                  <option>ASSISTANT_COMMERCIAL</option>
-                </select>
-              </div>
+            <br>
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="lastname">Lastname</label>
@@ -201,6 +198,15 @@
                 <label for="role">Phone</label>
                 <input type="text"  formControlName="phone" name="phone" class="form-control" id="phone" placeholder="Phone">
               </div>
+              <div class="form-group">
+                <label for="role">Designation</label>
+                <select type="text"  formControlName="role" name="role" class="form-control" id="role" placeholder="Role">
+                  <option>ADMIN</option>
+                  <option>COMMERCIAL</option>
+                  <option>ASSISTANT_COMMERCIAL</option>
+                </select>
+              </div>
+              <br>
             </div>
             <div class="modal-footer">
               <button type="reset" class="btn btn-default"  data-dismiss="modal" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>

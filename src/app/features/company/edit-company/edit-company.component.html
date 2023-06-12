@@ -1,7 +1,7 @@
 <section class="wrapper site-min-height">
   <!-- page start-->
   <section class="panel" style="border: 1px solid grey;">
-<form [formGroup]="editCompany" (ngSubmit)="edit(editCompany)">
+<form [formGroup]="editCompany" >
 
   <div class="row">
     <div class="col-lg-6">
@@ -266,7 +266,7 @@
   </div>
   <div class="modal-footer">
     <button type="reset" class="btn btn-default" style="float: right;padding: 8px 40px;font-size: 16px;">Cancel</button>
-    <button type="submit" class="btn btn-primary" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;">Save</button>
+    <button type="submit" class="btn btn-primary" (click)="edit(editCompany)" [disabled]="editCompany.invalid" style="float: right;margin-right: 1%;padding: 8px 50px;font-size: 16px;" >Save</button>
   </div>
 </form>
 

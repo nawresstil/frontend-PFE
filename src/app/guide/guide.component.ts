@@ -78,7 +78,7 @@ export class GuideComponent implements OnInit {
   }
   add(addForm: NgForm) {
     this.addForm.patchValue({
-      tracability: this.userC.lastname + ' ' + this.userC.firstname
+      tracability: this.userC.username
     });
     console.log(addForm);
     if (addForm.valid) {
@@ -104,6 +104,8 @@ export class GuideComponent implements OnInit {
   }
 
   public onUpdateGuide(id: number, guide:TacheS): void {
+    this.editForm.patchValue({
+      tracability: this.userC.username});
     if (this.editForm.valid) {
       this.openModal = false;
       this.submitted = false;

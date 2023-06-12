@@ -79,6 +79,7 @@ export class TaskComponent implements OnInit {
       label: new FormControl (this.updateTacheS.label),
       times: new FormControl (this.updateTacheS.times),
       collaborateurs: new FormControl (this.updateTacheS.collaborateurs),
+      comment: new FormControl (this.updateTacheS.comment),
       etat: new FormControl (this.updateTacheS.etat)
     });
   }
@@ -241,7 +242,6 @@ export class TaskComponent implements OnInit {
       }
     });
   }
-
 
   public searchTask(key: string): void {
     const result: TacheS[] = [];
